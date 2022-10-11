@@ -4,7 +4,14 @@ import './App.css';
 function App() {
   return (
     <div className="app">
-      <h1 className="app-title">Twój nowy <img className="app-title-icon" src="laptop.png"></img></h1>
+      <h1 className="app-title">
+        Twój nowy 
+        <img className="app-title-icon" src="laptop.png"></img>
+        
+        <img src="icons8-star-32.png" class="favs-star"></img>
+        <span class="favs-count">3</span>
+      </h1>
+      
       <div className="progress-bar">
         <p className="progress-bar-text">
           ...

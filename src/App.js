@@ -1,7 +1,11 @@
-import logo from './logo.svg';
+import Comparison from './pages/Comparison';
+import NotFound from './pages/NotFound';
+import ScreenExtras from './pages/forms/ScreenExtras';
 import './App.css';
+import { Routes, Route, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation();
   return (
     <div className="app">
       <h1 className="app-title">
@@ -26,34 +30,11 @@ function App() {
           Do czego użyjesz laptopa?</p>
       </div>
 
-      <div style={{ "display": "none" }} className="content">
-        <div className="choice-button">
-          <img className="choice-image" src="icons8-touchscreen-64.png"></img>
-          <p className="choice-text">
-            Ekran dotykowy pozwala wybierać elementy na ekranie naciskając na nie palcem, niestety ekran łatwo jest ubrudzić.
-          </p>
-        </div>
-        <p className="skip-button">
-          Pomiń
-        </p>
-      </div>
-
-
-      <table className="comparison-table">
-        <tbody>
-          <tr>
-            <th>
-              <img src="laptop.png" />
-              Lenovo L</th>
-            <th>
-              <img src="laptop.png" />HP Ultra Light</th>
-          </tr>
-          <tr>
-            <td>CPU<br />Pentium 2 Core</td>
-            <td>CPU<br />Pentium 4 Core</td>
-          </tr>
-        </tbody>
-      </table>
+      <Routes>
+          <Route path="extras" element={<ScreenExtras />} />
+          <Route path="comparison" element={<Comparison />} />
+          <Route path="*" element={<NotFound />} />
+      </Routes>
 
     </div>
   );

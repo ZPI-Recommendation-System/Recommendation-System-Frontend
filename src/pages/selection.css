@@ -1,0 +1,35 @@
+.selection-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between; 
+    list-style: none;
+    padding-left:0px;
+    flex-wrap: wrap;
+
+    
+}
+
+.selection-laptop {
+    text-align: center;
+    font-weight: 500;
+    width:22%;
+    opacity: 0.6;
+    padding: 10px;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+.selection-laptop.checked {
+    border: 4px solid #57EB54;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    transform: scale(1.03);
+}
+
+.selection-laptop>img {
+    width: 100%;
+}
+
+.selection-laptop>p {
+    margin: 0px;
+}

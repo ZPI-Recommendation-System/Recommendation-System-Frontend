@@ -1,4 +1,5 @@
 import Comparison from './pages/Comparison';
+import Selection from './pages/Selection';
 import NotFound from './pages/NotFound';
 import { forms } from './pages/forms/forms';
 
@@ -22,6 +23,8 @@ function App() {
           {forms.map(({id, description, element})=>
             <Route path={id} element={<Page description={description}>{element}</Page>} />)
           }
+          <Route path="select" 
+            element={<Page description="Wybierz do porównania"><Selection /></Page>} />
           <Route path="comparison" element={<Page description="Porównanie"><Comparison /></Page>} />
           <Route path="*" element={<Page description="404"><NotFound /></Page>} />
       </Routes>

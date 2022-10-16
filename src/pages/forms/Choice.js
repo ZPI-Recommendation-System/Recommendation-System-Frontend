@@ -1,5 +1,5 @@
 import './forms.css';
-import { Link } from "react-router-dom";
+import NextButton from './NextButton';
 
 export class Option {
   constructor(title, text, image) {
@@ -20,8 +20,6 @@ export function Choice({options, multiple}) {
           </p>
         </div>)
     )}
-    <Link to="/comparison" className="skip-button">
-      Pomiń
-    </Link>
+    <NextButton />
   </div>);
 }

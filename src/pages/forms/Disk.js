@@ -1,5 +1,5 @@
 import './forms.css';
-import { Link } from "react-router-dom";
+import NextButton from './NextButton';
 
 const points = [
 "100 GB",
@@ -35,9 +35,7 @@ function Disk() {
     
     {summary()}
     
-    <Link to="/comparison" className="skip-button">
-      Dalej
-    </Link>
+    <NextButton />
   </div>);
 }
 

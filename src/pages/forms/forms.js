@@ -15,3 +15,13 @@ export const forms = [
     new Form("screen-extras", "Dodatki do ekranu", <ScreenExtras />),
     new Form("internet", "Internet", <Internet />)
 ]
+
+export function nextFormId(currentFormId) {
+  const currentIndex = forms.findIndex(form=>form.id==currentFormId);
+  let nextIndex = currentIndex + 1;
+  if (nextIndex >= forms.length){
+    // go back to the first form
+    nextIndex = 0
+  }
+  return forms[nextIndex].id;
+}

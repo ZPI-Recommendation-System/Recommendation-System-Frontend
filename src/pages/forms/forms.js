@@ -19,7 +19,7 @@ export const forms = [
 ]
 
 export function nextFormId(currentFormId) {
-  const currentIndex = forms.findIndex(form=>form.id==currentFormId);
+  const currentIndex = forms.findIndex(form=>form.id===currentFormId);
   let nextIndex = currentIndex + 1;
   if (nextIndex >= forms.length){
     // go back to the first form

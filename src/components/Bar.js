@@ -1,3 +1,5 @@
+import './Bar.css';
+
 function Bar({description}) {
     return (  
       <div className="progress-bar">

@@ -1,0 +1,19 @@
+
+.favs-star {
+    float: right;
+    display: inline;
+    height: 3.25rem;
+    transform: translate(0.6rem, 1rem);
+    cursor: pointer;
+  }
+  
+  .favs-count {
+    font-size: 1.7rem;
+    float: right;
+    position:relative;
+    transform: translate(3.5rem, 2.65rem);
+    background-color: white;
+    border-radius: 100%;
+    color: black;
+  }
+  

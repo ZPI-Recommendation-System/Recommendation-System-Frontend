@@ -11,7 +11,7 @@ function LaptopIcon({ title, text, image }) {
   
     const className = "selection-laptop " + (checked ? 'checked' : '');
     return <div className={className} onClick={onClick}>
-        <img src="laptop-photo.png" />
+        <img src="laptop-photo.png" alt="laptop" />
         <p>Lenovo L</p>
     </div>;
   }

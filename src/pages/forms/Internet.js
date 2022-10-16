@@ -1,21 +1,17 @@
 import { Choice, Option } from './Choice';
 
-function ScreenExtras() {
+function Internet() {
   return <Choice
   options={[
     new Option(
-      "Ekran dotykowy",
+      "Slot na kartę SIM",
       "pozwala wybierać elementy na ekranie naciskając na nie palcem, niestety ekran łatwo jest ubrudzić.",
       "icons8-touchscreen-64.png"),
     new Option(
-      "HDMI",
+      "Gniazdo LAN",
       "jest najczęściej spotykanym złączem wideo, pozwoli ci się połączyć z większością monitorów, telewizorów i rzutników.",
-      "icons8-hdmi-24.png"),
-    new Option(
-      "Inne złącza wideo",
-      "np. micro HDMI, czesto pojawiają się w starszych lub ultra cienkich laptopach. Po dokupieniu kabla lub przejściówki będą mogły być używane tak samo jak HDMI.",
-      "icons8-hdmi-64.png")
+      "icons8-hdmi-24.png")
   ]} />
 };
 
-export default ScreenExtras;
+export default Internet;

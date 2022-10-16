@@ -1,10 +1,9 @@
 import Comparison from './pages/Comparison';
 import NotFound from './pages/NotFound';
-import ScreenExtras from './pages/forms/ScreenExtras';
-import Disk from './pages/forms/Disk';
+import { forms } from './pages/forms/forms';
 
 import Starred from './components/Starred';
-import Bar from './components/Bar';
+import Page from './pages/Page';
 
 import './App.css';
 import { Routes, Route } from "react-router-dom";
@@ -14,16 +13,17 @@ function App() {
     <div className="app">
       <h1 className="app-title">
         Twój nowy
-        <img className="app-title-icon" src="laptop.png"></img>
+        <img className="app-title-icon" src="laptop.png" alt="laptop"></img>
         <Starred />
       </h1>
-      <Bar />
+      
 
       <Routes>
-          <Route path="disk" element={<Disk />} />
-          <Route path="extras" element={<ScreenExtras />} />
-          <Route path="comparison" element={<Comparison />} />
-          <Route path="*" element={<NotFound />} />
+          {forms.map(({id, description, element})=>
+            <Route path={id} element={<Page description={description}>{element}</Page>} />)
+          }
+          <Route path="comparison" element={<Page description="Porównanie"><Comparison /></Page>} />
+          <Route path="*" element={<Page description="404"><NotFound /></Page>} />
       </Routes>
 
     </div>

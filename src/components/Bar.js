@@ -1,4 +1,4 @@
-function Bar() {
+function Bar({description}) {
     return (  
       <div className="progress-bar">
         <p className="progress-bar-text">
@@ -11,7 +11,7 @@ function Bar() {
             5
             <span className="progress-bar-divider"></span>
             <span className="progress-bar-divider-space"></span>
-            Do czego użyjesz laptopa?</p>
+            {description}</p>
         </div>
     )
 }

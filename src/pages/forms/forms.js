@@ -1,6 +1,7 @@
 import ScreenExtras from './ScreenExtras';
 import Internet from './Internet';
 import Disk from './Disk';
+import Price from './Price';
 
 class Form {
     constructor(id, description, element) {
@@ -11,6 +12,7 @@ class Form {
   }
 
 export const forms = [
+    new Form("price", "Maksymalna cena", <Price />),
     new Form("disk", "Rozmiar dysku", <Disk />),
     new Form("screen-extras", "Dodatki do ekranu", <ScreenExtras />),
     new Form("internet", "Internet", <Internet />)

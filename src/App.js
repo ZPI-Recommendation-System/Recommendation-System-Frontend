@@ -21,7 +21,7 @@ function App() {
 
       <Routes>
           {forms.map(({id, description, element})=>
-            <Route path={id} element={<Page description={description}>{element}</Page>} />)
+            <Route key={id} path={id} element={<Page description={description}>{element}</Page>} />)
           }
           <Route path="select" 
             element={<Page description="Wybierz do porównania"><Selection /></Page>} />

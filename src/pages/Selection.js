@@ -23,8 +23,8 @@ function Comparison() {
             Wybierz jeszcze jeden laptop aby otworzyć ekran porównania.
             </p>
             <div className="selection-container">
-                {[1,1,1,1,1,1,1,1].map(el=>
-                    <LaptopIcon />
+                {[1,1,1,1,1,1,1,1].map((el, index)=>
+                    <LaptopIcon key={index} />
                 )}
             </div>
         </div>

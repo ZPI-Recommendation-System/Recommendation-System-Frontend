@@ -30,7 +30,7 @@ function ChoiceBox({ title, text, image }) {
 export function Choice({ options, extraText, multiple }) {
   return (<div className="content">
     {options.map(
-      option => <ChoiceBox {...option} />)}
+      option => <ChoiceBox  key={option.title} {...option} />)}
     <p className="choice-text">
       {extraText}
     </p>

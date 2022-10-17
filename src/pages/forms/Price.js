@@ -2,6 +2,7 @@ import Slider from './Slider';
 
 function Price() {
   return <Slider
+    id="price"
     points = {[
     "1000 zł",
     "2000 zł",
@@ -11,13 +12,14 @@ function Price() {
     ]}
     prompt = {"Wybierz maksymalną cenę:"}
     summary = {value => (
-        <p className="text">
+        <><p className="text">
             W tym budżecie masz do wyboru:
-            <ul>
-            <li>10 laptopów biurowych</li>
-            <li>30 laptopów gamingowych</li>
-            </ul>
         </p>
+         <ul className="text">
+         <li>10 laptopów biurowych</li>
+         <li>30 laptopów gamingowych</li>
+         </ul>
+        </>
     )} />
 }
 

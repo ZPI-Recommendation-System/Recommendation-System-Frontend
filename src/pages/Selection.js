@@ -1,14 +1,12 @@
 import './selection.css';
 import './Comparison.css';
-import { useState } from 'react';
+import _ from 'lodash';
+import { Link } from "react-router-dom";
 
-function LaptopIcon({ title, text, image }) {
-    const [checked, setChecked] = useState(false);
-  
-    function onClick() {
-      setChecked(!checked);
-    }
-  
+import { useSelector, useDispatch } from 'react-redux';
+import { select } from '../store/slices/selection';
+
+function LaptopIcon({ title, text, image, checked, onClick }) {
     const className = "selection-laptop " + (checked ? 'checked' : '');
     return <div className={className} onClick={onClick}>
         <img src="laptop-photo.png" alt="laptop" />
@@ -17,16 +15,32 @@ function LaptopIcon({ title, text, image }) {
   }
 
 function Comparison() {
+    const dispatch = useDispatch();
+    const selected = useSelector(state=>state.selection.selected)
+    const selectedCount = selected.length;
+    let prompt = {
+        0 : "Wybierz dwa laptopy aby zobaczyć ich detale i porównanie.",
+        1 : "Naciśnij przycisk szczegóły aby zobaczyć detale wybranego laptopa lub dobierz jeszcze jeden dla porównania.",
+        2 : "Naciśnij przycisk porównanie aby zobaczyć porównanie laptopów."
+        }[selectedCount];
+
     return (
         <div className="content">
             <p className="text">
-            Wybierz jeszcze jeden laptop aby otworzyć ekran porównania.
+                {prompt}
             </p>
             <div className="selection-container">
-                {[1,1,1,1,1,1,1,1].map((el, index)=>
-                    <LaptopIcon key={index} />
+                {_.range(8).map(key=>
+                    <LaptopIcon
+                    checked={selected.includes(key)}
+                    onClick = {()=> dispatch(select(key))}
+                    key={key} />
                 )}
             </div>
+            {selectedCount>=1
+                && <Link to="/comparison" className="skip-button">
+                {selectedCount==1 ? "Szczegóły" : "Porównanie"}
+              </Link>}
         </div>
     );
 }

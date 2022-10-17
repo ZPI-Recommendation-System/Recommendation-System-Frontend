@@ -27,6 +27,7 @@ export function Choice({ id, options, extraText, multiple }) {
   const value = useSelector(state=>state.forms[id]);
   const dispatch = useDispatch();
 
+  // create object in state holding checkbox values
   useEffect(() => {
     if(!value) {
       dispatch(createToggles([id, options.map(o=>o.title)]))

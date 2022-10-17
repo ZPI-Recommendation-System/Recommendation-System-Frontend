@@ -22,11 +22,11 @@ function Bar({index, description}) {
             </>)}
 
             {previousNumbers.map(i=>
-            <>
+            <span key={i}>
             {i}
             <span className="progress-bar-divider"></span>
             <span className="progress-bar-divider-space"></span>
-            </>
+            </span>
             )
             }
             {description}</p>

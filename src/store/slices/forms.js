@@ -3,8 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 export const formSlice = createSlice({
   name: 'form',
   initialState: {
-    "price":0,
-    "disk":0
   },
   reducers: {
     setSliderValue: (state, {payload: [form, value]}) => {

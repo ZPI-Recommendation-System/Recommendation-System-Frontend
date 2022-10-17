@@ -28,8 +28,10 @@
 
 .selection-laptop>img {
     width: 100%;
+    cursor: pointer;
 }
 
 .selection-laptop>p {
     margin: 0px;
+    cursor: pointer;
 }

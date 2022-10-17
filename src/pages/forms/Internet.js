@@ -2,6 +2,7 @@ import { Choice, Option } from './Choice';
 
 function Internet() {
   return <Choice
+  id="internet"
   options={[
     new Option(
       "Slot na kartę SIM",

@@ -1,6 +1,8 @@
 import './forms.css';
 import NextButton from './NextButton';
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {createToggles, toggleChoice } from '../../store/slices/forms';
 
 export class Option {
   constructor(title, text, image) {
@@ -10,16 +12,10 @@ export class Option {
   }
 }
 
-function ChoiceBox({ title, text, image }) {
-  const [checked, setChecked] = useState(false);
-
-  function onClick() {
-    setChecked(!checked);
-  }
-
+function ChoiceBox({ title, text, image, checked, onClick }) {
   const className = "choice-button " + (checked ? 'checked' : '');
   return <div className={className} 
-  onClick={onClick}>
+    onClick={onClick}>
     <img className="choice-image" alt={title} src={image}></img>
     <p className="choice-text">
       {title}<br />{text}
@@ -27,10 +23,22 @@ function ChoiceBox({ title, text, image }) {
   </div>;
 }
 
-export function Choice({ options, extraText, multiple }) {
+export function Choice({ id, options, extraText, multiple }) {
+  const value = useSelector(state=>state.forms[id]);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if(!value) {
+      dispatch(createToggles([id, options.map(o=>o.title)]))
+    }
+  }, [])
+
   return (<div className="content">
     {options.map(
-      option => <ChoiceBox  key={option.title} {...option} />)}
+      option => <ChoiceBox 
+      checked = {value && value[option.title]}
+      onClick = {()=> dispatch(toggleChoice([id, option.title]))}
+      key={option.title} {...option} />)}
     <p className="choice-text">
       {extraText}
     </p>

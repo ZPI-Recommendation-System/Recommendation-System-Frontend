@@ -10,13 +10,16 @@ export const formSlice = createSlice({
     setSliderValue: (state, {payload: [form, value]}) => {
       state[form] = value
     },
-    toggleChoice: (state, {form, choice}) => {
+    createToggles: (state, {payload: [form, keys]}) => {
+      state[form] = Object.fromEntries(keys.map(key => [key, false]))
+    },
+    toggleChoice: (state, {payload: [form, choice]}) => {
       state[form][choice] = !state[form][choice]
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-export const { setSliderValue, toggleChoice } = formSlice.actions
+export const { setSliderValue, toggleChoice, createToggles } = formSlice.actions
 
 export default formSlice.reducer

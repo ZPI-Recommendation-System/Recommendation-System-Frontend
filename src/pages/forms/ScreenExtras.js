@@ -2,6 +2,7 @@ import { Choice, Option } from './Choice';
 
 function ScreenExtras() {
   return <Choice
+  id="screen"
   options={[
     new Option(
       "Ekran dotykowy",

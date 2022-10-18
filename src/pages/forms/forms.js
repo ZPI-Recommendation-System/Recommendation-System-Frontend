@@ -24,11 +24,23 @@ export const forms = [
     new Form("ram", "Rozmiar pamięci RAM", <Ram />)
 ]
 
+export function previousFormId(currentFormId, by=1) {
+  const currentIndex = forms.findIndex(form=>form.id===currentFormId);
+  if (currentIndex === -1) {
+    return forms[forms.length - 1].id;
+  }
+  let previousIndex = currentIndex - by;
+  if (previousIndex >= 0){
+    return forms[previousIndex].id;
+  } else {
+    return currentFormId;
+  }
+}
+
 export function nextFormId(currentFormId) {
   const currentIndex = forms.findIndex(form=>form.id===currentFormId);
   let nextIndex = currentIndex + 1;
   if (nextIndex < forms.length){
-    // go back to the first form
     return forms[nextIndex].id;
   } else {
     return "select";

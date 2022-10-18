@@ -34,3 +34,8 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
+.progress-bar-link {
+    text-decoration: none;
+    color: white;
+}

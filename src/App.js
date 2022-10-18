@@ -21,14 +21,14 @@ function App() {
 
       <Routes>
           {forms.map(({id, description, element}, index)=>
-            <Route key={id} path={id} element={<Page index={index+1} description={description}>{element}</Page>} />)
+            <Route key={id} path={id} element={<Page id={id} index={index+1} description={description}>{element}</Page>} />)
           }
           <Route path="select" 
-            element={<Page index={10} description="Wybierz do porównania"><Selection /></Page>} />
+            element={<Page index={8} description="Wybierz do porównania"><Selection /></Page>} />
           <Route path="favourites" 
-            element={<Page index={10} description="Zapisane laptopy"><Selection /></Page>} />
-          <Route path="comparison" element={<Page index={10} description="Porównanie"><Comparison /></Page>} />
-          <Route path="*" element={<Page index={10} description="404"><NotFound /></Page>} />
+            element={<Page index={8} description="Zapisane laptopy"><Selection /></Page>} />
+          <Route path="comparison" element={<Page index={9} description="Porównanie"><Comparison /></Page>} />
+          <Route path="*" element={<Page index="?" description="404"><NotFound /></Page>} />
       </Routes>
 
     </div>

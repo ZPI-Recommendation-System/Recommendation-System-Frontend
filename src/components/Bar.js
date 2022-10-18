@@ -1,7 +1,9 @@
 import './Bar.css';
 import _ from 'lodash';
+import { previousFormId } from '../pages/forms/forms';
+import { Link } from "react-router-dom";    
 
-function Bar({index, description}) {
+function Bar({id, index, description}) {
     const shown = 3;
     const dots = index > shown;
     let lastShown = Math.max(index - (shown - 1), 1);
@@ -22,11 +24,11 @@ function Bar({index, description}) {
             </>)}
 
             {previousNumbers.map(i=>
-            <span key={i}>
+            <Link className="progress-bar-link" to={"/"+previousFormId(id, index - i)} key={i}>
             {i}
             <span className="progress-bar-divider"></span>
             <span className="progress-bar-divider-space"></span>
-            </span>
+            </Link>
             )
             }
             {description}</p>

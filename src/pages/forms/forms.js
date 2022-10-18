@@ -3,6 +3,8 @@ import Internet from './Internet';
 import Disk from './Disk';
 import Price from './Price';
 import Data from './Data';
+import Battery from './Battery';
+import Ram from './Ram';
 
 class Form {
     constructor(id, description, element) {
@@ -16,8 +18,10 @@ export const forms = [
     new Form("price", "Maksymalna cena", <Price />),
     new Form("disk", "Rozmiar dysku", <Disk />),
     new Form("screen-extras", "Dodatki do ekranu", <ScreenExtras />),
+    new Form("battery", "Czas pracy baterii", <Battery />),
     new Form("internet", "Internet", <Internet />),
-    new Form("data", "Przenoszenie danych", <Data />)
+    new Form("data", "Przenoszenie danych", <Data />),
+    new Form("ram", "Rozmiar pamięci RAM", <Ram />)
 ]
 
 export function nextFormId(currentFormId) {

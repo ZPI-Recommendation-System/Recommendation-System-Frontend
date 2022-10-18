@@ -2,7 +2,7 @@ import { Choice, Option } from './Choice';
 
 function Data() {
   return <Choice
-  id="internet"
+  id="data"
   options={[
     new Option(
       "Napęd CD",

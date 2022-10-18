@@ -3,8 +3,8 @@ import NextButton from './NextButton';
 import { useSelector, useDispatch } from 'react-redux';
 import {setSliderValue } from '../../store/slices/forms';
 
-function Slider({ id, prompt, points, summary }) {
-    const value = useSelector(state=>state.forms[id]);
+function Slider({ id, prompt, points, summary, startWithMax }) {
+    const value = useSelector(state=>state.forms[id]) ?? (startWithMax ? 1 : 0);
     const dispatch = useDispatch();
 
     return (<div className="content">

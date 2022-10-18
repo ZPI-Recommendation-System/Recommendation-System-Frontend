@@ -20,7 +20,9 @@ function Price() {
          <li>30 laptopów gamingowych</li>
          </ul>
         </>
-    )} />
+    )}
+    startWithMax={true}
+    />
 }
 
 export default Price;

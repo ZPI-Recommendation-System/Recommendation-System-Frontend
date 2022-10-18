@@ -1,5 +1,6 @@
 .choice-image {
     flex-basis: 20%;
+    width: 30%;
 }
 
 .choice-text {

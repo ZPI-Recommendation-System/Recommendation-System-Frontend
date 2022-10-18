@@ -25,6 +25,8 @@ function App() {
           }
           <Route path="select" 
             element={<Page index={10} description="Wybierz do porównania"><Selection /></Page>} />
+          <Route path="favourites" 
+            element={<Page index={10} description="Zapisane laptopy"><Selection /></Page>} />
           <Route path="comparison" element={<Page index={10} description="Porównanie"><Comparison /></Page>} />
           <Route path="*" element={<Page index={10} description="404"><NotFound /></Page>} />
       </Routes>

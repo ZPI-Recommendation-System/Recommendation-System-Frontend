@@ -14,7 +14,7 @@
     font-weight: 500;
     width:22%;
     opacity: 0.6;
-    padding: 10px;
+    padding: 1.2rem;
     margin-bottom: 1rem;
     box-sizing: border-box;
 }
@@ -26,7 +26,7 @@
     transform: scale(1.03);
 }
 
-.selection-laptop>img {
+.selection-laptop-image {
     width: 100%;
     cursor: pointer;
 }
@@ -34,4 +34,10 @@
 .selection-laptop>p {
     margin: 0px;
     cursor: pointer;
+}
+
+.laptop-star {
+    width: 1.6rem;
+    transform: translate(1.05rem, -5.1rem);
+    position:absolute;
 }

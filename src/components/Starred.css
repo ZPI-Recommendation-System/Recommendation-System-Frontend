@@ -9,9 +9,12 @@
   
   .favs-count {
     font-size: 1.7rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    text-align: center;
     float: right;
     position:relative;
-    transform: translate(3.5rem, 2.65rem);
+    transform: translate(3.8rem, 2.8rem);
     background-color: white;
     border-radius: 100%;
     color: black;

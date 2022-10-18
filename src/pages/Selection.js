@@ -5,16 +5,18 @@ import { Link } from "react-router-dom";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { select } from '../store/slices/selection';
+import LaptopStar from '../components/LaptopStar';
 
-function LaptopIcon({ title, text, image, checked, onClick }) {
+function LaptopIcon({ id, title, text, image, checked, onClick }) {
     const className = "selection-laptop " + (checked ? 'checked' : '');
     return <div className={className} onClick={onClick}>
-        <img src="laptop-photo.png" alt="laptop" />
+        <img src="laptop-photo.png" className="selection-laptop-image" alt="laptop" />
         <p>Lenovo L</p>
+        <LaptopStar id={id} className="laptop-star" />
     </div>;
   }
 
-function Comparison() {
+function Selection() {
     const dispatch = useDispatch();
     const selected = useSelector(state=>state.selection.selected)
     const selectedCount = selected.length;
@@ -32,6 +34,7 @@ function Comparison() {
             <div className="selection-container">
                 {_.range(8).map(key=>
                     <LaptopIcon
+                    id={key}
                     checked={selected.includes(key)}
                     onClick = {()=> dispatch(select(key))}
                     key={key} />
@@ -39,10 +42,10 @@ function Comparison() {
             </div>
             {selectedCount>=1
                 && <Link to="/comparison" className="skip-button">
-                {selectedCount==1 ? "Szczegóły" : "Porównanie"}
+                {selectedCount===1 ? "Szczegóły" : "Porównanie"}
               </Link>}
         </div>
     );
 }
 
-export default Comparison;
+export default Selection;

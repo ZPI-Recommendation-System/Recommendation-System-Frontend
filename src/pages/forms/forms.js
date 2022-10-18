@@ -21,9 +21,10 @@ export const forms = [
 export function nextFormId(currentFormId) {
   const currentIndex = forms.findIndex(form=>form.id===currentFormId);
   let nextIndex = currentIndex + 1;
-  if (nextIndex >= forms.length){
+  if (nextIndex < forms.length){
     // go back to the first form
-    nextIndex = 0
+    return forms[nextIndex].id;
+  } else {
+    return "select";
   }
-  return forms[nextIndex].id;
 }

@@ -6,6 +6,7 @@ import Data from './Data';
 import Battery from './Battery';
 import Ram from './Ram';
 import Usage from './Usage';
+import Size from './Size';
 
 class Form {
     constructor(id, description, element) {
@@ -18,6 +19,7 @@ class Form {
 export const forms = [
     new Form("usage", "Do czego będzie służył laptop", <Usage />),
     new Form("price", "Maksymalna cena", <Price />),
+    new Form("size", "Rozmiar ekranu", <Size />),
     new Form("screen-extras", "Dodatki do ekranu", <ScreenExtras />),
     new Form("battery", "Czas pracy baterii", <Battery />),
     new Form("disk", "Rozmiar dysku", <Disk />),

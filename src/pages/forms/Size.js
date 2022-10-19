@@ -36,12 +36,15 @@ function ChoiceBox({ name, size, checked, onClick, selectable, vertical }) {
     const className = "size-button " + ((checked && selectable) ? 'checked' : '');
     const width = size * 14 / 1.38;
     const height = size * 9.5 / 1.38;
+    if (!selectable) {
+        onClick = ()=>null;
+    }
     return <div className={className}
         style={{
             width: vertical ? height : width,
             height: vertical ? width : height,
         }}
-        onClick={selectable && onClick}>
+        onClick={onClick}>
         <p>
             {name}
         </p>
@@ -56,7 +59,7 @@ function Size() {
     // create object in state holding checkbox values
     useEffect(() => {
         if (!value) {
-            dispatch(createToggles([id, OPTIONS.map(o => o.name)]))
+            dispatch(createToggles([id, OPTIONS.map(o => String(o.name))]))
         }
     }, [])
 

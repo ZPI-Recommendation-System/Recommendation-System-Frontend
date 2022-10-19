@@ -9,7 +9,8 @@ export const formSlice = createSlice({
       state[form] = value
     },
     createToggles: (state, {payload: [form, keys]}) => {
-      state[form] = Object.fromEntries(keys.map(key => [key, false]))
+      const keyFalseValuePairs = new Array(keys.map(key => [key, false]));
+      state[form] = Object.fromEntries(keyFalseValuePairs);
     },
     toggleChoice: (state, {payload: [form, choice]}) => {
       state[form][choice] = !state[form][choice]

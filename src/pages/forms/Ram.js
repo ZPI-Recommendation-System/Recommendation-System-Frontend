@@ -13,7 +13,7 @@ function Ram() {
     ]}
     summary = {value => <>
     <b>Jeżeli nie wiesz co wybrać pozostaw slider na wartości '?' a my dokonamy wyboru 
-      na bazie twoich poprzednich wyborów.</b>
+      na bazie twoich poprzednich decyzji.</b>
     <p>W pamięci RAM są przetrzymywane uruchomione gry i programy.
     Jeżeli pamięć RAM jest dla nich zbyt niska będą one musiały przechowywać 
     dane tymczasowe na dysku co spowoduje zacięcia.</p></>} />

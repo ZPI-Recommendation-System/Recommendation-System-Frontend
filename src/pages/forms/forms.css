@@ -11,7 +11,7 @@
 .choice-button {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: left;
     padding: 0.05rem 0.8rem;
     margin: 0.5rem;
     cursor: pointer;

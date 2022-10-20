@@ -8,9 +8,6 @@ import _ from 'lodash';
 // diagonal size in inches 
 const A4_SIZE = 14.32059;
 // source https://www.euro.com.pl/slownik.bhtml?definitionId=357249498
-const MIN_SIZE = 10
-const MAX_SIZE = 17.3
-
 const SIZES = [
     10, 11, 11.5, 13, 15, 16, 17
 ]
@@ -28,7 +25,7 @@ export class SizeOption {
 const OPTIONS = [
     new SizeOption("Kartka A4", A4_SIZE, false, true),
     new SizeOption(">17", 20, true),
-    ..._.reverse(SIZES).map(s => new SizeOption(s, s, true)),,
+    ..._.reverse(SIZES).map(s => new SizeOption(s, s, true)),
     new SizeOption("<10", 8, true),
 ]
 
@@ -61,7 +58,7 @@ function Size() {
         if (!value) {
             dispatch(createToggles([id, OPTIONS.map(o => String(o.name))]))
         }
-    }, [])
+    }, [dispatch, value]);
 
     return (<div className="content">
         <div className="size-choices">

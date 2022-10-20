@@ -32,7 +32,7 @@ export function Choice({ id, options, extraText, multiple }) {
     if(!value) {
       dispatch(createToggles([id, options.map(o=>o.title)]))
     }
-  }, [])
+  }, [dispatch, id, options, value])
 
   return (<div className="content">
     {options.map(

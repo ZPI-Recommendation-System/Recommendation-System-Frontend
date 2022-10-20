@@ -2,7 +2,7 @@ import './forms.css';
 import NextButton from './NextButton';
 import { useSelector, useDispatch } from 'react-redux';
 import {setSliderValue } from '../../store/slices/forms';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 
 function Slider({ id, prompt, points, summary, startWithMax }) {
     const startValue = startWithMax ? 100 : 0;
@@ -15,7 +15,7 @@ function Slider({ id, prompt, points, summary, startWithMax }) {
         if(!value && value !== 0) {
           dispatch(setSliderValue([id, startValue]))
         }
-    }, [dispatch, id])
+    }, [dispatch, id, startValue, value])
 
     return (<div className="content">
         <p className="text">

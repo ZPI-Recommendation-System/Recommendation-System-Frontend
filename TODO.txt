@@ -1,0 +1,7 @@
+- landing page
+- search page
+- start slider value
+- Section for not exact fits
+- mock form sending and reading the result 
+- waiting indicator
+- favourites and form results division

@@ -12,6 +12,11 @@ export const formSlice = createSlice({
       const keyFalseValuePairs = new Array(keys.map(key => [key, false]));
       state[form] = Object.fromEntries(keyFalseValuePairs);
     },
+    untoggleChoices: (state, {payload: form}) => {
+      for(let key of Object.keys(state[form])) {
+        state[form][key] = false;
+      }
+    },
     toggleChoice: (state, {payload: [form, choice]}) => {
       state[form][choice] = !state[form][choice]
     }
@@ -19,6 +24,6 @@ export const formSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setSliderValue, toggleChoice, createToggles } = formSlice.actions
+export const { setSliderValue, toggleChoice, untoggleChoices, createToggles } = formSlice.actions
 
 export default formSlice.reducer

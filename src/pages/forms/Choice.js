@@ -2,7 +2,7 @@ import './forms.css';
 import NextButton from './NextButton';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {createToggles, toggleChoice } from '../../store/slices/forms';
+import {createToggles, toggleChoice, untoggleChoices } from '../../store/slices/forms';
 
 export class Option {
   constructor(title, text, image) {
@@ -34,11 +34,18 @@ export function Choice({ id, options, extraText, multiple }) {
     }
   }, [dispatch, id, options, value])
 
+  function onToggle(option) {
+    if (!multiple) {
+      dispatch(untoggleChoices(id))
+    }
+    dispatch(toggleChoice([id, option]))
+  }
+
   return (<div className="content">
     {options.map(
       option => <ChoiceBox 
       checked = {value && value[option.title]}
-      onClick = {()=> dispatch(toggleChoice([id, option.title]))}
+      onClick = {()=>onToggle(option.title)}
       key={option.title} {...option} />)}
     <p className="choice-text">
       {extraText}

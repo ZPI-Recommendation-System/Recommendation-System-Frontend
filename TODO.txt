@@ -1,5 +1,5 @@
 wip landing page
-- waiting indicator
+- waiting indicator 
 - mock form sending and reading the result 
 v search page
 v Section for not exact fits

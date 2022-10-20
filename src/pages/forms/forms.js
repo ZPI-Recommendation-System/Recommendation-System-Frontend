@@ -47,6 +47,6 @@ export function nextFormId(currentFormId) {
   if (nextIndex < forms.length){
     return forms[nextIndex].id;
   } else {
-    return "select";
+    return "results";
   }
 }

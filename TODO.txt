@@ -1,7 +1,7 @@
-- landing page
-- search page
-- start slider value
-- Section for not exact fits
-- mock form sending and reading the result 
+wip landing page
 - waiting indicator
-- favourites and form results division
+- mock form sending and reading the result 
+v search page
+v Section for not exact fits
+v start slider value
+v favourites and form results division

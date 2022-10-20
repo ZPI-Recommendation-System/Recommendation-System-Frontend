@@ -23,7 +23,7 @@ function ChoiceBox({ title, text, image, checked, onClick }) {
   </div>;
 }
 
-export function Choice({ id, options, extraText, multiple }) {
+export function Choice({ id, options, extraText, multiple=true }) {
   const value = useSelector(state=>state.forms[id]);
   const dispatch = useDispatch();
 

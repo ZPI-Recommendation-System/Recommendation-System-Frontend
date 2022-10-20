@@ -10,9 +10,7 @@ function Bar({id, index, description}) {
     if (dots) {
         lastShown++;
     }
-    console.log(lastShown);
     const previousNumbers = _.range(lastShown, index+1);
-    console.log(previousNumbers);
 
     return (  
       <div className="progress-bar">

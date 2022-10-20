@@ -2,6 +2,7 @@ import { Choice, Option } from './Choice';
 
 function Usage() {
   return <Choice
+  multiple={false}
   id="internet"
   options={[
     new Option(

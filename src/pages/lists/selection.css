@@ -1,12 +1,28 @@
+.search {
+    width: 95%; 
+    height: 2rem;
+    font-size: 1.2rem;
+    padding: 0.3em 0.7em;
+    border-radius: 0.5em;
+}
+
+.selection-prompt {
+    height: 3em;
+    display: block;
+}
+
 .selection-container {
+    max-height: 18rem;
+    overflow-y: scroll;
+}
+
+.selection-section {
     display: flex;
     width: 100%;
     justify-content: space-between; 
     list-style: none;
     padding-left:0px;
-    flex-wrap: wrap;
-
-    
+    flex-wrap: wrap;   
 }
 
 .selection-laptop {
@@ -15,8 +31,10 @@
     width:22%;
     opacity: 0.6;
     padding: 1.2rem;
-    margin-bottom: 1rem;
+    padding-top: 2rem;
+    padding-bottom: 0.2rem;
     box-sizing: border-box;
+    margin: 3px;
 }
 
 .selection-laptop.checked {
@@ -38,6 +56,6 @@
 
 .laptop-star {
     width: 1.6rem;
-    transform: translate(1.05rem, -5.1rem);
-    position:absolute;
+    transform: translate(1.7rem, -5.7rem);
+    position:relative;
 }

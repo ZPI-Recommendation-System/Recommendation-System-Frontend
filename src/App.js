@@ -1,5 +1,7 @@
 import Comparison from './pages/Comparison';
-import Selection from './pages/Selection';
+import Results from './pages/lists/Results';
+import Favourites from './pages/lists/Favourites';
+import Search from './pages/lists/Search';
 import NotFound from './pages/NotFound';
 import { forms } from './pages/forms/forms';
 
@@ -23,10 +25,12 @@ function App() {
           {forms.map(({id, description, element}, index)=>
             <Route key={id} path={id} element={<Page id={id} index={index+1} description={description}>{element}</Page>} />)
           }
-          <Route path="select" 
-            element={<Page index={8} description="Wybierz do porównania"><Selection /></Page>} />
+          <Route path="results" 
+            element={<Page index={10} description="Wybierz do porównania"><Results /></Page>} />
           <Route path="favourites" 
-            element={<Page index={8} description="Zapisane laptopy"><Selection /></Page>} />
+            element={<Page index={10} description="Zapisane laptopy"><Favourites /></Page>} />
+            <Route path="search" 
+              element={<Page index={10} description="Wyszukaj laptop"><Search /></Page>} />
           <Route path="comparison" element={<Page index={9} description="Porównanie"><Comparison /></Page>} />
           <Route path="*" element={<Page index="?" description="404"><NotFound /></Page>} />
       </Routes>

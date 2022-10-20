@@ -31,7 +31,7 @@ function App() {
             element={<Page index={10} description="Zapisane laptopy"><Favourites /></Page>} />
             <Route path="search" 
               element={<Page index={10} description="Wyszukaj laptop"><Search /></Page>} />
-          <Route path="comparison" element={<Page index={9} description="Porównanie"><Comparison /></Page>} />
+          <Route path="comparison" element={<Page index={11} description="Porównanie"><Comparison /></Page>} />
           <Route path="*" element={<Page index="?" description="404"><NotFound /></Page>} />
       </Routes>
 

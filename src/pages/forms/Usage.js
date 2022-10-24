@@ -3,7 +3,7 @@ import { Choice, Option } from './Choice';
 function Usage() {
   return <Choice
   multiple={false}
-  id="internet"
+  id="usage"
   options={[
     new Option(
       "Aplikacje biurowe i internet",

@@ -1,6 +1,10 @@
-wip landing page
+- comparison on true laptop data
+- star in comparison 
+- link to landing page from header 
 - waiting indicator 
 - mock form sending and reading the result 
+v calculating file type counts
+v landing page
 v search page
 v Section for not exact fits
 v start slider value

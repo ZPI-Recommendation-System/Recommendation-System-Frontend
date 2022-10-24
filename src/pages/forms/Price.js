@@ -4,11 +4,11 @@ function Price() {
   return <Slider
     id="price"
     points = {[
-    "1000 zł",
-    "2000 zł",
-    "8000 zł",
-    "16 000 zł",
-    "Bez limitu"
+    ["1000 zł", 1000],
+    ["2000 zł", 2000],
+    ["8000 zł", 8000],
+    ["16 000 zł", 16000],
+    ["Bez limitu", Number.MAX_VALUE]
     ]}
     prompt = {"Wybierz maksymalną cenę:"}
     summary = {value => (

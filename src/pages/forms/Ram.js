@@ -5,11 +5,11 @@ function Ram() {
     id="ram"
     prompt = {"Wybierz wielkość pamięci RAM"}
     points = {[
-    "?",
-    "2 GB",
-    "4 GB",
-    "8 GB",
-    "16 GB"
+    ["?", 0],
+    ["2 GB", 2],
+    ["4 GB", 4],
+    ["8 GB", 8],
+    ["16 GB", 16]
     ]}
     summary = {value => <>
     <b>Jeżeli nie wiesz co wybrać pozostaw slider na wartości '?' a my dokonamy wyboru 

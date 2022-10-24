@@ -3,6 +3,7 @@ import Results from './pages/lists/Results';
 import Favourites from './pages/lists/Favourites';
 import Search from './pages/lists/Search';
 import NotFound from './pages/NotFound';
+import Landing from './pages/Landing';
 import { forms } from './pages/forms/forms';
 
 import Starred from './components/Starred';
@@ -25,6 +26,8 @@ function App() {
           {forms.map(({id, description, element}, index)=>
             <Route key={id} path={id} element={<Page id={id} index={index+1} description={description}>{element}</Page>} />)
           }
+          <Route path="/" 
+            element={<Page index={0} description="Strona początkowa"><Landing /></Page>} />
           <Route path="results" 
             element={<Page index={10} description="Wybierz do porównania"><Results /></Page>} />
           <Route path="favourites" 

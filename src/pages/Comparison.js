@@ -7,10 +7,10 @@ function Comparison() {
         <tbody>
           <tr>
             <th>
-              <img src="laptop.png" alt="laptop" />
+              <img src="logo.png" alt="laptop" />
               Lenovo L</th>
             <th>
-              <img src="laptop.png" alt="laptop" />HP Ultra Light</th>
+              <img src="logo.png" alt="laptop" />HP Ultra Light</th>
           </tr>
           <tr>
             <td>CPU<br />Pentium 2 Core</td>

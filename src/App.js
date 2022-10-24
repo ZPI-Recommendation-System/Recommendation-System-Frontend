@@ -17,7 +17,7 @@ function App() {
     <div className="app">
       <h1 className="app-title">
         Twój nowy
-        <img className="app-title-icon" src="laptop.png" alt="laptop"></img>
+        <img className="app-title-icon" src="logo.png" alt="laptop"></img>
         <Starred />
       </h1>
       

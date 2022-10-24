@@ -58,7 +58,7 @@ function Selection({main, extra}) {
 }
 
 export function makeLaptop(index) {
-    return new Laptop(index, `HP ${index}`, "laptop-photo.png");
+    return new Laptop(index, `HP ${index}`, "photos/laptop-photo.png");
 }
 
 export default Selection;

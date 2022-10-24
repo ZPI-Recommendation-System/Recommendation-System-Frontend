@@ -9,9 +9,9 @@ import LaptopStar from '../../components/LaptopStar';
 function LaptopIcon({ id, name, image, checked, onClick }) {
     const className = "selection-laptop " + (checked ? 'checked' : '');
     return <div className={className} onClick={onClick}>
+        <LaptopStar id={id} className="laptop-star" />
         <img src={image} className="selection-laptop-image" alt="laptop" />
         <p>{name}</p>
-        <LaptopStar id={id} className="laptop-star" />
     </div>;
 }
 

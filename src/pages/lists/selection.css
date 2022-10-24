@@ -35,6 +35,7 @@
     padding-bottom: 0.2rem;
     box-sizing: border-box;
     margin: 3px;
+    position: relative;
 }
 
 .selection-laptop.checked {
@@ -56,6 +57,7 @@
 
 .laptop-star {
     width: 1.6rem;
-    transform: translate(1.7rem, -5.7rem);
-    position:relative;
+    position:absolute;
+    right:0.7rem;
+    top:0.3rem;
 }

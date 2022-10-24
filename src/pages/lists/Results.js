@@ -8,7 +8,7 @@ function Results() {
     const forms = useSelector(state=>state.forms);
 
     useEffect(() => {
-        console.log("Sending form data", forms)
+        console.log("Sending form data", JSON.stringify(forms))
       }, [forms])
 
     return (

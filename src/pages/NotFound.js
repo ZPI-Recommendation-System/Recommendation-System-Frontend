@@ -1,11 +1,13 @@
+import { Link } from "react-router-dom";
+
 function NotFound() {
     return (<div className="content">
-      <h1>
+      <p className="text">
         Nie znaleziono strony
-      </h1>
-      <p className="skip-button">
-        Strona główna
       </p>
+      <Link to="/" className="skip-button" style={{textAlign: "left"}}>
+        Strona główna
+      </Link>
     </div>);
 }
 

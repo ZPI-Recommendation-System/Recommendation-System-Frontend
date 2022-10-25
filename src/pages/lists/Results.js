@@ -1,6 +1,6 @@
 import Selection, { makeLaptop } from "./Selection";
 import _ from 'lodash';
-import { getLaptopIds, getLaptop } from '../../api';
+import { getLaptopIds, getLaptop } from '../../api/api';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 

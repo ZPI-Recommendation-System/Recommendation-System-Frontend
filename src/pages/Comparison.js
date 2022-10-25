@@ -1,5 +1,5 @@
 import './Comparison.css';
-import { getLaptop, getLaptopDetails } from '../api';
+import { getLaptop, getLaptopDetails } from '../api/api';
 import { useSelector } from 'react-redux';
 import LaptopStar from '../components/LaptopStar';
 

@@ -1,6 +1,6 @@
 import './Selection.css';
 import { Link } from "react-router-dom";
-import { Laptop } from "../../api";
+import { Laptop } from "../../api/api";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { select } from '../../store/slices/selection';

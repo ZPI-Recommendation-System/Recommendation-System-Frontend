@@ -1,6 +1,7 @@
 import './Comparison.css';
 import { getLaptopIds, getLaptop, getLaptopDetails } from '../api';
 import { useSelector } from 'react-redux';
+import LaptopStar from '../components/LaptopStar';
 
 function Comparison() {
   const selected = useSelector(state=>state.selection.selected)
@@ -17,11 +18,11 @@ function Comparison() {
           <tr>
             <th>
               <img className="comparison-image" src={laptop1?.image} alt="laptop" />
-              {laptop1?.name}</th>
+              {laptop1?.name}<LaptopStar id={selected[0]} /></th>
             {laptop2 &&
             <th>
               <img className="comparison-image" src={laptop2?.image} alt="laptop" />
-              {laptop2?.name}</th>}
+              {laptop2?.name}<LaptopStar id={selected[1]} /></th>}
           </tr>
           {
             Object.entries(laptop1details).map(

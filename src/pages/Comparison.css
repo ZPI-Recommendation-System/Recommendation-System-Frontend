@@ -9,10 +9,16 @@
     border: 4px solid rgba(97, 99, 99, 0.1);
     filter: blur(0.5px);
   }
-  
-  .comparison-table th img {
-    width: 25%;
+
+  .comparison-image {
+    height: 6rem;
+    width: auto;
     margin: auto;
     display: block;
-    opacity: 0.6;
+    opacity: 0.9;
+    padding: 1.5rem;
+  }
+
+  td, th {
+    width: 50%;
   }

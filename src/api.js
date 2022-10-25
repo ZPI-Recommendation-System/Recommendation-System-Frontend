@@ -16,6 +16,9 @@ export function getLaptopIds(filters) {
 // get laptop class of laptop with given id 
 export function getLaptop(laptopId) {
   const data = mockData.find(l=>l.ID===laptopId);
+  if (data===undefined) {
+    return undefined;
+  }
 
   return new Laptop(data.ID, data.Name.split(" ").slice(1, 5).join(" "), data["Zdjęcie"])
 }
@@ -24,6 +27,10 @@ export function getLaptop(laptopId) {
 export function getLaptopDetails(laptopId) {
   const data = mockData.find(l=>l.ID===laptopId);
   const result = {};
+
+  if (data===undefined) {
+    return result;
+  }
   
   const removedKeys = [
       "ID",

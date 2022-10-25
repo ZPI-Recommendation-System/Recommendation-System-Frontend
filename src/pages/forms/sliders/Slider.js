@@ -1,7 +1,7 @@
 import './Slider.css';
-import NextButton from './NextButton';
+import NextButton from '../NextButton';
 import { useSelector, useDispatch } from 'react-redux';
-import {setSliderValue } from '../../store/slices/forms';
+import {setSliderValue } from '../../../store/slices/forms';
 import React, {useEffect} from 'react';
 
 function lerp(v0, v1, t) {

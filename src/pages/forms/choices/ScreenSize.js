@@ -1,8 +1,8 @@
 import './ScreenSize.css';
-import NextButton from './NextButton';
+import NextButton from '../NextButton';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createToggles, toggleChoice } from '../../store/slices/forms';
+import { createToggles, toggleChoice } from '../../../store/slices/forms';
 import _ from 'lodash';
 
 // diagonal size in inches 

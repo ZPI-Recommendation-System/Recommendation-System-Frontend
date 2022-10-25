@@ -1,12 +1,12 @@
-import ScreenExtras from './ScreenExtras';
-import Internet from './Internet';
-import Disk from './Disk';
-import Price from './Price';
-import Data from './Data';
-import Battery from './Battery';
-import Ram from './Ram';
-import Usage from './Usage';
-import ScreenSize from './ScreenSize';
+import ScreenExtras from './choices/ScreenExtras';
+import Internet from './choices/Internet';
+import Disk from './sliders/Disk';
+import Price from './sliders/Price';
+import Data from './choices/Data';
+import Battery from './sliders/Battery';
+import Ram from './sliders/Ram';
+import Usage from './choices/Usage';
+import ScreenSize from './choices/ScreenSize';
 
 class Form {
     constructor(id, description, element) {

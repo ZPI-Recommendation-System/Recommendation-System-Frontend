@@ -1,8 +1,8 @@
 import './Choice.css';
-import NextButton from './NextButton';
+import NextButton from '../NextButton';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {createToggles, toggleChoice, untoggleChoices } from '../../store/slices/forms';
+import {createToggles, toggleChoice, untoggleChoices } from '../../../store/slices/forms';
 
 export class Option {
   constructor(title, text, image) {

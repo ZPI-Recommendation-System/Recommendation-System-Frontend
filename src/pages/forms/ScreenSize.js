@@ -1,4 +1,4 @@
-import './forms.css';
+import './ScreenSize.css';
 import NextButton from './NextButton';
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -48,7 +48,7 @@ function ChoiceBox({ name, size, checked, onClick, selectable, vertical }) {
     </div>;
 }
 
-function Size() {
+function ScreenSize() {
     const id = "size";
     const value = useSelector(state => state.forms[id]);
     const dispatch = useDispatch();
@@ -75,4 +75,4 @@ function Size() {
     </div>);
 }
 
-export default Size;
+export default ScreenSize;

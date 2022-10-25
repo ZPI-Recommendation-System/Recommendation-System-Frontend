@@ -1,4 +1,4 @@
-import './forms.css';
+import './Slider.css';
 import NextButton from './NextButton';
 import { useSelector, useDispatch } from 'react-redux';
 import {setSliderValue } from '../../store/slices/forms';
@@ -32,7 +32,7 @@ function Slider({ id, prompt, points, summary, startWithMax }) {
           dispatch(setSliderValue([id, startValue]))
           dispatch(setSliderValue([inUnitsId, startValue]))
         }
-    }, [dispatch, id, startValue, value])
+    }, [dispatch, id, inUnitsId, startValue, value])
 
     return (<div className="content">
         <p className="text">

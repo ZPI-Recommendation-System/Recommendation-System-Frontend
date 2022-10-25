@@ -1,0 +1,28 @@
+.size-choices {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.size-button {
+  text-align: center;
+  padding: 0.05rem 0.8rem;
+  margin: 0.5rem;
+  cursor: pointer;
+
+  background: #FFFFFF;
+  border: 1px solid #D0D0D0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  border-radius: 8px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.size-button.checked {
+  border: 2px solid #57EB54bb;
+  transform: scale(1.07);
+}

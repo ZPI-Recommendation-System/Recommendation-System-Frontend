@@ -1,3 +1,4 @@
+import './LaptopStar.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { select, isFavourited } from '../store/slices/favourites';
 

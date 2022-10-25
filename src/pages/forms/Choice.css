@@ -1,0 +1,25 @@
+.choice-image {
+  flex-basis: 20%;
+  width: 30%;
+}
+
+.choice-text {
+  padding-left: 1rem;
+  font-weight: 600;
+}
+
+.choice-button {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding: 0.05rem 0.8rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.choice-button.checked {
+  border: 4px solid #57EB54;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  transform: scale(1.03);
+}

@@ -1,12 +1,11 @@
 import './Comparison.css';
-import { getLaptopIds, getLaptop, getLaptopDetails } from '../api';
+import { getLaptop, getLaptopDetails } from '../api';
 import { useSelector } from 'react-redux';
 import LaptopStar from '../components/LaptopStar';
 
 function Comparison() {
   const selected = useSelector(state=>state.selection.selected)
 
-  const laptops = getLaptopIds({});
   const laptop1 = getLaptop(selected[0])
   const laptop1details = getLaptopDetails(selected[0])
   const laptop2 = getLaptop(selected[1])
@@ -28,9 +27,9 @@ function Comparison() {
             Object.entries(laptop1details).map(
               ([key, value]) => 
                 <tr>
-                  <td>{key}<br />{value}</td>
+                  <td><b>{key}</b><br />{value}</td>
                   {laptop2 &&
-                  <td>{key}<br />{laptop2details[key]}</td>}
+                  <td><b>{key}</b><br />{laptop2details[key]}</td>}
                 </tr>
             )
           }

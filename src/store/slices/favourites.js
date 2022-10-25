@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 export const favouritesSlice = createSlice({
   name: 'favourites',
   initialState: {
-    list: [0, 1]
+    list: []
   },
   reducers: {
     select: (state, {payload: laptop}) => {

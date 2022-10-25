@@ -5,6 +5,7 @@ import Search from './pages/lists/Search';
 import NotFound from './pages/NotFound';
 import Landing from './pages/Landing';
 import { forms } from './pages/forms/forms';
+import { Link } from "react-router-dom";
 
 import Starred from './components/Starred';
 import Page from './pages/Page';
@@ -15,11 +16,11 @@ import { Routes, Route } from "react-router-dom";
 function App() {
   return (
     <div className="app">
-      <h1 className="app-title">
+      <Link className="app-title" to='/'>
         Twój nowy
         <img className="app-title-icon" src="logo.png" alt="laptop"></img>
+      </Link>
         <Starred />
-      </h1>
       
 
       <Routes>

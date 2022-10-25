@@ -1,8 +1,9 @@
-- comparison on true laptop data
-- star in comparison 
-- link to landing page from header 
+- cleanup
 - waiting indicator 
-- mock form sending and reading the result 
+v link to landing page from header 
+x mock form sending and reading the result 
+v comparison on true laptop data
+v star in comparison 
 v calculating file type counts
 v landing page
 v search page

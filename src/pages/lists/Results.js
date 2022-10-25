@@ -6,10 +6,13 @@ import { useEffect } from 'react';
 
 function formDataToRequest(data) {
     const result = {...data}
-    if (result["usage"]){
-        result["usage"] = Object.entries(result["usage"]).find(e=>e[1])[0]
+    if ("usage" in result) {
+        const checked = Object.entries(result["usage"]).find(e=>e[1]);
+        if (checked) {
+            result["usage"] = checked[0];
+        }
     }
-    if (result["size"]){
+    if ("size" in result){
         // remove object modifiers from redux
         result["size"] = {...result["size"]}
         delete result["size"]["Kartka A4"]

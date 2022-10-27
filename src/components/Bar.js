@@ -1,9 +1,10 @@
 import './Bar.css';
 import _ from 'lodash';
-import { previousFormId } from '../pages/forms/forms';
-import { Link } from "react-router-dom";    
+import { useNavigate } from "react-router-dom";    
 
 function Bar({id, index, description}) {
+    const navigate = useNavigate();
+
     const shown = 3;
     const dots = index > shown;
     let lastShown = Math.max(index - (shown - 1), 1);
@@ -12,23 +13,25 @@ function Bar({id, index, description}) {
     }
     const previousNumbers = _.range(lastShown, index+1);
 
+    function link(i) {
+        const back = - (index - i);
+        return <><span className="progress-bar-link" test={index - i} 
+        onClick={() => back<0 && navigate(back)} key={i}>
+        {i}</span>
+        <span className="progress-bar-divider"></span>
+        <span className="progress-bar-divider-space"></span>
+        </>;
+    }
+
     return (  
       <div className="progress-bar">
         <p className="progress-bar-text">
-            
-            {dots && (<>...
-            <span className="progress-bar-divider"></span>
-            <span className="progress-bar-divider-space"></span>
+            {dots && (
+            <>...
+                <span className="progress-bar-divider"></span>
+                <span className="progress-bar-divider-space"></span>
             </>)}
-
-            {previousNumbers.map(i=>
-            <Link className="progress-bar-link" to={"/"+previousFormId(id, index - i)} key={i}>
-            {i}
-            <span className="progress-bar-divider"></span>
-            <span className="progress-bar-divider-space"></span>
-            </Link>
-            )
-            }
+            {previousNumbers.map(link)}
             {description}</p>
         </div>
     )

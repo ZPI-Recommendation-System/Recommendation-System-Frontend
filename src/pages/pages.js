@@ -29,6 +29,9 @@ export const pages = [
     new Page(0, "", "Strona startowa", <Landing />),
     new Page(0, "404", "404", <NotFound />),
     
+    new Page(1, "search", "Wyszukaj laptop", <Search />),
+    new Page(1, "favourites", "Zapisane laptopy", <Favourites />),
+    
     new Page(1, "usage", "Do czego będzie służył laptop", <Usage />),
     new Page(2, "price", "Maksymalna cena", <Price />),
     new Page(3, "size", "Rozmiar ekranu", <ScreenSize />),
@@ -40,8 +43,6 @@ export const pages = [
     new Page(9, "ram", "Rozmiar pamięci RAM", <Ram />),
 
     new Page(10, "results", "Wybierz do porównania", <Results />),
-    new Page(10, "favourites", "Zapisane laptopy", <Favourites />),
-    new Page(10, "search", "Wyszukaj laptop", <Search />),
     
     new Page(11, "comparison", "Szczegóły", <Comparison />)
 ]

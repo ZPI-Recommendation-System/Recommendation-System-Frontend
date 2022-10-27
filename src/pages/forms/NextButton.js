@@ -7,7 +7,7 @@ function NextButton() {
     const locationWithoutSlash = location.pathname.substring(1);
     const nextFormLink = "/"+nextFormId(locationWithoutSlash);
 
-    return (<Link to={nextFormLink} className="skip-button">
+    return (<Link to={nextFormLink} className="navigation-button navigation-button-right">
       Dalej
     </Link>);
 }

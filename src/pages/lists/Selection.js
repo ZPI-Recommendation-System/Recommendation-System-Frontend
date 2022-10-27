@@ -51,7 +51,7 @@ function Selection({main, extra}) {
             </div>
             </div>
             {selectedCount>=1
-                && <Link to="/comparison" className="skip-button">
+                && <Link to="/comparison" className="navigation-button navigation-button-right">
                 {selectedCount===1 ? "Szczegóły" : "Porównanie"}
               </Link>}
               </>);

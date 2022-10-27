@@ -5,7 +5,7 @@ function NotFound() {
       <p className="text">
         Nie znaleziono strony
       </p>
-      <Link to="/" className="skip-button" style={{textAlign: "left"}}>
+      <Link to="/" className="navigation-button">
         Strona główna
       </Link>
     </div>);

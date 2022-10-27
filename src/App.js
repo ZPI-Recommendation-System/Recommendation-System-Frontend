@@ -7,7 +7,7 @@ import Landing from './pages/Landing';
 import { forms } from './pages/forms/forms';
 import { Link } from "react-router-dom";
 
-import Starred from './components/Starred';
+import StarredLink from './components/StarredLink';
 import Page from './pages/Page';
 
 import './App.css';
@@ -20,7 +20,7 @@ function App() {
         Twój nowy
         <img className="app-title-icon" src="logo.png" alt="laptop"></img>
       </Link>
-        <Starred />
+        <StarredLink />
       
 
       <Routes>

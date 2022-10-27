@@ -6,7 +6,12 @@ export default function LaptopStar({ id }) {
   const dispatch = useDispatch();
   const checked = useSelector(isFavourited(id));
 
-  const image = checked ? "icons/icons8-star-30.png" : "icons/icons8-star-32.png";
-  return <img onClick={e=>{dispatch(select(id)); e.stopPropagation();}} 
-    src={image} className="laptop-star" alt="star" />;
+  const checkedClass = checked ? "laptop-star" : "laptop-star hidden";
+
+  return <>
+    <img onClick={e=>{dispatch(select(id)); e.stopPropagation();}} 
+    src="icons/icons8-star-32.png" className="laptop-star" alt="star" />
+    <img onClick={e=>{dispatch(select(id)); e.stopPropagation();}} 
+    src="icons/icons8-star-30.png" className={checkedClass} alt="star-checked" />
+    </>;
 }

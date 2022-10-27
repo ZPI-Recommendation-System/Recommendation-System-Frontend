@@ -3,6 +3,12 @@
     position:absolute;
     right:0.7rem;
     top:0.3rem;
+    opacity: 1;
+    transition: all 0.15s;
+}
+
+.laptop-star.hidden {
+    opacity: 0.05;
 }
 
 .comparison-table .laptop-star {

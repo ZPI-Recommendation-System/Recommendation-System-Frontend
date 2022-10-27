@@ -83,3 +83,9 @@ body {
 
   color: rgba(0, 0, 0, 0.7);
 }
+
+.skip-button:active {
+  opacity: 0.7;
+  transform: scale(0.995);
+  transition: all 0.07s;
+}

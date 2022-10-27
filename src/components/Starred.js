@@ -7,6 +7,7 @@ function Starred() {
     const count = useSelector(favouritesCount);
 
     return (<Link to="/favourites" 
+    class="favs"
     style={{
         display: count > 0 ? 'initial' : 'none'
     }}>

@@ -4,21 +4,19 @@ import { favouritesCount } from '../store/slices/favourites';
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
-let previousCount = null;
-
 function StarredLink() {
     const count = useSelector(favouritesCount);
     const [animate, setAnimate] = useState(false);
+    const [previousCount, setPreviousCount] = useState(null);
 
-    useEffect(() => { 
-        if (previousCount==null) {
-            previousCount = count;
-        } 
-        if (count>previousCount) {
-            setAnimate(true)
-            setTimeout(() =>setAnimate(false), 0.35 * 1000)
+    useEffect(() => {
+        if (animate) {
+            setAnimate(false);
         }
-        previousCount = count;
+        if (previousCount!==null && count>previousCount) {
+            setAnimate(true)
+        }
+        setPreviousCount(count);
     }, [count])
     
     const favsClass = animate ? "favs favs-pop" : "favs";

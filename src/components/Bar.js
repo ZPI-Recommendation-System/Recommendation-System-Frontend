@@ -5,12 +5,9 @@ import { useNavigate } from "react-router-dom";
 function Bar({id, index, description}) {
     const navigate = useNavigate();
 
-    const shown = 3;
+    const shown = 2;
     const dots = index > shown;
     let lastShown = Math.max(index - (shown - 1), 1);
-    if (dots) {
-        lastShown++;
-    }
     const previousNumbers = _.range(lastShown, index+1);
 
     function link(i) {
@@ -26,11 +23,13 @@ function Bar({id, index, description}) {
     return (  
       <div className="progress-bar">
         <p className="progress-bar-text">
-            {dots && (
-            <>...
+            {dots ?
+                <>...</> 
+                : <>_</>
+            }
                 <span className="progress-bar-divider"></span>
                 <span className="progress-bar-divider-space"></span>
-            </>)}
+            
             {previousNumbers.map(link)}
             {description}</p>
         </div>

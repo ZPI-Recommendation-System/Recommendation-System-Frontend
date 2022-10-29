@@ -4,6 +4,7 @@ import Favourites from './pages/lists/Favourites';
 import Search from './pages/lists/Search';
 import NotFound from './pages/NotFound';
 import Landing from './pages/Landing';
+import Map from './pages/Map';
 import { forms } from './pages/forms/forms';
 import { Link } from "react-router-dom";
 
@@ -29,6 +30,9 @@ function App() {
           }
           <Route path="/" 
             element={<Page index={0} description="Strona początkowa"><Landing /></Page>} />
+          
+          <Route path="map" 
+            element={<Page index={0} description="Mapa strony"><Map /></Page>} />
           <Route path="results" 
             element={<Page index={10} description="Wybierz do porównania"><Results /></Page>} />
           <Route path="favourites" 

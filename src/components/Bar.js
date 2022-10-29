@@ -1,6 +1,6 @@
 import './Bar.css';
 import _ from 'lodash';
-import { useNavigate } from "react-router-dom";    
+import { useNavigate, Link } from "react-router-dom";    
 
 function Bar({id, index, description}) {
     const navigate = useNavigate();
@@ -20,13 +20,12 @@ function Bar({id, index, description}) {
         </>;
     }
 
+    const mapSymbol = dots ? "..." : "_";
+
     return (  
       <div className="progress-bar">
         <p className="progress-bar-text">
-            {dots ?
-                <>...</> 
-                : <>_</>
-            }
+                <Link to="/map" className="progress-bar-link">{mapSymbol}</Link>
                 <span className="progress-bar-divider"></span>
                 <span className="progress-bar-divider-space"></span>
             

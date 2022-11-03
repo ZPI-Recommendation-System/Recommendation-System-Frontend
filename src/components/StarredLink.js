@@ -10,14 +10,18 @@ function StarredLink() {
     const [previousCount, setPreviousCount] = useState(null);
 
     useEffect(() => {
-        if (animate) {
-            setAnimate(false);
-        }
         if (previousCount!==null && count>previousCount) {
             setAnimate(true)
+            // timeout is short and must be invoked 
+            // so it's not removed in cleanup
+            setTimeout(() =>setAnimate(false), 0.35 * 1000)
         }
         setPreviousCount(count);
-    }, [count, animate, previousCount])
+    }, [count, previousCount])
+
+    useEffect(() => {
+        
+    })
     
     const favsClass = animate ? "favs favs-pop" : "favs";
 

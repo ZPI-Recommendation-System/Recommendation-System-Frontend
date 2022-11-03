@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import {firstFormPageLink} from "./pages"
 
 function Landing() {
-    const firstForm = "/" + firstFormPageLink;
+    const firstForm = firstFormPageLink;
     return (<div className="content">
       <p className="text">
         Witaj w systemie rekomendacyjnym dla laptopów.

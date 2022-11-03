@@ -3,8 +3,8 @@ import { pages } from './pages';
 
 function Map() {
     return (<div className="content">
-      {pages.map(({id, description}, index)=>
-            <Link className="navigation-button" to={"/"+id} >{index+1}. {description}</Link>)
+      {pages.filter(page=>page.isForm).map(({number, link, description}, index)=>
+            <Link className="navigation-button" to={"/"+link} >{number}. {description}</Link>)
         }
     </div>);
 }

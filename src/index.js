@@ -9,7 +9,7 @@ import { store, persistor } from './store/store'
 import { PersistGate } from 'redux-persist/integration/react'
 
 
-store.subscribe(() => console.log("State: ", store.getState()))
+// store.subscribe(() => console.log("State: ", store.getState()))
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -4,8 +4,7 @@ import { nextPageLink } from '../pages';
 
 function NextButton() {
     const location = useLocation();
-    const locationWithoutSlash = location.pathname.substring(1);
-    const nextFormLink = "/"+nextPageLink(locationWithoutSlash);
+    const nextFormLink = nextPageLink(location.pathname);
 
     return (<Link to={nextFormLink} className="navigation-button navigation-button-right">
       Dalej

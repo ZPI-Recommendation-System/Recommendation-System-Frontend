@@ -43,37 +43,37 @@ class FormPage extends Page {
   }
 
 export const pages = [
-    new Page(0, "/", "Strona startowa", <Landing />),
-    new Page(0, "*", "404", <NotFound />),
+    new FormPage(1, "/usage", "Do czego będzie służył laptop", <Usage />),
+    new FormPage(2, "/price", "Maksymalna cena", <Price />),
+    new FormPage(3, "/size", "Rozmiar ekranu", <ScreenSize />),
+    new FormPage(4, "/screen-extras", "Dodatki do ekranu", <ScreenExtras />),
+    new FormPage(5, "/battery", "Czas pracy baterii", <Battery />),
+    new FormPage(6, "/disk", "Rozmiar dysku", <Disk />),
+    new FormPage(7, "/internet", "Internet", <Internet />),
+    new FormPage(8, "/data", "Przenoszenie danych", <Data />),
+    new FormPage(9, "/ram", "Rozmiar pamięci RAM", <Ram />),
     
-    new FormPage(1, "usage", "Do czego będzie służył laptop", <Usage />),
-    new FormPage(2, "price", "Maksymalna cena", <Price />),
-    new FormPage(3, "size", "Rozmiar ekranu", <ScreenSize />),
-    new FormPage(4, "screen-extras", "Dodatki do ekranu", <ScreenExtras />),
-    new FormPage(5, "battery", "Czas pracy baterii", <Battery />),
-    new FormPage(6, "disk", "Rozmiar dysku", <Disk />),
-    new FormPage(7, "internet", "Internet", <Internet />),
-    new FormPage(8, "data", "Przenoszenie danych", <Data />),
-    new FormPage(9, "ram", "Rozmiar pamięci RAM", <Ram />),
+    new Page(1, "/", "Strona startowa", <Landing />),
+    new Page(1, "*", "404", <NotFound />),
     
-    new Page(1, "search", "Wyszukaj laptop", <Search />),
-    new Page(1, "map", "Mapa strony", <Map />),
+    new Page(1, "/search", "Wyszukaj laptop", <Search />),
+    new Page(1, "/map", "Mapa strony", <Map />),
 
-    new Page(10, "results", "Wybierz do porównania", <Results />),
-    new Page(10, "favourites", "Zapisane laptopy", <Favourites />, PreviousBehavior.LastForm),
+    new Page(10, "/results", "Wybierz do porównania", <Results />),
+    new Page(10, "/favourites", "Zapisane laptopy", <Favourites />, PreviousBehavior.LastForm),
     
-    new Page(11, "comparison", "Szczegóły", <Comparison />, PreviousBehavior.Last)
+    new Page(11, "/comparison", "Szczegóły", <Comparison />, PreviousBehavior.Last)
 ]
 
 export const firstFormPageLink = pages.find(page=>page.isForm).link;
-export const notFound = pages[0];
+export const startPage = pages.find(page=>page.link==="/");
 
 export const currentPage = (index) => pages[index];
 
 export function previousPage(index, lastPage, lastFormPage) {
   const currentPage = pages[index];
   if (!currentPage) {
-    return notFound;
+    return startPage;
   }
   
   if (currentPage.previous===PreviousBehavior.PreviousInOrder) {
@@ -85,9 +85,9 @@ export function previousPage(index, lastPage, lastFormPage) {
       return currentPage;
     }
   } else if (currentPage.previous===PreviousBehavior.LastForm) {
-    return pages[lastFormPage] ?? notFound;
+    return pages[lastFormPage] ?? startPage;
   } else if (currentPage.previous===PreviousBehavior.Last) {
-    return pages[lastPage] ?? notFound;
+    return pages[lastPage] ?? startPage;
   }
 }
 

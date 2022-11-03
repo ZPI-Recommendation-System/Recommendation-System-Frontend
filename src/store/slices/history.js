@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 export const historySlice = createSlice({
   name: 'history',
   initialState: {
-    lastPage : 0,
-    lastFormPage : 0
+    lastPage : null,
+    lastFormPage : null
   },
   reducers: {
     setPage(state, {payload: [index, isForm]}) {

@@ -17,7 +17,7 @@ function StarredLink() {
             setAnimate(true)
         }
         setPreviousCount(count);
-    }, [count])
+    }, [count, animate, previousCount])
     
     const favsClass = animate ? "favs favs-pop" : "favs";
 

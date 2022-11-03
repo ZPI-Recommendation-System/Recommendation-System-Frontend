@@ -18,7 +18,7 @@ function Bar({index, number, description}) {
     const dots = number > 2;
     const previousLink = number > 1;
 
-    const mapSymbol = dots ? "..." : "_";
+    const mapSymbol = dots ? "..." : "⁖";
 
     let previousPage_ = back;
     const currentPage_ = currentPage(index);

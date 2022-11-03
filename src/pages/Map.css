@@ -1,0 +1,30 @@
+.map-line {
+    height: 25rem;
+    width: 6px;
+    background-color: #57EB54;
+    display: inline-block;
+    transform:translate(16px, 0);
+    margin-left: 1.4rem;
+}
+
+.map-links-container {
+    display: inline-block;
+    padding-bottom: 1em;
+}
+
+.map-circle {
+    transform:translate(0, 4px);
+    width: 28px;
+    height: 28px;
+    margin-right: 20px;
+    border-radius: 100%;
+    border: 5px solid #57EB54;
+    background-color: white;
+    box-sizing: border-box;
+    display: inline-block;
+    position: relative;
+}
+
+.map-circle-filled {
+    background-color: #57EB54;
+}

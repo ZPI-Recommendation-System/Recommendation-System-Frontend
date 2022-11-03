@@ -57,7 +57,7 @@ export const pages = [
     new Page(1, "*", "404", <NotFound />),
     
     new Page(1, "/search", "Wyszukaj laptop", <Search />),
-    new Page(1, "/map", "Mapa strony", <Map />),
+    new Page(12, "/map", "Mapa strony", <Map />, PreviousBehavior.Last),
 
     new Page(10, "/results", "Wybierz do porównania", <Results />),
     new Page(10, "/favourites", "Zapisane laptopy", <Favourites />, PreviousBehavior.LastForm),
@@ -91,7 +91,17 @@ export function previousPage(index, lastPage, lastFormPage) {
   }
 }
 
+function cleanupLink(link) {
+  // remove the trailing slash
+  if (link[link.length-1]==="/") {
+    return link.substring(0, link.length-1)
+  } else {
+    return link;
+  } 
+}
+
 export function nextPageLink(currentFormLink) {
+  currentFormLink = cleanupLink(currentFormLink)
   const currentPage = pages.find(page=>page.link===currentFormLink);
   const currentNumber = currentPage.number;
   const nextNumber = currentNumber + 1;

@@ -1,0 +1,31 @@
+{
+  "ram in units": 3.84, // GB
+  "usage": "Aplikacje biurowe i internet",
+  "price in units": 7279.999999999999, // zl
+  "size": {
+    "10": false,
+    "11": false,
+    "13": false,
+    "15": false,
+    "16": false,
+    "17": true,
+    ">17": true,
+    "11.5": false,
+    "<10": false
+  },
+  "screen": {
+    "Ekran dotykowy": false,
+    "HDMI": true,
+    "Inne złącza wideo": true
+  },
+  "battery in units": 2.16, // h
+  "disk in units": 585, // GB
+  "internet": {
+    "Slot na kartę SIM": false,
+    "Gniazdo LAN": true
+  },
+  "data": {
+    "Napęd CD": true,
+    "Czytnik kart pamięci": false
+  }
+}

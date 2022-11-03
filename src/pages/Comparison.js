@@ -26,7 +26,7 @@ function Comparison() {
           {
             Object.entries(laptop1details).map(
               ([key, value]) => 
-                <tr>
+                <tr key={key}>
                   <td><b>{key}</b><br />{value}</td>
                   {laptop2 &&
                   <td><b>{key}</b><br />{laptop2details[key]}</td>}

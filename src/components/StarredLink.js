@@ -22,7 +22,7 @@ function StarredLink() {
     const favsClass = animate ? "favs favs-pop" : "favs";
 
     return (<Link to="/favourites" 
-    class={favsClass}
+    className={favsClass}
     style={{
         display: count > 0 ? 'initial' : 'none'
     }}>

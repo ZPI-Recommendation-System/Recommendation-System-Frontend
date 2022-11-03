@@ -42,5 +42,5 @@ Comparison
 
 A - last visited page
 B - previous form page in their order
-C - furthers visited form page
+- C - furthers visited form page
 D - last visited page that is a form

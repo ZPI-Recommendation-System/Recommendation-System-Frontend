@@ -1,11 +1,4 @@
-import Comparison from './pages/Comparison';
-import Results from './pages/lists/Results';
-import Favourites from './pages/lists/Favourites';
-import Search from './pages/lists/Search';
-import NotFound from './pages/NotFound';
-import Landing from './pages/Landing';
-import Map from './pages/Map';
-import { forms } from './pages/forms/forms';
+import { pages } from './pages/pages';
 import { Link } from "react-router-dom";
 
 import StarredLink from './components/StarredLink';
@@ -25,22 +18,10 @@ function App() {
       
 
       <Routes>
-          {forms.map(({id, description, element}, index)=>
-            <Route key={id} path={id} element={<Page id={id} index={index+1} description={description}>{element}</Page>} />)
+          {pages.map((page, index)=>
+            <Route key={index} path={page.link} element={
+            <Page {...page} index={index} >{page.element}</Page>} />)
           }
-          <Route path="/" 
-            element={<Page index={0} description="Strona początkowa"><Landing /></Page>} />
-          
-          <Route path="map" 
-            element={<Page index={0} description="Mapa strony"><Map /></Page>} />
-          <Route path="results" 
-            element={<Page index={10} description="Wybierz do porównania"><Results /></Page>} />
-          <Route path="favourites" 
-            element={<Page index={10} description="Zapisane laptopy"><Favourites /></Page>} />
-            <Route path="search" 
-              element={<Page index={10} description="Wyszukaj laptop"><Search /></Page>} />
-          <Route path="comparison" element={<Page index={11} description="Porównanie"><Comparison /></Page>} />
-          <Route path="*" element={<Page index="?" description="404"><NotFound /></Page>} />
       </Routes>
 
     </div>

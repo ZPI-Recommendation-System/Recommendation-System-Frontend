@@ -1,26 +1,33 @@
 import './Bar.css';
-import _ from 'lodash';
-import { useNavigate, Link } from "react-router-dom";    
+import { Link } from "react-router-dom";  
+import { currentPage, previousPage } from "../pages/pages";   
+import { useSelector, useDispatch } from 'react-redux';
+import { setPage, lastPage, lastFormPage } from '../store/slices/history'; 
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
-function Bar({id, index, description}) {
-    const navigate = useNavigate();
+function Bar({index, number, description}) {
 
-    const shown = 2;
-    const dots = index > shown;
-    let lastShown = Math.max(index - (shown - 1), 1);
-    const previousNumbers = _.range(lastShown, index+1);
+    const dispatch = useDispatch();
 
-    function link(i) {
-        const back = - (index - i);
-        return <><span className="progress-bar-link" test={index - i} 
-        onClick={() => back<0 && navigate(back)} key={i}>
-        {i}</span>
-        <span className="progress-bar-divider"></span>
-        <span className="progress-bar-divider-space"></span>
-        </>;
-    }
+    const [back, setBack] = useState(null)
+    
+    const lastPage_ = useSelector(lastPage);
+    const lastFormPage_ = useSelector(lastFormPage);
+
+    const dots = number > 2;
+    const previousLink = number > 1;
 
     const mapSymbol = dots ? "..." : "_";
+
+    let previousPage_ = back ?? previousPage(index, lastPage_, lastFormPage_);
+    const currentPage_ = currentPage(index);
+
+    let location = useLocation();
+    useEffect(() => {
+        setBack(previousPage(index, lastPage_, lastFormPage_))
+        dispatch(setPage([index, currentPage_.isForm]))
+      }, [location, dispatch, currentPage_.isForm, index, lastFormPage_, lastPage_]);
 
     return (  
       <div className="progress-bar">
@@ -29,7 +36,16 @@ function Bar({id, index, description}) {
                 <span className="progress-bar-divider"></span>
                 <span className="progress-bar-divider-space"></span>
             
-            {previousNumbers.map(link)}
+            {previousLink && <><Link className="progress-bar-link" 
+                to={"/"+previousPage_.link}>
+                {previousPage_.number}</Link>
+                <span className="progress-bar-divider"></span>
+                <span className="progress-bar-divider-space"></span>
+            </>}
+            <span className="progress-bar-link">
+                {number}</span>
+                <span className="progress-bar-divider"></span>
+                <span className="progress-bar-divider-space"></span>
             {description}</p>
         </div>
     )

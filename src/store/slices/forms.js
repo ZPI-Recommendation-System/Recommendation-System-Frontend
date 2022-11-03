@@ -19,7 +19,6 @@ export const formSlice = createSlice({
     },
     toggleChoice: (state, {payload: [form, choice]}) => {
       state[form][choice] = !state[form][choice]
-      console.log("toggleChoice", form, choice, state)
     }
   }
 })

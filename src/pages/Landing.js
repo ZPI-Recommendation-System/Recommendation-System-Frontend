@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { forms } from './forms/forms';
+import {firstFormPageLink} from "./pages"
 
 function Landing() {
-    const firstForm = "/"+forms[0].id;
+    const firstForm = "/" + firstFormPageLink;
     return (<div className="content">
       <p className="text">
         Witaj w systemie rekomendacyjnym dla laptopów.

@@ -44,8 +44,8 @@ function Selection({main, extra}) {
             <div className="selection-section">
                 {main.map(makeIcon)}
             </div>
-            <hr></hr>
-            <p className="choice-text">Te laptopy nie pasują dokładnie do zapytania ale nadal są warte zobaczenia:</p>
+            <div className="extras-divider"></div>
+            <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>
             <div className="selection-section">
                 {extra.map(makeIcon)}
             </div>

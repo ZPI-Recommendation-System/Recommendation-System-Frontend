@@ -13,6 +13,10 @@ export function getLaptopIds(filters) {
   return mockData.map(l=>l.ID);
 }
 
+export function reduceName(name){
+  return name.split(" ").slice(1, 5).join(" ");
+}
+
 // get laptop class of laptop with given id 
 export function getLaptop(laptopId) {
   const data = mockData.find(l=>l.ID===laptopId);
@@ -20,7 +24,7 @@ export function getLaptop(laptopId) {
     return undefined;
   }
 
-  return new Laptop(data.ID, data.Name.split(" ").slice(1, 5).join(" "), data["Zdjęcie"])
+  return new Laptop(data.ID, reduceName(data.Name), data["Zdjęcie"])
 }
 
 // get a object with laptop details, example {cpu: "pentium 2 core", gpu: "integrated"}

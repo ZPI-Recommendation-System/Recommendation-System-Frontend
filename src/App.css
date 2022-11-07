@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
+/* remove outline around links */
+a {
+  outline : none;
+}
+
 body {
   background-image: url("../public/background.png");
   background-position: top;
@@ -97,5 +102,5 @@ body {
 }
 
 .navigation-button-right {
-  text-align: right;
+  float: right;
 }

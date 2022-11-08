@@ -1,4 +1,5 @@
 import mockData from './mockData';
+import { useEffect, useState } from 'react';
 
 export class Laptop {
     constructor(id, name, image) {
@@ -53,3 +54,41 @@ export function getLaptopDetails(laptopId) {
 
     return result;
 }
+
+
+export function useRequest(url, options) {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [data, setData] = useState([]);
+
+  // this useEffect will run once
+  // similar to componentDidMount()
+  useEffect(() => {
+    fetch(url, options)
+      .then(res =>{
+          if (!res.ok) {
+            // make the promise be rejected if we didn't get a 2xx response
+            throw new Error(`${res.status}: ${res.statusText}`, {cause: res});
+          } else {
+            return res.json()
+          }
+        })
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setData(result);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [options, url])
+
+  return [isLoaded, data, error]
+}
+
+export const API_URL = "http://zpi.zgrate.ovh:5036"

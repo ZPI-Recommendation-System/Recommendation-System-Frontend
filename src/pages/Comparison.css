@@ -1,6 +1,5 @@
 .comparison-table {
     width: 100%;
-    text-align: center;
     border-collapse: collapse;
     border-style: hidden; /* only inner borders will be shown */
   }
@@ -8,6 +7,8 @@
   .comparison-table td, .comparison-table th {
     border: 4px solid rgba(97, 99, 99, 0.1);
     filter: blur(0.5px);
+    padding-left:1rem;
+    padding-top:1rem;
   }
 
   .comparison-image {
@@ -21,4 +22,8 @@
 
   td, th {
     width: 50%;
+  }
+
+  pre {
+    line-height: 0.7rem;
   }

@@ -1,8 +1,8 @@
 import Selection from "./Selection";
 import { getLaptopIds, getLaptop } from '../../api/api';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { Laptop, reduceName } from "../../api/api";
+import { useEffect } from 'react';
+import { Laptop, reduceName, API_URL, useRequest } from "../../api/api";
 
 function formDataToRequest(data) {
     const result = {...data}
@@ -19,36 +19,6 @@ function formDataToRequest(data) {
     }
     return result
 }
-
-function useRequest(url, options) {
-        const [error, setError] = useState(null);
-        const [isLoaded, setIsLoaded] = useState(false);
-        const [data, setData] = useState([]);
-      
-        // this useEffect will run once
-        // similar to componentDidMount()
-        useEffect(() => {
-          fetch(url, options)
-            .then(res => res.json())
-            .then(
-              (result) => {
-                setIsLoaded(true);
-                setData(result);
-              },
-              // Note: it's important to handle errors here
-              // instead of a catch() block so that we don't swallow
-              // exceptions from actual bugs in components.
-              (error) => {
-                setIsLoaded(true);
-                setError(error);
-              }
-            )
-        }, [options, url])
-      
-        return [isLoaded, data, error]
-}
-
-const API_URL = "http://zpi.zgrate.ovh:5036"
 
 function Results() {
     const forms = useSelector(state=>state.forms);

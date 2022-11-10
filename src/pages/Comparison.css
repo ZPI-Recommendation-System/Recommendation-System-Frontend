@@ -1,4 +1,5 @@
 .comparison-table {
+    text-align: left;
     width: 100%;
     border-collapse: collapse;
     border-style: hidden; /* only inner borders will be shown */

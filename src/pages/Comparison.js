@@ -9,7 +9,7 @@ function processDetails(details) {
   delete details.name;
   delete details.images;
   delete details.type;
-  
+
   delete details.width;
   delete details.length;
   delete details.depth;
@@ -35,7 +35,7 @@ function processDetails(details) {
     if (value === null || value === undefined || value.length === 0) {
       delete details[key];
     } else if (typeof value === 'object') {
-      details[key]=JSON.stringify(value, null, 1).replace(/[\"\'\{\}\[\]\,]/g, "")
+      details[key]=JSON.stringify(value, null, 1).replace(/["'{}[\],]/g, "")
     }
   }
 } 
@@ -51,7 +51,9 @@ function Comparison() {
   const selected = useSelector(state=>state.selection.selected)
 
   const [isLoaded1, data1, error1] = useRequest(`${API_URL}/laptops/${selected[0]}?query=all`)
-  const [isLoaded2, data2, error2] = useRequest(`${API_URL}/laptops/${selected[1]}?query=all`)
+  const [isLoaded2, data2, error2] = useRequest(
+    selected[1] &&
+    `${API_URL}/laptops/${selected[1]}?query=all`)
 
   if (!(isLoaded1 && isLoaded2)){
     return <p className="text">Loading...</p>
@@ -69,9 +71,12 @@ function Comparison() {
   console.log(data2)
 
   const details1 = {...data1.result};
-  const details2 = {...data2.result};
+  let details2 = {};
   processDetails(details1)
-  processDetails(details2)
+  if (data2) {
+    details2 = {...data2.result}
+    processDetails(details2)
+  }
 
   return (
     <div className="content">

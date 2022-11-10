@@ -64,6 +64,11 @@ export function useRequest(url, options) {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
+    if (!url) {
+      setIsLoaded(true);
+      setData(null);
+      return;
+    }
     fetch(url, options)
       .then(res =>{
           if (!res.ok) {

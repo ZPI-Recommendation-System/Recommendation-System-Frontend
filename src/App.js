@@ -26,7 +26,9 @@ function App() {
     }
   })
 
-  return (
+  return (<>
+    <div className="background">
+    </div>
     <div className="app" style={style}>
       <div className="app-container" ref={container}>
         <Link className="app-title" to='/'>
@@ -44,7 +46,7 @@ function App() {
         </Routes>
 
       </div>
-    </div>
+    </div></>
   );
 }
 

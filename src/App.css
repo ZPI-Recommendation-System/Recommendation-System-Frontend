@@ -6,10 +6,22 @@ a {
 }
 
 body {
+  font-family: 'Inter', sans-serif;
+}
+
+.background {
+  top:-10px;
+  left:-10px;
+  filter: blur(6px) saturate(75%);
+  -webkit-filter: blur(6px) saturate(75%);
+  opacity: 0.8;
+  
+  position: fixed;
   background-image: url("../public/background.png");
+  width: 105%; 
+  height: 105%; 
   background-position: top;
   background-size: cover;
-  font-family: 'Inter', sans-serif;
 }
 
 .app {

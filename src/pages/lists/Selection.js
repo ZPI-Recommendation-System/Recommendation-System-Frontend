@@ -50,9 +50,13 @@ function Selection({main, extra}) {
                 {extra.map(makeIcon)}
             </div>
             </div>
-            {selectedCount>=1
-                && <Link to="/comparison" className="navigation-button navigation-button-right">
-                {selectedCount===1 ? "Szczegóły" : "Porównanie"}
+            {selectedCount===1
+                && <Link to={"/details/"+selected[0]} className="navigation-button navigation-button-right">
+                Szczegóły
+              </Link>}
+              {selectedCount===2
+                && <Link to={"/comparison/"+selected[0]+"/"+selected[1]} className="navigation-button navigation-button-right">
+                Porównanie
               </Link>}
               </>);
 }

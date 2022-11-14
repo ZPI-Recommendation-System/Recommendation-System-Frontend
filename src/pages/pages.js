@@ -62,7 +62,9 @@ export const pages = [
     new Page(10, "/results", "Wybierz do porównania", <Results />),
     new Page(10, "/favourites", "Zapisane laptopy", <Favourites />, PreviousBehavior.LastForm),
     
-    new Page(11, "/comparison", "Szczegóły", <Comparison />, PreviousBehavior.Last)
+    new Page(11, "/comparison", "Szczegóły", <Comparison />, PreviousBehavior.Last),
+    new Page(11, "/details/:id", "Szczegóły", <Comparison />, PreviousBehavior.Last),
+    new Page(11, "/comparison/:id1/:id2", "Szczegóły", <Comparison />, PreviousBehavior.Last)
 ]
 
 export const firstFormPageLink = pages.find(page=>page.isForm).link;

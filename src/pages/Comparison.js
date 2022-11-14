@@ -102,10 +102,10 @@ function newLines(text) {
   return <p>{text.split("\n").map(line => <p>{line}</p>)}</p>
 }
 
-function table_lines(keys, details1, details2) {
+function table_lines(keys, details1, details2, hidden=false) {
   return keys.map(key => {
     const [translation, tooltip] = getProperty(key);
-    return <tr key={key} title={tooltip}>
+    return <tr className={hidden ? "comparison-row comparison-row-hidden" : "comparison-row"} key={key} title={tooltip}>
       <td>
         <b>{translation}</b>
         {newLines(details1[key]?.toString() ?? "-")}
@@ -123,10 +123,12 @@ function Dropdown({ name, keys, details1, details2 }) {
 
   const [open, setOpen] = useState(false);
 
-  return <><tr style={{ backgroundColor: "#eee", cursor: "pointer" }} onClick={() => setOpen(open => !open)}>
-    <td colspan={details2 ? "2" : "1"}><b>&gt; {name}</b></td>
+  return <><tr style={{ backgroundColor: "#eee", cursor: "pointer" }} 
+  onClick={() => setOpen(open => !open)}>
+    <td colSpan={details2 ? "2" : "1"}><b>
+      <span className={open ? "arrow-rotated" : "arrow"}>&gt;</span> {name}</b></td>
   </tr>
-    {open && table_lines(keys, details1, details2)}</>
+    {table_lines(keys, details1, details2, !open)}</>
 }
 
 function Comparison() {
@@ -188,10 +190,10 @@ function Comparison() {
   ]
 
   const links = [
-    ["icons/comparison/youtube.png", "Wyszukaj na Youtube", (id, name)=>"https://www.youtube.com/results?search_query="+name],
-    ["icons/comparison/allegro.jpg", "Wyszukaj na Allegro",  (id, name)=>"https://allegro.pl/listing?string="+name],
-    ["icons/comparison/icons8-delivered-mail-96.png", "Wyślij mailem", (id, name)=>`mailto:yourmail@mail.com?subject=Laptops&body=${window.location.href}`],
-    ["icons/comparison/copy.png", "Skopiuj link do schowka", (id, name)=>""],
+    ["/icons/comparison/youtube.png", "Wyszukaj na Youtube", (id, name)=>"https://www.youtube.com/results?search_query="+name],
+    ["/icons/comparison/allegro.jpg", "Wyszukaj na Allegro",  (id, name)=>"https://allegro.pl/listing?string="+name],
+    ["/icons/comparison/icons8-delivered-mail-96.png", "Wyślij mailem", (id, name)=>`mailto:yourmail@mail.com?subject=Laptops&body=${window.location.href}`],
+    ["/icons/comparison/copy.png", "Skopiuj link do schowka", (id, name)=>""],
   ]
 
   const topParameters = [
@@ -235,13 +237,13 @@ function Comparison() {
             )}</td>}
           </tr>
           <tr>
-            <td colspan={details2 ? "2" : "1"}>
+            <td colSpan={details2 ? "2" : "1"}>
               <a href="" onClick="copyToClipboard" >Skopiuj link do porównania do schowka</a>
             </td>
           </tr>
           
           <tr>
-            <td colspan={details2 ? "2" : "1"}>
+            <td colSpan={details2 ? "2" : "1"}>
               <a href={`mailto:yourmail@mail.com?subject=Laptops&body=${window.location.href}`}
               target="_blank" 
               rel="noreferrer"

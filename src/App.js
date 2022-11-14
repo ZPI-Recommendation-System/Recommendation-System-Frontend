@@ -33,7 +33,7 @@ function App() {
       <div className="app-container" ref={container}>
         <Link className="app-title" to='/'>
           Twój nowy
-          <img className="app-title-icon" src="logo.png" alt="laptop"></img>
+          <img className="app-title-icon" src="/logo.png" alt="laptop"></img>
         </Link>
         <StarredLink />
 

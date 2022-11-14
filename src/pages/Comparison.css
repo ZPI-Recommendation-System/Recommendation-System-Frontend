@@ -4,6 +4,7 @@
   width: 100%;
   border-collapse: collapse;
   border-style: hidden;
+  transition: all 0.05s;
 }
 
 .comparison-image {
@@ -37,6 +38,20 @@ td, th {
   padding-left:0.5rem;
   padding-top:0.5rem;
   padding-bottom: 0.3em;
+}
+
+.comparison-row-hidden {
+  display: none;
+}
+
+.arrow {
+  transition: all 0.05s;
+}
+
+.arrow-rotated {
+  transform: rotate(90deg);
+  display: inline-block;
+  transition: all 0.05s;
 }
 
 /*

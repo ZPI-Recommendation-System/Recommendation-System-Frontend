@@ -27,7 +27,7 @@ function StarredLink() {
     style={{
         display: count > 0 ? 'initial' : 'none'
     }}>
-        <img src="icons/icons8-star-32.png" className="favs-star" alt="star"></img>
+        <img src="/icons/icons8-star-32.png" className="favs-star" alt="star"></img>
         <span className="favs-count">{count}</span>
     </Link>)
 }

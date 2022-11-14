@@ -10,8 +10,8 @@ export default function LaptopStar({ id }) {
 
   return <>
     <img onClick={e=>{dispatch(select(id)); e.stopPropagation();}} 
-    src="icons/icons8-star-32.png" className="laptop-star" alt="star" />
+    src="/icons/icons8-star-32.png" className="laptop-star" alt="star" />
     <img onClick={e=>{dispatch(select(id)); e.stopPropagation();}} 
-    src="icons/icons8-star-30.png" className={checkedClass} alt="star-checked" />
+    src="/icons/icons8-star-30.png" className={checkedClass} alt="star-checked" />
     </>;
 }

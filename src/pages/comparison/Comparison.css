@@ -54,18 +54,8 @@ td, th {
   transition: all 0.05s;
 }
 
-/*
-
-  
-    padding-left:1rem;
-    padding-top:1rem;
-  }
-
-
-  
-
-  pre {
-    line-height: 0.7rem;
-  }
-
-  */
+.fake-link {
+  color: rgb(0, 102, 204);
+  text-decoration: underline;
+  cursor:pointer;
+}

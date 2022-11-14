@@ -15,7 +15,7 @@ import Search from './lists/Search';
 
 import Landing from './Landing';
 import NotFound from './NotFound';
-import Comparison from './Comparison';
+import Comparison from './comparison/Comparison';
 
 const PreviousBehavior = {
   Last: "Last",

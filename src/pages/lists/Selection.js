@@ -44,11 +44,12 @@ function Selection({main, extra}) {
             <div className="selection-section">
                 {main.map(makeIcon)}
             </div>
-            <div className="extras-divider"></div>
-            <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>
-            <div className="selection-section">
-                {extra.map(makeIcon)}
-            </div>
+            {extra &&
+                <><div className="extras-divider"></div>
+                <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>
+                <div className="selection-section">
+                    {extra.map(makeIcon)}
+                </div></>}
             </div>
             {selectedCount===1
                 && <Link to={"/details/"+selected[0]} className="navigation-button navigation-button-right">

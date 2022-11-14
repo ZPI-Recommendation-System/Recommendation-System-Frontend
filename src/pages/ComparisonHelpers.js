@@ -6,6 +6,9 @@ const LAPTOP_PROPERTIES = {
     batterySizeMAH: ["Rozmiar baterii w MAH", "Rozmiar baterii w mega ampero godzinach"],
     color: ["Kolor", ""],
     weight: ["Waga", ""],
+    width: ["Szerokość", ""],
+    length: ["Długość", ""],
+    depth: ["Głębokość", ""],
     ramAmount: ["Pamięć RAM", `W pamięci RAM są przetrzymywane uruchomione gry i programy.
 Jeżeli pamięć RAM jest dla nich zbyt niska będą one musiały przechowywać 
 dane tymczasowe na dysku co spowoduje zacięcia.`],
@@ -35,18 +38,6 @@ export function getTranslationAndDescription(name) {
 }
 
 export function processDetails(details) {
-    delete details.id;
-    delete details.name;
-    delete details.images;
-    delete details.type;
-
-    delete details.producentCode;
-    delete details.driveType;
-
-    delete details.model;
-    delete details.screen?.screenType;
-    delete details.graphics?.graphicsCardType;
-    delete details.processor?.series;
 
     const withIds = ["screen", "graphics", "processor"]
     const singleFieldObjectsArrays = ["controls", "communications", "connections", "drives"]
@@ -84,7 +75,7 @@ export function processDetails(details) {
     for (const [key, value] of Object.entries(details)) {
         if (value === null || value === undefined || value.length === 0) {
             delete details[key];
-        } else if (typeof value === 'object') {
+        } else if (typeof value === 'object' && key!=="images") {
             details[key] = JSON.stringify(value, null, 1).replace(/["'{}[\],]/g, "")
         }
     }

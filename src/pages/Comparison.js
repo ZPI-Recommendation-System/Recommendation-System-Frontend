@@ -1,9 +1,10 @@
 import './Comparison.css';
-import { useSelector } from 'react-redux';
 import LaptopStar from '../components/LaptopStar';
 import {getTranslationAndDescription, processDetails} from './ComparisonHelpers';
 import { API_URL, useRequest } from "../api/api";
 import { useState } from 'react';
+import {  useParams } from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 function newLines(text) {
   if (!text) {
@@ -12,10 +13,12 @@ function newLines(text) {
   return <p>{text.split("\n").map(line => <p>{line}</p>)}</p>
 }
 
-function table_lines(keys, details1, details2, hidden=false) {
+function table_lines(keys, details1, details2, hidden=false, dropdown=false) {
   return keys.map(key => {
     const [translation, tooltip] = getTranslationAndDescription(key);
-    return <tr className={hidden ? "comparison-row comparison-row-hidden" : "comparison-row"} key={key} title={tooltip}>
+    return <tr 
+    style={dropdown ? {backgroundColor: "#eaeaea", opacity : 0.8} : {}}
+    className={hidden ? "comparison-row comparison-row-hidden" : "comparison-row"} key={key} title={tooltip}>
       <td>
         <b>{translation}</b>
         {newLines(details1[key]?.toString() ?? "-")}
@@ -33,21 +36,26 @@ function Dropdown({ name, keys, details1, details2 }) {
 
   const [open, setOpen] = useState(false);
 
-  return <><tr style={{ backgroundColor: "#eee", cursor: "pointer" }} 
+  return <><tr style={{ cursor: "pointer" }} 
   onClick={() => setOpen(open => !open)}>
     <td colSpan={details2 ? "2" : "1"}><b>
-      <span className={open ? "arrow-rotated" : "arrow"}>&gt;</span> {name}</b></td>
+    <span className={open ? "arrow-rotated" : "arrow"}>&gt;</span> {name}</b></td>
   </tr>
-    {table_lines(keys, details1, details2, !open)}</>
+    {table_lines(keys, details1, details2, !open, true)}</>
 }
 
 function Comparison() {
-  const selected = useSelector(state => state.selection.selected)
+  let { id1, id2 } = useParams();
+  const selected = useSelector(state=>state.selection.selected)
 
-  const [isLoaded1, data1, error1] = useRequest(`${API_URL}/laptops/get/${selected[0]}?query=all`)
+  if (id1 === undefined) {
+    [ id1, id2 ] = selected;
+  }
+
+  const [isLoaded1, data1, error1] = useRequest(`${API_URL}/laptops/get/${id1}?query=all`)
   const [isLoaded2, data2, error2] = useRequest(
-    selected[1] &&
-    `${API_URL}/laptops/get/${selected[1]}?query=all`)
+    id2 &&
+    `${API_URL}/laptops/get/${id2}?query=all`)
 
   if (!(isLoaded1 && isLoaded2)) {
     return <p className="text">Loading...</p>
@@ -61,9 +69,6 @@ function Comparison() {
     </div>
   }
 
-  console.log(data1)
-  console.log(data2)
-
   const details1 = { ...data1.result };
   let details2 = null;
   processDetails(details1)
@@ -72,42 +77,66 @@ function Comparison() {
     processDetails(details2)
   }
 
-  const sections = [
-    ["Interfejsy zewnętrzne", [
-      "drives",
-      "communications",
-      "connections",
-      "controls"
-    ]],
-    ["Bateria", [
-      "batterySizeMAH",
-      "batterySizeWH"
-    ]],
-    ["Szczegóły pamięci RAM", [
+  function row(name) {
+    return table_lines([name], details1, details2)[0]
+  }
+
+  function expandable(name, keys) {
+    return <Dropdown name={name} key={name} keys={keys}
+    details1={details1} details2={details2} />
+  }
+  
+  const table = [
+    row("processor"),
+    row("graphics"),
+    row("screen"),
+    row("driveStorage"),
+    row("ramAmount"),
+    expandable("Szczegóły pamięci RAM", [
       "ramType",
       "ramMaxAmount",
       "ramFrequency",
       "ramNumberOfFreeSlots",
       "ramNumberOfSlots"
-    ]],
-    ["Właściwości fizyczne", [
+    ]),
+    expandable("Bateria", [
+      "batterySizeMAH",
+      "batterySizeWH"
+    ]),
+    expandable("Interfejsy zewnętrzne", [
+      "drives",
+      "communications",
+      "connections",
+      "controls"
+    ]),
+    expandable("Właściwości fizyczne", [
       "width",
       "length",
       "depth",
       "weight",
       "color"
-    ]]
+    ]),
   ]
+
+  function open (url){
+    window.open(url, '_blank').focus();
+  }
+
+ function copyToClipboard(url) {
+    navigator.clipboard.writeText(url)
+  }
+  
+  function detailsPage(id){
+    const url = window.location;
+    const baseUrl = url.protocol + "//" + url.host ;
+    return baseUrl+"/details/"+id;
+  }
 
   const links = [
-    ["/icons/comparison/youtube.png", "Wyszukaj na Youtube", (id, name)=>"https://www.youtube.com/results?search_query="+name],
-    ["/icons/comparison/allegro.jpg", "Wyszukaj na Allegro",  (id, name)=>"https://allegro.pl/listing?string="+name],
-    ["/icons/comparison/icons8-delivered-mail-96.png", "Wyślij mailem", (id, name)=>`mailto:yourmail@mail.com?subject=Laptops&body=${window.location.href}`],
-    ["/icons/comparison/copy.png", "Skopiuj link do schowka", (id, name)=>""],
-  ]
-
-  const topParameters = [
-    "processor", "graphics", "screen", "ramAmount", "driveStorage"
+    ["/icons/comparison/youtube.png", "Wyszukaj na Youtube", (id, name)=>open("https://www.youtube.com/results?search_query="+name)],
+    ["/icons/comparison/allegro.jpg", "Wyszukaj na Allegro",  (id, name)=>open("https://allegro.pl/listing?string="+name)],
+    ["/icons/comparison/icons8-delivered-mail-96.png", "Wyślij mailem", (id, name)=>open(`mailto:yourmail@mail.com?subject=Laptops&body=${detailsPage(id)}`)],
+    ["/icons/comparison/copy.png", "Skopiuj link do schowka", (id, name)=>copyToClipboard(detailsPage(id))],
   ]
 
   return (
@@ -116,42 +145,40 @@ function Comparison() {
         <tbody>
           <tr>
             <th>
-              <img className="comparison-image" src={data1.result?.images[0].url} alt="laptop" />
-              {data1.result?.name}<LaptopStar id={selected[0]} /></th>
-            {selected[1] &&
+              <img className="comparison-image" src={details1?.images[0].url} alt="laptop" />
+              {details1?.name}<LaptopStar id={id1} /></th>
+            {id2 &&
               <th>
-                <img className="comparison-image" src={data2.result?.images[0].url} alt="laptop" />
-                {data2.result?.name}<LaptopStar id={selected[1]} />
+                <img className="comparison-image" src={details2?.images[0].url} alt="laptop" />
+                {details2?.name}<LaptopStar id={id2} />
               </th>}
           </tr>
-          {
-            table_lines(topParameters, details1, details2)
-          }
-
-          {sections.map(([name, keys]) =>
-            <Dropdown name={name} key={name} keys={keys}
-              details1={details1} details2={details2} />
-          )}
-
+          { table }
           <tr>
-            <td>{links.map(
-              ([icon, name, url]) => <a href={url(selected[0], data1.result?.name)} title={name} >
-                <img src={icon} alt={name} style={{width:"1.6rem", paddingLeft: "0.5rem"}}></img>
-                </a>
-            )}</td>
+          <td>{links.map(
+              ([icon, name, onClick]) => 
+                <img
+                onClick={()=>onClick(id1, data1.result?.name)}
+                src={icon} alt={name} style={{width:"1.6rem", paddingLeft: "0.5rem", cursor: "pointer"}}
+                />)}
+            </td>
             {details2 &&
             <td>{links.map(
-              ([icon, name, url]) => <a href={url(selected[1], data2?.result?.name)} title={name} >
-                <img src={icon} alt={name} style={{width:"1.6rem", paddingLeft: "0.5rem"}}></img>
-                </a>
-            )}</td>}
+              ([icon, name, onClick]) => 
+                <img
+                onClick={()=>onClick(id2, data2.result?.name)}
+                src={icon} alt={name} style={{width:"1.6rem", paddingLeft: "0.5rem", cursor: "pointer"}}
+                />)}
+            </td> }
           </tr>
           <tr>
             <td colSpan={details2 ? "2" : "1"}>
-              <a href="" onClick="copyToClipboard" >Skopiuj link do porównania do schowka</a>
+              <p style={{color:"rgb(0, 102, 204)", textDecoration: "underline"}} onClick={e=>{
+                copyToClipboard(window.location.href)
+                e.preventDefault()
+              }} >Skopiuj link do porównania do schowka</p>
             </td>
           </tr>
-          
           <tr>
             <td colSpan={details2 ? "2" : "1"}>
               <a href={`mailto:yourmail@mail.com?subject=Laptops&body=${window.location.href}`}

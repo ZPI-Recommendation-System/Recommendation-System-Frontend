@@ -30,7 +30,7 @@ function Results() {
     const [isLoaded, data, error] = useRequest(`${API_URL}/laptops?limit=20&query=id,name,images`)
 
     if (error){
-        return <p className="text">Error: {error}</p>
+        return <p className="text">Error: {error.message}</p>
     }
     else if (!isLoaded) {
         return <p className="text">Loading...</p>

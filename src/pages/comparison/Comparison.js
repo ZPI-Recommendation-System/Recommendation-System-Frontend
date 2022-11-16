@@ -19,7 +19,7 @@ function tableLine(key, details1, details2, hidden = false, dropdown = false) {
 
   const [translation, tooltip] = getTranslationAndDescription(key);
   return <tr
-    style={dropdown ? { backgroundColor: "#eaeaea", opacity: 0.8 } : {}}
+    style={dropdown ? { backgroundColor: "#eaeaea", opacity: 0.85 } : {}}
     className={hidden ? "comparison-row comparison-row-hidden" : "comparison-row"} key={key} title={tooltip}>
     <td>
       <b>{translation}</b>

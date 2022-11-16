@@ -10,7 +10,7 @@ import ScreenSize from './forms/choices/ScreenSize';
 import Map from './Map';
 
 import Favourites from './lists/Favourites';
-import Results from './lists/Results';
+import FormResults from './lists/FormResults';
 import Search from './lists/Search';
 
 import Landing from './Landing';
@@ -59,7 +59,7 @@ export const pages = [
     new Page(1, "/search", "Wyszukaj laptop", <Search />),
     new Page(12, "/map", "Mapa strony", <Map />, PreviousBehavior.Last),
 
-    new Page(10, "/results", "Wybierz do porównania", <Results />),
+    new Page(10, "/results", "Wybierz do porównania", <FormResults />),
     new Page(10, "/favourites", "Zapisane laptopy", <Favourites />, PreviousBehavior.LastForm),
     
     new Page(11, "/comparison", "Szczegóły", <Comparison />, PreviousBehavior.Last),

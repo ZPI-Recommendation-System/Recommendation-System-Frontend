@@ -1,4 +1,5 @@
 import Selection from "./Selection";
+import { getLaptopIds, getLaptop } from '../../api/api';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { Laptop, reduceName, API_URL, useRequest } from "../../api/api";
@@ -19,14 +20,14 @@ function formDataToRequest(data) {
     return result
 }
 
-function Results({query}) {
+function Results() {
     const forms = useSelector(state=>state.forms);
 
     useEffect(() => {
         console.log("Sending form data", formDataToRequest(forms))
       }, [forms])
 
-    const [isLoaded, data, error] = useRequest(API_URL+query)
+    const [isLoaded, data, error] = useRequest(`${API_URL}/laptops?limit=20&query=id,name,images`)
 
     if (error){
         return <p className="text">Error: {error.message}</p>
@@ -39,6 +40,7 @@ function Results({query}) {
             <div className="content">
                 <Selection
                 main={data.items.map(item=>new Laptop(item.id, reduceName(item.name), item.images[0].url))}
+                extra={getLaptopIds({}).map(getLaptop)}
                 />
             </div>);
     }

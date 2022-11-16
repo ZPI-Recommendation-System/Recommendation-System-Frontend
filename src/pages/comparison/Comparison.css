@@ -32,12 +32,14 @@ td, th {
 
 .comparison-table td, .comparison-table th {
   border: 4px solid rgba(97, 99, 99, 0.1);
-  filter: blur(0.5px);
   vertical-align: top;
   
   padding-left:0.5rem;
   padding-top:0.5rem;
   padding-bottom: 0.3em;
+
+  /* this is for positioning laptop star */
+  position:relative;
 }
 
 .comparison-row-hidden {

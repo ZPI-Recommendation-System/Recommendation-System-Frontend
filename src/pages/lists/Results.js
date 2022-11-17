@@ -1,7 +1,7 @@
 import Selection from "./Selection";
 import { Laptop, reduceName, API_URL, useRequest } from "../../api/api";
 
-function Results({query, method, data, key}) {
+function Results({query, method, data, itemsKey}) {
 
     const options = {   }
     if (method) 
@@ -15,8 +15,8 @@ function Results({query, method, data, key}) {
     
     const [isLoaded, result, error] = useRequest(API_URL+query, options)
 
-    if (!key)
-        key = "items"
+    if (!itemsKey)
+        itemsKey = "items"
 
     if (error){
         return <p className="text">Error: {error.message}</p>
@@ -27,7 +27,7 @@ function Results({query, method, data, key}) {
         return (
             <div className="content">
                 <Selection
-                main={result[key].map(item=>new Laptop(item.id, reduceName(item.name), item.images[0].url))}
+                main={result[itemsKey].map(item=>new Laptop(item.id, reduceName(item.name), item.images[0].url))}
                 />
             </div>);
     }

@@ -12,7 +12,7 @@ function Search() {
         const delayDebounceFn = setTimeout(() => {
             console.log("Searching", searchTerm)
             setSentSearchTerm(searchTerm)
-        }, 3000)
+        }, 1000)
 
         return () => clearTimeout(delayDebounceFn)
     }, [searchTerm])
@@ -22,7 +22,10 @@ function Search() {
             <input className="search" placeholder="Wyszukaj laptop po nazwie..."
             onChange={e => setSearchTerm(e.target.value)}
             ></input>
-           <Results key="result" query={"/laptops/search?limit=10&search="+sentSearchTerm} />
+           <Results 
+                itemsKey="result" 
+                query={"/laptops/search?query=id,name,images&limit=10&search="+sentSearchTerm} 
+            />
         </div>
     );
 }

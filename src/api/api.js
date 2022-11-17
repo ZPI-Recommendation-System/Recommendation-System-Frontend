@@ -1,5 +1,5 @@
 import mockData from './mockData';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 export class Laptop {
     constructor(id, name, image) {
@@ -57,6 +57,7 @@ export function getLaptopDetails(laptopId) {
 
 
 export function useRequest(url, options) {
+  const inProgress = useRef({});
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [data, setData] = useState([]);
@@ -64,6 +65,12 @@ export function useRequest(url, options) {
   // this useEffect will run once
   // similar to componentDidMount()
   useEffect(() => {
+    const current = JSON.stringify({url:url, options});
+    if (inProgress.current === current) {
+      return;
+    }
+    inProgress.current = current;
+
     if (!url) {
       setIsLoaded(true);
       setData(null);
@@ -96,4 +103,4 @@ export function useRequest(url, options) {
   return [isLoaded, data, error]
 }
 
-export const API_URL = "http://zpi.zgrate.ovh:5036"
+export const API_URL = ""

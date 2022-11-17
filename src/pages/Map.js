@@ -12,9 +12,9 @@ function Map() {
         <div className="map-line"></div>
         <div className="map-links-container">
             {pages.filter(page => page.isForm || page.link === "/results").map(({ number, link, description }, index) =>
-                <div>
+                <div key={index}>
                     <div className={index > lastFormPage_ ? "map-circle" : "map-circle map-circle-filled"}></div>
-                    <Link className="navigation-button" style={{ display: "inline-block" }} to={link} key={index} >
+                    <Link className="navigation-button" style={{ display: "inline-block" }} to={link} >
                         {number}. {description}
                     </Link>
                 </div>)

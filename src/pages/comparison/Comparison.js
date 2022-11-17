@@ -12,7 +12,7 @@ function newLinesToParagraphs(text) {
   if (!text) {
     return "";
   }
-  return <p>{text.split("\n").map(line => <p>{line}</p>)}</p>
+  return <p>{text.split("\n").map((line, index) => <p key={index}>{line}</p>)}</p>
 }
 
 function tableLine(key, details1, details2, hidden = false, dropdown = false) {
@@ -152,7 +152,7 @@ function Comparison() {
           ["Wyślij porównanie mailem",
             () => mail("Porównanie laptopów", "Sprawdź to porównanie laptopów", window.location.href)]]
           .map(([text, onClick])=>
-          <tr>
+          <tr key={text}>
             <td colSpan={details2 ? "2" : "1"}>
               <p className="fake-link"
                 onClick={onClick} >

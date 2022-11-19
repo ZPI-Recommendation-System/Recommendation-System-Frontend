@@ -36,6 +36,9 @@
     box-sizing: border-box;
     margin: 3px;
     position: relative;
+
+    /* this prevents text from sticking out */
+    overflow: hidden;
     
     transition: all 0.05s;
 }

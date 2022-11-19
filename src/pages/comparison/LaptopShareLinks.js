@@ -16,6 +16,7 @@ export default function LaptopShareLinks({ id, name }) {
     return <>{links.map(
         ([icon, name, onClick]) =>
             <img
+                key={name}
                 onClick={onClick}
                 src={icon} alt={name}
                 style={{ width: "1.6rem", paddingLeft: "0.5rem", cursor: "pointer" }}

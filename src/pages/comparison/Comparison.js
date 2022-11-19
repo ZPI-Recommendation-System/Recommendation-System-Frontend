@@ -12,7 +12,7 @@ function newLinesToParagraphs(text) {
   if (!text) {
     return "";
   }
-  return <p>{text.split("\n").map((line, index) => <p key={index}>{line}</p>)}</p>
+  return <>{text.split("\n").map((line, index) => <p key={index}>{line}</p>)}</>
 }
 
 function tableLine(key, details1, details2, hidden = false, dropdown = false) {

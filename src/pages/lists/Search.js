@@ -1,5 +1,3 @@
-import Selection, { makeLaptop } from "./Selection";
-import _ from 'lodash';
 import { useEffect, useState } from 'react';
 import Results from "./Results";
 
@@ -8,6 +6,7 @@ function Search() {
     
     const [sentSearchTerm, setSentSearchTerm] = useState('')
 
+    // search 1 second after user stopped typing
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
             console.log("Searching", searchTerm)

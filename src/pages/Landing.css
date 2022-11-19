@@ -1,0 +1,17 @@
+.landing-laptop {
+    width: 45%;
+    height: 80%;
+    position: absolute;
+    bottom: 2rem;
+    right: 2.25rem;
+    background-image: url("../../public/photos/laptop-photo.png");
+    background-position-x: right;
+    background-position-y: bottom;
+    background-size:contain;
+    background-repeat: no-repeat;
+    z-index: -10000;
+    opacity: 0.18;
+    filter: blur(1px);
+    -webkit-filter: blur(1px);
+    transform: scaleX(-1);
+}

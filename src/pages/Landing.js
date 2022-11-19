@@ -1,9 +1,11 @@
+import './Landing.css';
 import { Link } from "react-router-dom";
 import {firstFormPageLink} from "./pages"
 
 function Landing() {
     const firstForm = firstFormPageLink;
     return (<div className="content">
+    <div className="landing-laptop" />
       <p className="text">
         Witaj w systemie rekomendacyjnym dla laptopów.
         Wypełnij krótką ankietę aby uzyskać listę wybranych dla ciebie urządzeń.

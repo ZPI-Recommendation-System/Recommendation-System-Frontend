@@ -10,7 +10,7 @@
     background-size:contain;
     background-repeat: no-repeat;
     z-index: -10000;
-    opacity: 0.18;
+    opacity: 0.22;
     filter: blur(1px);
     -webkit-filter: blur(1px);
     transform: scaleX(-1);

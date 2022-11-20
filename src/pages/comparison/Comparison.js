@@ -7,6 +7,7 @@ import { API_URL, useRequest } from "../../api/api";
 import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
+import HoverText from './HoverText';
 
 function newLinesToParagraphs(text) {
   if (!text) {
@@ -19,16 +20,21 @@ function tableLine(key, details1, details2, hidden = false, dropdown = false) {
 
   const [translation, tooltip] = getTranslationAndDescription(key);
   return <tr
-    style={dropdown ? { backgroundColor: "#eaeaea", opacity: 0.85 } : {}}
-    className={hidden ? "comparison-row comparison-row-hidden" : "comparison-row"} key={key} title={tooltip}>
+    style={dropdown ? { backgroundColor: "#eaeaea", color: "#222" } : {}}
+    className={hidden ? "comparison-row comparison-row-hidden" : "comparison-row"} key={key}>
     <td>
-      <b>{translation}</b>
-      {newLinesToParagraphs(details1[key]?.toString() ?? "-")}
+
+      <HoverText text={tooltip}>
+        <b>{translation}</b>
+        {newLinesToParagraphs(details1[key]?.toString() ?? "-")}
+      </HoverText>
     </td>
     {details2 &&
       <td>
         <br />
-        {newLinesToParagraphs(details2[key]?.toString() ?? "-")}
+        <HoverText text={tooltip}>
+          {newLinesToParagraphs(details2[key]?.toString() ?? "-")}
+        </HoverText>
       </td>}
   </tr>
 }
@@ -147,18 +153,18 @@ function Comparison() {
           </tr>
 
           {[
-          ["Skopiuj link do porównania do schowka",
-            () => copyToClipboard(window.location.href)],
-          ["Wyślij porównanie mailem",
-            () => mail("Porównanie laptopów", "Sprawdź to porównanie laptopów", window.location.href)]]
-          .map(([text, onClick])=>
-          <tr key={text}>
-            <td colSpan={details2 ? "2" : "1"}>
-              <p className="fake-link"
-                onClick={onClick} >
-                  {text}</p>
-            </td>
-          </tr>)
+            ["Skopiuj link do porównania do schowka",
+              () => copyToClipboard(window.location.href)],
+            ["Wyślij porównanie mailem",
+              () => mail("Porównanie laptopów", "Sprawdź to porównanie laptopów", window.location.href)]]
+            .map(([text, onClick]) =>
+              <tr key={text}>
+                <td colSpan={details2 ? "2" : "1"}>
+                  <p className="fake-link"
+                    onClick={onClick} >
+                    {text}</p>
+                </td>
+              </tr>)
           }
 
         </tbody>

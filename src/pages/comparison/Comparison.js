@@ -1,7 +1,7 @@
 import './Comparison.css';
 import LaptopStar from '../../components/LaptopStar';
 import LaptopShareLinks from './LaptopShareLinks';
-import { getTranslationAndDescription, processDetails } from './details';
+import { getTranslationDescriptionAndComparable, processDetails } from './details';
 import { copyToClipboard, mail } from './utility';
 import { API_URL, useRequest } from "../../api/api";
 import { useState } from 'react';
@@ -11,29 +11,46 @@ import HoverText from './HoverText';
 
 function newLinesToParagraphs(text) {
   if (!text) {
-    return "";
+    return text;
   }
   return <>{text.split("\n").map((line, index) => <p key={index}>{line}</p>)}</>
 }
 
+function displayDetail(detail) {
+  return newLinesToParagraphs(detail?.toString()) ?? "-";
+}
+
 function tableLine(key, details1, details2, hidden = false, dropdown = false) {
 
-  const [translation, tooltip] = getTranslationAndDescription(key);
-  return <tr
-    style={dropdown ? { backgroundColor: "#eaeaea", color: "#222" } : {}}
-    className={hidden ? "comparison-row comparison-row-hidden" : "comparison-row"} key={key}>
-    <td>
+  const [translation, tooltip, comparable] = getTranslationDescriptionAndComparable(key);
 
+  const firstAsNumber = Number.parseFloat(details1[key]);
+  const secondAsNumber = details2 && Number.parseFloat(details2[key]);
+  const bothAreNumbers = !Number.isNaN(firstAsNumber) && !Number.isNaN(secondAsNumber);
+  // if there's only one laptop on page all of its parameters would be better
+  const firstIsBetter = details2 && comparable && bothAreNumbers && firstAsNumber > secondAsNumber;
+  const secondIsBetter = comparable && bothAreNumbers && firstAsNumber < secondAsNumber;
+
+  let classNames = "comparison-row";
+  if (dropdown) classNames+= " comparison-dropdown";
+  if (hidden) classNames+= " comparison-row-hidden";
+
+  return <tr className={classNames} key={key}>
+    <td className={firstIsBetter && "comparison-better-cell"}>
       <HoverText text={tooltip}>
         <b>{translation}</b>
-        {newLinesToParagraphs(details1[key]?.toString() ?? "-")}
+        <span>
+          {displayDetail(details1[key])}
+        </span>
       </HoverText>
     </td>
     {details2 &&
-      <td>
+      <td className={secondIsBetter && "comparison-better-cell"}>
         <br />
         <HoverText text={tooltip}>
-          {newLinesToParagraphs(details2[key]?.toString() ?? "-")}
+        <span>
+          {displayDetail(details2[key])}
+        </span>
         </HoverText>
       </td>}
   </tr>

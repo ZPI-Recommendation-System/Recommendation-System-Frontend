@@ -61,3 +61,12 @@ td, th {
   text-decoration: underline;
   cursor:pointer;
 }
+
+.comparison-dropdown {
+  background-color: #eaeaea; 
+  color: #222;
+}
+
+.comparison-better-cell {
+  background-color: #57EB5420;
+}

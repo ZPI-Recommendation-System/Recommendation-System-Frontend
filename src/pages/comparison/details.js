@@ -1,39 +1,39 @@
 
 const LAPTOP_PROPERTIES = {
-    model: ["Model", ""],
-    producentCode: ["Kod producenta", ""],
-    batterySizeWH: ["Rozmiar baterii w WH", "Rozmiar baterii w wato godzinach"],
-    batterySizeMAH: ["Rozmiar baterii w MAH", "Rozmiar baterii w mega ampero godzinach"],
-    color: ["Kolor", ""],
-    weight: ["Waga", ""],
-    width: ["Szerokość", ""],
-    length: ["Długość", ""],
-    depth: ["Głębokość", ""],
+    model: ["Model", "", false],
+    producentCode: ["Kod producenta", "", false],
+    batterySizeWH: ["Rozmiar baterii w WH", "Rozmiar baterii w wato godzinach", true],
+    batterySizeMAH: ["Rozmiar baterii w MAH", "Rozmiar baterii w mega ampero godzinach", true],
+    color: ["Kolor", "", false],
+    weight: ["Waga", "", false],
+    width: ["Szerokość", "", false],
+    length: ["Długość", "", false],
+    depth: ["Głębokość", "", false],
     ramAmount: ["Pamięć RAM", `W pamięci RAM są przetrzymywane uruchomione gry i programy.
 Jeżeli pamięć RAM jest dla nich zbyt niska będą one musiały przechowywać 
-dane tymczasowe na dysku co spowoduje zacięcia.`],
-    ramFrequency: ["Taktowanie RAM", ""],
-    ramNumberOfSlots: ["Liczba slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów."],
-    ramNumberOfFreeSlots: ["Liczba wolnych slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów."],
-    ramType: ["Typ pamięci RAM", "Technologia w której wykonano, pamięci, im nowsza typ szybciej będzie działać."],
-    ramMaxAmount: ["Maksymalna ilość RAM", ""],
-    driveStorage: ["Wielkość dysku twardego", ""],
-    driveType: ["Typ dysku twardego", "Dyski w technologii SSD są szybsze i przyspeszają start komputera"],
-    processor: ["Procesor", "Procesor wpływa na ogólną prędkość komputera."],
-    screen: ["Ekran", "Właściwości ekranu komputera."],
-    graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie."],
-    communications: ["Komunikacja", ""],
-    drives: ["Napędy", ""],
-    connections: ["Gniazda", ""],
+dane tymczasowe na dysku co spowoduje zacięcia.`, true],
+    ramFrequency: ["Taktowanie RAM", "", true],
+    ramNumberOfSlots: ["Liczba slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", true],
+    ramNumberOfFreeSlots: ["Liczba wolnych slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", true],
+    ramType: ["Typ pamięci RAM", "Technologia w której wykonano, pamięci, im nowsza typ szybciej będzie działać.", false],
+    ramMaxAmount: ["Maksymalna ilość RAM", "", true],
+    driveStorage: ["Wielkość dysku twardego", "", true],
+    driveType: ["Typ dysku twardego", "Dyski w technologii SSD są szybsze i przyspeszają start komputera", false],
+    processor: ["Procesor", "Procesor wpływa na ogólną prędkość komputera.", false],
+    screen: ["Ekran", "Właściwości ekranu komputera.", false],
+    graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie.", false],
+    communications: ["Komunikacja", "", false],
+    drives: ["Napędy", "", false],
+    connections: ["Gniazda", "", false],
     controls: ["Sterowanie", `Komponenty służące do komunikacji z komputerem, 
   np.: klawiatura, touchpad, ekran.`]
 }
 
-export function getTranslationAndDescription(name) {
+export function getTranslationDescriptionAndComparable(name) {
     if (name in LAPTOP_PROPERTIES) {
         return LAPTOP_PROPERTIES[name];
     } else {
-        return [name, ""]
+        return [name, "", false]
     }
 }
 

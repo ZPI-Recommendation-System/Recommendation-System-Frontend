@@ -2,6 +2,8 @@ import useFormData from '../useFormData';
 import {useEffect, useState, useRef} from "react";
 import {beacon} from "./utility"
 
+const TIME_TO_SEND_BEACON = 5000; // 5 seconds
+
 // Set the name of the hidden property and the change event for visibility
 let hidden;
 let visibilityChange;
@@ -41,7 +43,9 @@ export default function ViewingTracker({ id }) {
     useEffect(() => {
         function timeBeacon() {
             const time = Date.now() - start.current;
-            beacon("viewing-for", id, formData, time);
+            if (time > TIME_TO_SEND_BEACON) {
+              beacon("viewing-for", id, formData, time);
+            }
             start.current = Date.now();
         }
         if (visible) {

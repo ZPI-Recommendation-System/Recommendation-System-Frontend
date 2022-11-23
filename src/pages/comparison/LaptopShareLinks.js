@@ -1,17 +1,5 @@
 import useFormData from '../useFormData';
-import { open, mail, copyToClipboard } from './utility';
-import {API_URL} from "../../api/api";
-
-function beacon(event, laptopId, formJson, payload="") {
-    if (window.navigator.sendBeacon) {
-      const formData = new FormData();
-      formData.append("eventType", event)
-      formData.append("laptopId", laptopId)
-      formData.append("formJson", formJson)
-      formData.append("payload", payload)
-      window.navigator.sendBeacon(API_URL + "/stats", formData);
-    }
-}
+import { open, mail, copyToClipboard, beacon } from './utility';
 
 function detailsPage(id) {
     const url = window.location;

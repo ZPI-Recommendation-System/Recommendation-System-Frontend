@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import HoverText from './HoverText';
+import ViewingTracker from './ViewingTracker';
 
 function newLinesToParagraphs(text) {
   if (!text) {
@@ -89,6 +90,7 @@ function Comparison() {
 
   if (error1 || error2) {
     return <div className="text">
+    <ViewingTracker id={id1}/>
       <p>There were errors while loading the laptops data: </p>
       <p>{error1?.message}</p>
       <p>{error2?.message}</p>
@@ -146,6 +148,7 @@ function Comparison() {
 
   return (
     <div className="content">
+      <ViewingTracker id={id1}/>
       <table className="comparison-table">
         <tbody>
           <tr>

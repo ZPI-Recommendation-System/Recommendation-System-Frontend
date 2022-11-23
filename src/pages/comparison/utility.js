@@ -22,6 +22,6 @@ export function beacon(event, laptopId, formJson, payload="") {
     formData.append("formJson", JSON.stringify(formJson))
     formData.append("payload", payload)
     console.log("Sending beacon", API_URL + "/stats", event, payload, laptopId)
-    // window.navigator.sendBeacon(API_URL + "/stats", formData);
+    window.navigator.sendBeacon(API_URL + "/stats", formData);
   }
 }

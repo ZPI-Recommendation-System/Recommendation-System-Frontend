@@ -34,6 +34,14 @@ function Slider({ id, prompt, points, summary, startWithMax }) {
         }
     }, [dispatch, id, inUnitsId, startValue, value])
 
+    const min = 0
+    const max = 100
+    const green = "#57EB54AA";
+    const gray = "#DEE2E6";
+    const leftColor = startWithMax ? green : gray;
+    const rightColor = startWithMax ? gray : green;
+    const sliderBackground = `linear-gradient(to right, ${leftColor} 0%, ${leftColor} ${(value-min)/(max-min)*100}%, ${rightColor} ${(value-min)/(max-min)*100}%, ${rightColor} 100%)`;
+
     return (<div className="content">
         <p className="text">
             {prompt}
@@ -43,6 +51,9 @@ function Slider({ id, prompt, points, summary, startWithMax }) {
             max="100"
             className="slider" id="myRange"
             value={value}
+            style={{
+                background: sliderBackground
+            }}
             onChange={e => { 
                 dispatch(setSliderValue([id, Number(e.target.value)]))
                 dispatch(setSliderValue([inUnitsId, Number(mixPoints(points, e.target.value))]))
@@ -57,5 +68,6 @@ function Slider({ id, prompt, points, summary, startWithMax }) {
         <NextButton />
     </div>);
 }
+
 
 export default Slider;

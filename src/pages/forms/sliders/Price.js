@@ -1,6 +1,27 @@
 import Slider from './Slider';
+import { API_URL } from "../../../api/api"
+
+async function count(usageType, maxPrice) {
+    const result = await fetch(API_URL+"/recommendations?limit=0", {
+        method:"POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({
+            "usageType": usageType,
+            "minDiscSize": 0,
+            "screenPreferences": {},
+            "preferredScreenSizes": [],
+            "maxPricePLN" : maxPrice
+          }
+          )
+       });
+    const asJson = await result.json();
+    return asJson.items.length;
+}
 
 function Price() {
+
   return <Slider
     id="price"
     points = {[
@@ -11,16 +32,25 @@ function Price() {
     ["Bez limitu", Number.MAX_VALUE]
     ]}
     prompt = {"Wybierz maksymalną cenę:"}
-    summary = {value => (
-        <><p className="text">
+    summary = {async value =>{
+        const [office, gaming, middle1, middle2] = await Promise.all([
+            count("Aplikacje biurowe i internet", value),
+            count("Najnowsze gry wysokobudżetowe", value),
+            count("Modelowanie 3D i digital art", value),
+            count("Gry indie i retro", value)
+        ])
+        const middle = middle1 + middle2;
+
+        return <><p className="text">
             W tym budżecie masz do wyboru:
         </p>
          <ul className="text">
-         <li>10 laptopów biurowych</li>
-         <li>30 laptopów gamingowych</li>
+         <li>{office} laptopów biurowych</li>
+         <li>{gaming} laptopów gamingowych</li>
+         <li>{middle} laptopów ze średniej półki</li>
          </ul>
-        </>
-    )}
+        </>}
+    }
     startWithMax={true}
     />
 }

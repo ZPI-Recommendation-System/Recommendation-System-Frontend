@@ -69,3 +69,11 @@
     opacity: 0.8;
     margin: 1rem 1rem;
 }
+
+#sorting {
+    float: right;
+    margin: 0.2rem;
+    display: block;
+    padding: 4px;
+    background-color: #eeeeee;
+}

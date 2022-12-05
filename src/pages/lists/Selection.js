@@ -1,3 +1,4 @@
+import 'react-dropdown/style.css';
 import './Selection.css';
 import { Link } from "react-router-dom";
 import { Laptop } from "../../api/api";
@@ -5,6 +6,7 @@ import { Laptop } from "../../api/api";
 import { useSelector, useDispatch } from 'react-redux';
 import { select } from '../../store/slices/selection';
 import LaptopStar from '../../components/LaptopStar';
+import Dropdown from 'react-dropdown';
 
 function LaptopIcon({ id, name, image, checked, onClick }) {
     const className = "selection-laptop " + (checked ? 'checked' : '');
@@ -42,12 +44,14 @@ function Selection({ main, extra }) {
         </p>
         <div className="selection-container">
         <div></div>
-        <select name="sorting" id="sorting">
-                <option value="fitness">Dopasowanie</option>
-                <option value="popularity">Popularność</option>
-                <option value="price">Cena</option>
-                <option value="name">Nazwa</option>
-            </select>
+
+        <Dropdown options={[
+            { value:"fitness",     label: 'Dopasowanie' },
+            { value:"popularity",  label: 'Popularność' },
+            { value:"price",       label: 'Cena' },
+            { value:"name",        label: 'Nazwa' }
+        ]}
+        value={"fitness"} placeholder="Sortowanie" />
             {main.length > 0 &&
             <>
             <div className="selection-section">

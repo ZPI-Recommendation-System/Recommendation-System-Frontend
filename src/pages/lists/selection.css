@@ -72,8 +72,31 @@
 
 #sorting {
     float: right;
-    margin: 0.2rem;
+    margin: 10px;
     display: block;
     padding: 4px;
     background-color: #eeeeee;
+}
+
+.Dropdown-root {
+    float: right;
+    margin: 8px;
+    padding: 1px;
+}
+
+.Dropdown-control, .XDropdown-menu {
+    border : 2px solid #ddd;
+    border-radius: 5%;
+}
+
+.Dropdown-option.is-selected {
+    background-color:#57EB5444;
+}
+
+.Dropdown-placeholder {
+    margin-right: 1em;
+}
+
+.Dropdown-option:hover {
+    background-color:#57EB5411;
 }

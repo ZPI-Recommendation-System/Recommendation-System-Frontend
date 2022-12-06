@@ -4,7 +4,8 @@ import { useEffect, useState, useRef } from 'react';
 export class Laptop {
     constructor(id, name, image) {
       this.id = id;
-      this.name = name;
+      this.fullName = name;
+      this.name = reduceName(name);
       this.image = image;
     }
   }

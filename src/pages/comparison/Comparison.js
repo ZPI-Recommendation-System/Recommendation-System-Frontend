@@ -25,8 +25,23 @@ function tableLine(key, details1, details2, hidden = false, dropdown = false) {
 
   const [translation, tooltip, comparable] = getTranslationDescriptionAndComparable(key);
 
-  const firstAsNumber = Number.parseFloat(details1[key]);
-  const secondAsNumber = details2 && Number.parseFloat(details2[key]);
+  let firstText;
+  let firstValue;
+  let secondText;
+  let secondValue;
+
+  if (Array.isArray(details1[key])) {
+    firstText = details1[key][0];
+    firstValue = details1[key][1];
+    secondText = details2 && details2[key][0];
+    secondValue = details2 && details2[key][1];
+  } else {
+    firstText = firstValue = details1[key];
+    secondText = secondValue = details2 && details2[key];
+  }
+
+  const firstAsNumber = Number.parseFloat(firstValue);
+  const secondAsNumber = details2 && Number.parseFloat(secondValue);
   const bothAreNumbers = !Number.isNaN(firstAsNumber) && !Number.isNaN(secondAsNumber);
   // if there's only one laptop on page all of its parameters would be better
   const firstIsBetter = details2 && comparable && bothAreNumbers && firstAsNumber > secondAsNumber;
@@ -41,7 +56,7 @@ function tableLine(key, details1, details2, hidden = false, dropdown = false) {
       <HoverText text={tooltip}>
         <b>{translation}</b>
         <span>
-          {displayDetail(details1[key])}
+          {displayDetail(firstText)}
         </span>
       </HoverText>
     </td>
@@ -50,7 +65,7 @@ function tableLine(key, details1, details2, hidden = false, dropdown = false) {
         <br />
         <HoverText text={tooltip}>
         <span>
-          {displayDetail(details2[key])}
+          {displayDetail(secondText)}
         </span>
         </HoverText>
       </td>}

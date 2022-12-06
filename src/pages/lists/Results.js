@@ -1,5 +1,5 @@
 import Selection from "./Selection";
-import { Laptop, reduceName, API_URL, useRequest } from "../../api/api";
+import { Laptop, API_URL, useRequest } from "../../api/api";
 
 function Results({query, method, data, itemsKey}) {
 
@@ -27,7 +27,7 @@ function Results({query, method, data, itemsKey}) {
         return (
             <div className="content">
                 <Selection
-                main={result[itemsKey].map(item=>new Laptop(item.id, reduceName(item.name), item.images[0].url))}
+                main={result[itemsKey].map(item=>new Laptop(item.id, item.name, item.images[0].url))}
                 />
             </div>);
     }

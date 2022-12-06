@@ -30,11 +30,11 @@ function HoverDialog({ content, children }) {
 
 }
 
-function LaptopIcon({ id, name, image, checked, onClick }) {
+function LaptopIcon({ id, name, fullName, image, checked, onClick }) {
 
     const className = "selection-laptop " + (checked ? 'checked' : '');
     return <div className={className} onClick={onClick}><HoverDialog
-        content={`${name}<hr/>Screen: 11'<br/>CPU: 100<br/>GPU: 100`}
+        content={`${fullName}<hr/>Wydajność CPU: 100<br/>Wydajność GPU: 100`}
     >
         <LaptopStar id={id} className="laptop-star" />
         <img src={image} className="selection-laptop-image" alt="laptop" />
@@ -55,10 +55,7 @@ function Selection({ main, extra }) {
 
     function makeIcon(laptop) {
         return <LaptopIcon
-            id={laptop.id}
-            key={laptop.id}
-            name={laptop.name}
-            image={laptop.image}
+            {...laptop}
             checked={selected.includes(laptop.id)}
             onClick={() => dispatch(select(laptop.id))}
         />

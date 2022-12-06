@@ -19,9 +19,9 @@ dane tymczasowe na dysku co spowoduje zacięcia.`, true],
     ramMaxAmount: ["Maksymalna ilość RAM", "", true],
     driveStorage: ["Wielkość dysku twardego", "", true],
     driveType: ["Typ dysku twardego", "Dyski w technologii SSD są szybsze i przyspeszają start komputera", false],
-    processor: ["Procesor", "Procesor wpływa na ogólną prędkość komputera.", false],
+    processor: ["Procesor", "Procesor wpływa na ogólną prędkość komputera.", true],
     screen: ["Ekran", "Właściwości ekranu komputera.", false],
-    graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie.", false],
+    graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie.", true],
     communications: ["Komunikacja", "", false],
     drives: ["Napędy", "", false],
     connections: ["Gniazda", "", false],
@@ -42,14 +42,14 @@ export function processDetails(details) {
     const withIds = ["screen", "graphics", "processor"]
     const singleFieldObjectsArrays = ["controls", "communications", "connections", "drives"]
 
-    details.graphics = `${details.graphics.graphicsCardModel}
+    details.graphics = [`${details.graphics.graphicsCardModel}
     VRAM: ${details.graphics.graphicsCardVRam ?? "?"}
-    Wydajność: ${details.graphics.benchmark.benchmark} pkt`
+    Wydajność: ${details.graphics.benchmark.benchmark} pkt`, details.graphics.benchmark.benchmark]
 
-    details.processor = `${details.processor.model}
+    details.processor = [`${details.processor.model}
     Liczba rdzeni: ${details.processor.cores}
     Taktowanie: ${details.processor.frequency}
-    Wydajność: ${details.processor.benchmark.benchmark} pkt`
+    Wydajność: ${details.processor.benchmark.benchmark} pkt`, details.processor.benchmark.benchmark]
 
     details.screen = `Rozdzielczość ${details.screen.resolution}
   Przekątna ${details.screen.diagonalScreenInches} cali
@@ -77,7 +77,7 @@ export function processDetails(details) {
     for (const [key, value] of Object.entries(details)) {
         if (value === null || value === undefined || value.length === 0) {
             delete details[key];
-        } else if (typeof value === 'object' && key!=="images") {
+        } else if (typeof value === 'object' && key!=="images" && key!=="processor" && key!=="graphics") {
             details[key] = JSON.stringify(value, null, 1).replace(/["'{}[\],]/g, "")
         }
     }

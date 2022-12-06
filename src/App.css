@@ -47,8 +47,12 @@ body {
 
 @media (max-aspect-ratio: 1/1) {
   .app {
-    width: 85%;
-    margin-top: 1.35rem;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    width: auto;
+    overflow: hidden;
+    padding: 5px 15px 10px 15px;
   }
 }
 

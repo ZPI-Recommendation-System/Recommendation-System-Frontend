@@ -7,6 +7,7 @@ import Page from './pages/Page';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
+import {Dialog} from './pages/comparison/HoverText';
 
 function App() {
   const container = useRef(null);
@@ -27,6 +28,7 @@ function App() {
   })
 
   return (<>
+    <Dialog />
     <div className="background">
     </div>
     <div className="app" style={style}>

@@ -12,7 +12,7 @@
 }
 
 .selection-container {
-    max-height: 18rem;
+    max-height: 20rem;
     overflow-y: scroll;
 }
 
@@ -28,7 +28,7 @@
 .selection-laptop {
     text-align: center;
     font-weight: 500;
-    width:22%;
+    width:18%;
     opacity: 0.6;
     padding: 1.2rem;
     padding-top: 2rem;

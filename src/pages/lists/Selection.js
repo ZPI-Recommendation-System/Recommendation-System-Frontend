@@ -5,15 +5,40 @@ import { Laptop } from "../../api/api";
 
 import { useSelector, useDispatch } from 'react-redux';
 import { select } from '../../store/slices/selection';
+import { show, hide } from '../../store/slices/dialog';
 import LaptopStar from '../../components/LaptopStar';
 import Dropdown from 'react-dropdown';
+import { useRef, useState, useEffect } from 'react';
+
+function HoverDialog({ content, children }) {
+    const dispatch = useDispatch();
+
+    const container = useRef(null);
+
+    function showDialog() {
+        const containerCurrent = container.current;
+        const rect = containerCurrent.getBoundingClientRect()
+        dispatch(show({ text: content, x: rect.x, y: rect.y }))
+    }
+
+    return <div
+        ref={container}
+        onMouseEnter={showDialog}
+        onMouseLeave={() => dispatch(hide())}
+    >{children}</div>;
+
+}
 
 function LaptopIcon({ id, name, image, checked, onClick }) {
+
     const className = "selection-laptop " + (checked ? 'checked' : '');
-    return <div className={className} onClick={onClick}>
+    return <div className={className} onClick={onClick}><HoverDialog
+        content={`${name}<hr/>Screen: 11'<br/>CPU: 100<br/>GPU: 100`}
+    >
         <LaptopStar id={id} className="laptop-star" />
         <img src={image} className="selection-laptop-image" alt="laptop" />
         <p>{name}</p>
+    </HoverDialog>
     </div>;
 }
 
@@ -43,21 +68,21 @@ function Selection({ main, extra }) {
             {prompt}
         </p>
         <div className="selection-container">
-        <div></div>
+            <div></div>
 
-        <Dropdown options={[
-            { value:"fitness",     label: 'Dopasowanie' },
-            { value:"popularity",  label: 'Popularność' },
-            { value:"price",       label: 'Cena' },
-            { value:"name",        label: 'Nazwa' }
-        ]}
-        value={"fitness"} placeholder="Sortowanie" />
+            <Dropdown options={[
+                { value: "fitness", label: 'Dopasowanie' },
+                { value: "popularity", label: 'Popularność' },
+                { value: "price", label: 'Cena' },
+                { value: "name", label: 'Nazwa' }
+            ]}
+                value={"fitness"} placeholder="Sortowanie" />
             {main.length > 0 &&
-            <>
-            <div className="selection-section">
-                {main.map(makeIcon)}
-            </div></>
-        }
+                <>
+                    <div className="selection-section">
+                        {main.map(makeIcon)}
+                    </div></>
+            }
             {extra &&
                 <><div className="extras-divider"></div>
                     <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>

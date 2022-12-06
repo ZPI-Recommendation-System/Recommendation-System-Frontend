@@ -2,6 +2,7 @@ import formsReducer from './slices/forms'
 import selectionReducer from './slices/selection'
 import favouritesReducer from './slices/favourites'
 import historyReducer from './slices/history'
+import dialogReducer from './slices/dialog'
 // app/store.ts
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import {
@@ -20,7 +21,8 @@ const rootReducer = combineReducers({
   forms: formsReducer,
   selection: selectionReducer,
   favourites: favouritesReducer,
-  history: historyReducer
+  history: historyReducer,
+  dialog: dialogReducer,
 })
 
 const persistConfig = {

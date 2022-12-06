@@ -12,12 +12,12 @@ body {
 .background {
   top:-10px;
   left:-10px;
-  filter: blur(6px) saturate(75%);
-  -webkit-filter: blur(6px) saturate(75%);
+  filter: saturate(125%);
+  -webkit-filter: saturate(125%);
   opacity: 0.8;
   
   position: fixed;
-  background-image: url("../public/background.png");
+  background-image: url("../public/gradient-bg.png");
   width: 105%; 
   height: 105%; 
   background-position: top;
@@ -26,7 +26,7 @@ body {
 
 .app {
   min-height: 10rem;
-  border-radius: 1.5rem;
+  border-radius: 1.25rem;
   padding: 0.5rem 2rem;
   margin: auto;
   background-color: white;

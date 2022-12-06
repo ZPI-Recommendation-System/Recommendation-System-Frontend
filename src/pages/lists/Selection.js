@@ -22,6 +22,7 @@ function HoverDialog({ content, children }) {
     }
 
     return <div
+        style={{padding: 0, margin: 0, border: 0}}
         ref={container}
         onMouseEnter={showDialog}
         onMouseLeave={() => dispatch(hide())}

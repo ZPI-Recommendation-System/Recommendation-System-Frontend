@@ -43,11 +43,13 @@ export function processDetails(details) {
     const singleFieldObjectsArrays = ["controls", "communications", "connections", "drives"]
 
     details.graphics = `${details.graphics.graphicsCardModel}
-  VRAM: ${details.graphics.graphicsCardVRam ?? "?"}`
+    VRAM: ${details.graphics.graphicsCardVRam ?? "?"}
+    Wydajność: ${details.graphics.benchmark.benchmark} pkt`
 
     details.processor = `${details.processor.model}
-  Liczba rdzeni: ${details.processor.cores}
-  Taktowanie: ${details.processor.frequency}`
+    Liczba rdzeni: ${details.processor.cores}
+    Taktowanie: ${details.processor.frequency}
+    Wydajność: ${details.processor.benchmark.benchmark} pkt`
 
     details.screen = `Rozdzielczość ${details.screen.resolution}
   Przekątna ${details.screen.diagonalScreenInches} cali

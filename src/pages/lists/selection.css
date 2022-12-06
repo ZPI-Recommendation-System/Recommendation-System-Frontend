@@ -34,13 +34,17 @@
     padding-top: 2rem;
     padding-bottom: 0.2rem;
     box-sizing: border-box;
-    margin: 3px;
+    margin: 5px;
     position: relative;
 
     /* this prevents text from sticking out */
     overflow: hidden;
     
     transition: all 0.05s;
+}
+
+.selection-laptop p {
+    margin: 0px;
 }
 
 .selection-laptop.checked {

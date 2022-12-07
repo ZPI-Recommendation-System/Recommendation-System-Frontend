@@ -1,5 +1,6 @@
 import Slider from './Slider';
 import { API_URL } from "../../../api/api"
+import useFormData from '../../useFormData';
 
 async function count(usageType, maxPrice) {
     const result = await fetch(API_URL+"/recommendations?limit=0", {
@@ -21,6 +22,7 @@ async function count(usageType, maxPrice) {
 }
 
 function Price() {
+  const formData = useFormData();
 
   return <Slider
     id="price"

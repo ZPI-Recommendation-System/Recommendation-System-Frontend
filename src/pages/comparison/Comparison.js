@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import {HoverText, Dialog} from './HoverText';
 import ViewingTracker from './ViewingTracker';
+import LaptopImage from './LaptopImage';
 
 function newLinesToParagraphs(text) {
   if (!text) {
@@ -175,11 +176,11 @@ function Comparison() {
         <tbody>
           <tr>
             <th>
-              <img className="comparison-image" src={details1?.images[0].url} alt="laptop" />
+              <LaptopImage laptop={details1} />
               {details1?.name}<LaptopStar id={id1} /></th>
             {id2 &&
               <th>
-                <img className="comparison-image" src={details2?.images[0].url} alt="laptop" />
+                <LaptopImage laptop={details2} />
                 {details2?.name}<LaptopStar id={id2} />
               </th>}
           </tr>

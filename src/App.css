@@ -40,7 +40,10 @@ body {
 
   /* needed for resize animation */
   transition: height 0.1s;
+
+  /*
   overflow: hidden;
+  */
 }
 
 /* handling of mobile and ultra wide screens */

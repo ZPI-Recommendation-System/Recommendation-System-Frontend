@@ -3,6 +3,7 @@ import selectionReducer from './slices/selection'
 import favouritesReducer from './slices/favourites'
 import historyReducer from './slices/history'
 import dialogReducer from './slices/dialog'
+import galleryReducer from './slices/gallery'
 // app/store.ts
 import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import {
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   favourites: favouritesReducer,
   history: historyReducer,
   dialog: dialogReducer,
+  gallery: galleryReducer,
 })
 
 const persistConfig = {

@@ -10,8 +10,7 @@ const LAPTOP_PROPERTIES = {
     length: ["Długość", "", false],
     depth: ["Głębokość", "", false],
     ramAmount: ["Pamięć RAM", `W pamięci RAM są przetrzymywane uruchomione gry i programy.
-Jeżeli pamięć RAM jest dla nich zbyt niska będą one musiały przechowywać 
-dane tymczasowe na dysku co spowoduje zacięcia.`, true],
+Gdy pamięć RAM ulega zapełnieniu zaczyna być używana wolnejsza pamięć komputera.`, true],
     ramFrequency: ["Taktowanie RAM", "", true],
     ramNumberOfSlots: ["Liczba slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", true],
     ramNumberOfFreeSlots: ["Liczba wolnych slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", true],
@@ -20,7 +19,7 @@ dane tymczasowe na dysku co spowoduje zacięcia.`, true],
     driveStorage: ["Wielkość dysku twardego", "", true],
     driveType: ["Typ dysku twardego", "Dyski w technologii SSD są szybsze i przyspeszają start komputera", false],
     processor: ["Procesor", "Procesor CPU wpływa na ogólną prędkość komputera.", true],
-    screen: ["Ekran", "Właściwości ekranu komputera.", false],
+    screen: ["Ekran", "", false],
     graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie.", true],
     communications: ["Komunikacja", "", false],
     drives: ["Napędy", "", false],

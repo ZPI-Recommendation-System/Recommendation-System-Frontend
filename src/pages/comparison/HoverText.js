@@ -3,9 +3,9 @@ import { useSelector } from 'react-redux';
 import {useRef} from 'react';
 
 export function HoverText({ children, text }) {
-  return <div class="tooltip">
+  return <div className="tooltip">
     {children}
-    {text && <span class="tooltiptext">{text}</span>}
+    {text && <span className="tooltiptext">{text}</span>}
   </div>;
 }
 
@@ -18,7 +18,7 @@ export function Dialog() {
   const yOffset = -39;
   const xOffset = 10;
   return <>
-    {text && <span ref={container} class={visible ? "dialog open" : "dialog"} 
+    {text && <span ref={container} className={visible ? "dialog open" : "dialog"} 
     style={{
       left:x+xOffset+window.screenX, 
       top:y-height+yOffset+window.scrollY}}

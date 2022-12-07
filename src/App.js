@@ -8,6 +8,8 @@ import './App.css';
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
 import {Dialog} from './pages/comparison/HoverText';
+import Gallery from './components/Gallery';
+
 
 function App() {
   const container = useRef(null);
@@ -29,6 +31,7 @@ function App() {
 
   return (<>
     <Dialog />
+    <Gallery />
     <div className="background">
     </div>
     <div className="app" style={style}>

@@ -15,10 +15,13 @@ export function Dialog() {
   const container = useRef(null);
   const  rect =container.current?.getBoundingClientRect();
   const height = rect?.height ?? 0;
-  const yOffset = -25;
+  const yOffset = -39;
   const xOffset = 10;
   return <>
-    {text && <span ref={container} class={visible ? "dialog open" : "dialog"} style={{left:x+xOffset, top:y-height+yOffset}}
+    {text && <span ref={container} class={visible ? "dialog open" : "dialog"} 
+    style={{
+      left:x+xOffset+window.screenX, 
+      top:y-height+yOffset+window.scrollY}}
     dangerouslySetInnerHTML={{__html: text ?? ""}}>
       </span>}
   </>;

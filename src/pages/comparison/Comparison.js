@@ -21,6 +21,8 @@ function displayDetail(detail) {
   return newLinesToParagraphs(detail?.toString()) ?? "-";
 }
 
+// good sample:
+// http://localhost:3000/comparison/00172f49-6bc6-4bec-85bc-70396858404b/000b42db-4b53-4299-95a2-8722635fc730
 function tableLine(key, details1, details2, hidden = false, dropdown = false) {
 
   const [translation, tooltip, comparable] = getTranslationDescriptionAndComparable(key);
@@ -55,18 +57,18 @@ function tableLine(key, details1, details2, hidden = false, dropdown = false) {
     <td className={firstIsBetter && "comparison-better-cell"}>
       <HoverText text={tooltip}>
         <b>{translation}</b>
-        <span>
+        <p>
           {displayDetail(firstText)}
-        </span>
+        </p>
       </HoverText>
     </td>
     {details2 &&
       <td className={secondIsBetter && "comparison-better-cell"}>
         <br />
         <HoverText text={tooltip}>
-        <span>
+        <p>
           {displayDetail(secondText)}
-        </span>
+        </p>
         </HoverText>
       </td>}
   </tr>
@@ -78,8 +80,11 @@ function Dropdown({ name, keys, details1, details2 }) {
 
   return <><tr style={{ cursor: "pointer" }}
     onClick={() => setOpen(open => !open)}>
-    <td colSpan={details2 ? "2" : "1"}><b>
-      <span className={open ? "arrow-rotated" : "arrow"}>&gt;</span> {name}</b></td>
+    <td colSpan={details2 ? "2" : "1"}>
+    <HoverText text={`Kliknij aby rozwinąć sekcję "${name}"`}><b>
+      <span className={open ? "arrow-rotated" : "arrow"}>&gt;</span> {name}</b>
+      </HoverText>
+      </td>
   </tr>
     {keys.map(key => tableLine(key, details1, details2, !open, true))}</>
 }
@@ -135,6 +140,7 @@ function Comparison() {
     row("screen"),
     row("driveStorage"),
     row("ramAmount"),
+    row("price"),
     expandable("Szczegóły pamięci RAM", [
       "ramType",
       "ramMaxAmount",

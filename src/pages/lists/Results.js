@@ -1,6 +1,11 @@
 import Selection from "./Selection";
 import { Laptop, API_URL, useRequest } from "../../api/api";
 
+function itemToLaptop(item) {
+    return new Laptop(item.id, item.name, item.images[0].url,
+        item.processor?.benchmark?.benchmark, item.graphics?.benchmark?.benchmark);
+}
+
 function Results({query, method, data, itemsKey}) {
 
     const options = {   }
@@ -27,7 +32,7 @@ function Results({query, method, data, itemsKey}) {
         return (
             <div className="content">
                 <Selection
-                main={result[itemsKey].map(item=>new Laptop(item.id, item.name, item.images[0].url))}
+                main={result[itemsKey].map(itemToLaptop)}
                 />
             </div>);
     }

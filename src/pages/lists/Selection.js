@@ -8,7 +8,7 @@ import { select } from '../../store/slices/selection';
 import { show, hide } from '../../store/slices/dialog';
 import LaptopStar from '../../components/LaptopStar';
 import Dropdown from 'react-dropdown';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 
 function HoverDialog({ content, children }) {
     const dispatch = useDispatch();
@@ -27,14 +27,18 @@ function HoverDialog({ content, children }) {
         onMouseEnter={showDialog}
         onMouseLeave={() => dispatch(hide())}
     >{children}</div>;
-
 }
 
-function LaptopIcon({ id, name, fullName, image, checked, onClick }) {
-
+function LaptopIcon({ id, name, fullName, image, checked, onClick, cpuBenchmark, gpuBenchmark }) {
+    let dialogContent = fullName;
+    if (cpuBenchmark && gpuBenchmark) {
+        dialogContent += `<hr/>CPU: <b>${cpuBenchmark} pkt</b><br/>GPU: <b>${gpuBenchmark} pkt</b>`;
+    }
+    
     const className = "selection-laptop " + (checked ? 'checked' : '');
+    
     return <div className={className} onClick={onClick}><HoverDialog
-        content={`${fullName}<hr/>Wydajność CPU: 100<br/>Wydajność GPU: 100`}
+        content={dialogContent}
     >
         <LaptopStar id={id} className="laptop-star" />
         <img src={image} className="selection-laptop-image" alt="laptop" />

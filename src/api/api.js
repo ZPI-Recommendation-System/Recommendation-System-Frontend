@@ -2,11 +2,13 @@ import mockData from './mockData';
 import { useEffect, useState, useRef } from 'react';
 
 export class Laptop {
-    constructor(id, name, image) {
+    constructor(id, name, image, cpuBenchmark=null, gpuBenchmark=null) {
       this.id = id;
       this.fullName = name;
       this.name = reduceName(name);
       this.image = image;
+      this.cpuBenchmark = cpuBenchmark;
+      this.gpuBenchmark = gpuBenchmark;
     }
   }
   

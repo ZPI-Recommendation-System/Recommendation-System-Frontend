@@ -19,14 +19,15 @@ dane tymczasowe na dysku co spowoduje zacięcia.`, true],
     ramMaxAmount: ["Maksymalna ilość RAM", "", true],
     driveStorage: ["Wielkość dysku twardego", "", true],
     driveType: ["Typ dysku twardego", "Dyski w technologii SSD są szybsze i przyspeszają start komputera", false],
-    processor: ["Procesor", "Procesor wpływa na ogólną prędkość komputera.", true],
+    processor: ["Procesor", "Procesor CPU wpływa na ogólną prędkość komputera.", true],
     screen: ["Ekran", "Właściwości ekranu komputera.", false],
     graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie.", true],
     communications: ["Komunikacja", "", false],
     drives: ["Napędy", "", false],
     connections: ["Gniazda", "", false],
     controls: ["Sterowanie", `Komponenty służące do komunikacji z komputerem, 
-  np.: klawiatura, touchpad, ekran.`]
+  np.: klawiatura, touchpad, ekran.`],
+    price : ["Przybliżona cena", "Cena jest przewidywana na bazie cen z przeszłości więc może nie być dokładna", false]
 }
 
 export function getTranslationDescriptionAndComparable(name) {
@@ -48,7 +49,7 @@ export function processDetails(details) {
 
     details.processor = [`${details.processor.model}
     Liczba rdzeni: ${details.processor.cores}
-    Taktowanie: ${details.processor.frequency}
+    Taktowanie: ${details.processor.frequency} GHz
     Wydajność: ${details.processor.benchmark.benchmark} pkt`, details.processor.benchmark.benchmark]
 
     details.screen = `Rozdzielczość ${details.screen.resolution}
@@ -56,6 +57,16 @@ export function processDetails(details) {
   Powierzchnia: ${details.screen.screenFinish}`
         + (details.screen.refreshRate ? ("\nSzybkość odświeżania: " + details.screen.refreshRate + "Hz") : "")
         + (details.screen.touchScreen ? "Ekran dotykowy" : "")
+
+    details.ramAmount = [details.ramAmount + " GB", details.ramAmount]
+    details.ramMaxAmount = [details.ramMaxAmount + " GB", details.ramMaxAmount]
+    details.driveStorage = [details.driveStorage + " GB", details.driveStorage]
+
+    if (details.price===0) {
+        details.price = "-"
+    } else {
+        details.price = ["~"+ details.price + " zł", details.price]
+    }
 
     for (const field of withIds) {
         if (details[field]) {
@@ -71,14 +82,12 @@ export function processDetails(details) {
         for (const value of details[field]) {
             processed.push("- " + Object.values(value)[0].toString())
         }
-        details[field] = processed
+        details[field] =  processed.join("\n")
     }
 
     for (const [key, value] of Object.entries(details)) {
         if (value === null || value === undefined || value.length === 0) {
             delete details[key];
-        } else if (typeof value === 'object' && key!=="images" && key!=="processor" && key!=="graphics") {
-            details[key] = JSON.stringify(value, null, 1).replace(/["'{}[\],]/g, "")
         }
     }
 }

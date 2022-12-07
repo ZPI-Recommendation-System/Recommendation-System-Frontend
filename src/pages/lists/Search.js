@@ -23,7 +23,7 @@ function Search() {
             ></input>
            <Results 
                 itemsKey="result" 
-                query={"/laptops/search?query=id,name,images&limit=10&search="+sentSearchTerm} 
+                query={"/laptops/search?query=id,name,images,processor,graphics&limit=10&search="+sentSearchTerm} 
             />
         </div>
     );

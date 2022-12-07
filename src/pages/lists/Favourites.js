@@ -19,5 +19,5 @@ export default function Favourites() {
         lastLocation.current = location;
     }, [location, selectedFromRedux])
 
-    return <Results query={"/laptops?limit=20&query=all,id,name,images&ids="+selected} />
+    return <Results query={"/laptops?limit=20&query=all,id,name,images,processor,graphics&ids="+selected} />
 }

@@ -53,7 +53,7 @@ function Selection({ main, extra }) {
     const selectedCount = selected.length;
     let prompt = {
         0: "Wybierz dwa laptopy aby zobaczyć ich detale i porównanie lub naciśnij gwiazdkę aby zapisać laptop.",
-        1: "Naciśnij przycisk szczegóły aby zobaczyć detale wybranego laptopa lub dobierz jeszcze jeden dla porównania.",
+        1: "Naciśnij przycisk szczegóły lub dobierz jeszcze jeden laptop dla porównania.",
         2: "Naciśnij przycisk porównanie aby zobaczyć porównanie laptopów."
     }[selectedCount];
 

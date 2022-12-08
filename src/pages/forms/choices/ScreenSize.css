@@ -1,7 +1,14 @@
-.size-choices {
+.size-choices-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  flex-direction: column;
+}
+.size-choices-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
 }
 
 .size-button {

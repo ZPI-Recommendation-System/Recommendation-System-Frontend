@@ -31,8 +31,8 @@ const OPTIONS = [
 
 function ChoiceBox({ name, size, checked, onClick, selectable, vertical }) {
     const className = "size-button " + ((checked && selectable) ? 'checked' : '');
-    const width = size * 14 / 1.38;
-    const height = size * 9.5 / 1.38;
+    const width = (size * 14 / 1.38 / 15) + "vw";
+    const height = (size * 9.5 / 1.38 / 15) + "vw";
     if (!selectable) {
         onClick = ()=>null;
     }
@@ -60,13 +60,27 @@ function ScreenSize() {
         }
     }, [dispatch, value]);
 
+    function line(sizes) {
+        return <div className="size-choices-line">{sizes.map(
+            option => <ChoiceBox
+                checked={value && value[option.name]}
+                onClick={() => dispatch(toggleChoice([id, option.name]))}
+                key={option.name} {...option} />)}</div>
+    }
+
+    const withIndex = (fn) => {
+        let index = 0
+        return (thing) => fn(thing, index++)
+      }
+    
+    const divideIntoThreeRows = withIndex((_, index)=>{
+            console.log("index", index)
+            return Math.floor(Math.min(index/3, 2))
+        })
+
     return (<div className="content">
-        <div className="size-choices">
-            {OPTIONS.map(
-                option => <ChoiceBox
-                    checked={value && value[option.name]}
-                    onClick={() => dispatch(toggleChoice([id, option.name]))}
-                    key={option.name} {...option} />)}
+        <div className='size-choices-container'>
+            {_.map(_.groupBy(OPTIONS, divideIntoThreeRows), line)  }
             </div>
         <p className="choice-text">
             * Wartości orientacyjne, wysokości i szerokości laptopów mogą być różne

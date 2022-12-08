@@ -10,5 +10,6 @@ export default function FormResults() {
     }, [formData])
 
     return <Results query="/recommendations?limit=5"
+        itemsKey={result => result.result[0].items}
         method="POST" data={formData} />
 }

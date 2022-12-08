@@ -12,8 +12,8 @@ body {
 .background {
   top:-20px;
   left:-20px;
-  filter: blur(6px) saturate(80%) contrast(105%) hue-rotate(12deg);
-  -webkit-filter: blur(6px) saturate(80%) contrast(105%) hue-rotate(12deg);
+  filter: blur(6px) saturate(60%) contrast(110%) hue-rotate(12deg);
+  -webkit-filter: blur(6px) saturate(60%) contrast(110%) hue-rotate(12deg);
   opacity: 0.8;
   
   position: fixed;

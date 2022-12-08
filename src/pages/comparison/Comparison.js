@@ -36,11 +36,19 @@ function tableLine(key, details1, details2, hidden = false, dropdown = false) {
   if (Array.isArray(details1[key])) {
     firstText = details1[key][0];
     firstValue = details1[key][1];
+  } else {
+    firstText = firstValue = details1[key];
+  }
+  if (details2 && Array.isArray(details2[key])) {
     secondText = details2 && details2[key][0];
     secondValue = details2 && details2[key][1];
   } else {
-    firstText = firstValue = details1[key];
     secondText = secondValue = details2 && details2[key];
+  }
+
+  if (key === "price") {
+    // log everything you can
+    console.log("secondText", secondText, "secondValue", secondValue);
   }
 
   const firstAsNumber = Number.parseFloat(firstValue);
@@ -100,29 +108,25 @@ function Comparison() {
     [id1, id2] = selected;
   }
 
-  const [isLoaded1, data1, error1] = useRequest(`${API_URL}/laptops/get/${id1}?query=all`)
-  const [isLoaded2, data2, error2] = useRequest(
-    id2 &&
-    `${API_URL}/laptops/get/${id2}?query=all`)
+  const [isLoaded, data, error] = useRequest(`${API_URL}/laptops?query=all&ids=${id1},${id2}`)
 
-  if (!(isLoaded1 && isLoaded2)) {
+  if (!(isLoaded)) {
     return <p className="text">Loading...</p>
   }
 
-  if (error1 || error2) {
+  if (error) {
     return <div className="text">
     <ViewingTracker id={id1}/>
       <p>There were errors while loading the laptops data: </p>
-      <p>{error1?.message}</p>
-      <p>{error2?.message}</p>
+      <p>{error?.message}</p>
     </div>
   }
 
-  const details1 = { ...data1.result };
+  const details1 = { ...data.items[0] };
   let details2 = null;
   processDetails(details1)
-  if (data2) {
-    details2 = { ...data2.result }
+  if (data.items[1]) {
+    details2 = { ...data.items[1] }
     processDetails(details2)
   }
 
@@ -187,11 +191,11 @@ function Comparison() {
           {table}
           <tr>
             <td>
-              <LaptopShareLinks id={id1} name={data1.result?.name} />
+              <LaptopShareLinks id={id1} name={details1?.name} />
             </td>
             {details2 &&
               <td>
-                <LaptopShareLinks id={id2} name={data2.result?.name} />
+                <LaptopShareLinks id={id2} name={details2?.name} />
               </td>}
           </tr>
 

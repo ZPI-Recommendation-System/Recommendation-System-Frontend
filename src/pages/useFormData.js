@@ -43,10 +43,16 @@ function formDataToRequest(data) {
         if (checked) {
             result["usage"] = checked[0];
         }
+        // TOREMOVE:
+        result["usage"] = "Aplikacje biurowe i internet";
     }
     if ("size" in result) {
+        function onlyUnique(value, index, self) {
+            return self.indexOf(value) === index;
+          }
         result["size"] = Object.entries(result["size"])
             .filter(([key, value]) => value && key !== "Kartka A4" && key !== ">17")
+            .filter(onlyUnique)
             .map(([key, value]) => key);
     }
     const translatedResult = translate(result)

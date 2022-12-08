@@ -21,7 +21,7 @@ function Results({query, method, data, itemsKey}) {
     const [isLoaded, result, error] = useRequest(API_URL+query, options)
 
     if (!itemsKey)
-        itemsKey = "items"
+        itemsKey = result=>result.items
 
     if (error){
         return <p className="text">Error: {error.message}</p>
@@ -29,10 +29,11 @@ function Results({query, method, data, itemsKey}) {
     else if (!isLoaded) {
         return <p className="text">Loading...</p>
     } else {
+        console.log(result)
         return (
             <div className="content">
                 <Selection
-                main={result[itemsKey].map(itemToLaptop)}
+                main={itemsKey(result).map(itemToLaptop)}
                 />
             </div>);
     }

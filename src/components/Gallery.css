@@ -1,47 +1,72 @@
 @keyframes appear {
-  0%   {display: none; opacity: 0; scale: 0.7; }
+  0%   {display: none; opacity: 0; }
     25%  {display: block; opacity: 0; }
-    100%  {display: block; opacity: 1; scale: 1;  }
+    100%  {display: block; opacity: 1;  }
   }
 
-.gallery-container {
+.gallery-background {
     position: fixed;
     width: 100%;
+    height: 100%;
     z-index: 100;
     left: 0px;
     top: 0px;
     animation: appear 0.5s;
+    background-color: rgba(0,0,0,0.55);
+    backdrop-filter: blur(6px);
+
   }
 
   @keyframes disappear {
-    100%   {display: none; opacity: 0; scale: 0.7; }
+    100%   {display: none; opacity: 0; }
       25%  {display: block; opacity: 0; }
-      0%  {display: block; opacity: 1; scale: 1;  }
+      0%  {display: block; opacity: 1; }
     }
   
 
-  .gallery-container.hidden {
+  .gallery-background.hidden {
     display: none;
     opacity: 0;
     animation: disappear 0.5s;
   }
   
-  .gallery-image {
+  .gallery-container {
     max-width: 50%;
     margin: auto;
     margin-top: 2rem;
     height: auto;
     display: block;
-    padding: 0.5rem;
+    padding:  0px 0.5rem 2rem  0.5rem;
     background-color: white;
     border-radius: 10px;
+    position: relative;
     /* box shadow for gallery pop up */
     box-shadow: 0 0 10px 0 rgba(0,0,0,0.2), 0 0 20px 0 rgba(0,0,0,0.19);
   }
 
-  .gallery-button {
-    width: 50%;
-    height: 100%;
-    margin: 0px;
+  .gallery-image {
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .gallery-control {
+    position: relative;
     padding: 0px;
+    cursor: pointer;
+  }
+
+  .gallery-control-close {
+    float: right;
+    margin-right: 0.25rem;
+    margin-top: 0.6rem;
+  }
+
+  .gallery-control-previous {
+        float: left;
+        margin: 0.25rem;
+  }
+
+  .gallery-control-next {
+        float: right;
+        margin: 0.25rem;
   }

@@ -43,6 +43,8 @@
     transition: all 0.05s;
 
     cursor: pointer;
+    
+    border: 4px solid #ffffff00;
 }
 
 .selection-laptop p {

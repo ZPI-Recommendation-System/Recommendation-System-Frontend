@@ -36,6 +36,32 @@ function translate(obj) {
     return translatedResult;
 }
 
+const FORM_DEFAULTS = {
+    "usageType": "Modelowanie 3D i digital art",
+    "dataPreferences": {
+      "diskDrive": false,
+      "sdCardReader": false
+    },
+    "preferredScreenSizes": [],
+    "screenPreferences": {
+      "touchScreen": false,
+      "HDMI": false,
+      "otherVideoConnectors": false
+    },
+    "internetPreferences": {
+      "simCard": false,
+      "lanPort": false
+    },
+    "ram": 0,
+    "ramInUnits": 0.0,
+    "disk": 0,
+    "minDiscSize": 0,
+    "price": Number.MAX_SAFE_INTEGER,
+    "maxPricePLN": Number.MAX_SAFE_INTEGER,
+    "battery": 0,
+    "batteryRunTime": 0
+  }
+
 function formDataToRequest(data) {
     const result = { ...data }
     if ("usage" in result) {
@@ -59,7 +85,9 @@ function formDataToRequest(data) {
     if ("screenPreferences" in translatedResult)
         translatedResult.screenPreferences.touchScreen = false;
 
-    return translatedResult;
+    // backend breaks when there are missing fields in form data
+    const withDefaults = { ...FORM_DEFAULTS, ...translatedResult }
+    return withDefaults;
 }
 
 function useFormData() {

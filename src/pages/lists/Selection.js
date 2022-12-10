@@ -71,20 +71,21 @@ function Selection({ main, extra }) {
         </p>
         <div className="selection-container">
             <div></div>
-
-            <Dropdown options={[
+            {main.length > 0 &&
+                <>
+                <Dropdown options={[
                 { value: "fitness", label: 'Dopasowanie' },
                 { value: "popularity", label: 'Popularność' },
                 { value: "price", label: 'Cena' },
                 { value: "name", label: 'Nazwa' }
             ]}
                 value={"fitness"} placeholder="Sortowanie" />
-            {main.length > 0 &&
-                <>
                     <div className="selection-section">
                         {main.map(makeIcon)}
                     </div></>
-            }
+             } 
+            {((!main || main.length===0) && (!extra || extra.length===0))
+            && <p className='text' style={{textAlign:"center", lineHeight:"7rem", opacity:0.5}}>Brak wyników</p>}
             {extra &&
                 <><div className="extras-divider"></div>
                     <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>

@@ -1,39 +1,48 @@
-
-const LAPTOP_PROPERTIES = {
-    model: ["Model", "", false],
-    producentCode: ["Kod producenta", "", false],
-    batterySizeWH: ["Rozmiar baterii w WH", "Rozmiar baterii w wato godzinach", true],
-    batterySizeMAH: ["Rozmiar baterii w MAH", "Rozmiar baterii w mega ampero godzinach", true],
-    color: ["Kolor", "", false],
-    weight: ["Waga", "", false],
-    width: ["Szerokość", "", false],
-    length: ["Długość", "", false],
-    depth: ["Głębokość", "", false],
-    ramAmount: ["Pamięć RAM", `W pamięci RAM są przetrzymywane uruchomione gry i programy.
-Gdy pamięć RAM ulega zapełnieniu zaczyna być używana wolnejsza pamięć komputera.`, true],
-    ramFrequency: ["Taktowanie RAM", "", true],
-    ramNumberOfSlots: ["Liczba slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", true],
-    ramNumberOfFreeSlots: ["Liczba wolnych slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", true],
-    ramType: ["Typ pamięci RAM", "Technologia w której wykonano, pamięci, im nowsza typ szybciej będzie działać.", false],
-    ramMaxAmount: ["Maksymalna ilość RAM", "", true],
-    driveStorage: ["Wielkość dysku twardego", "", true],
-    driveType: ["Typ dysku twardego", "Dyski w technologii SSD są szybsze i przyspeszają start komputera", false],
-    processor: ["Procesor", "Procesor CPU wpływa na ogólną prędkość komputera.", true],
-    screen: ["Ekran", "", false],
-    graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie.", true],
-    communications: ["Komunikacja", "", false],
-    drives: ["Napędy", "", false],
-    connections: ["Gniazda", "", false],
-    controls: ["Sterowanie", `Komponenty służące do komunikacji z komputerem, 
-  np.: klawiatura, touchpad, ekran.`],
-    price : ["Przybliżona cena", "Cena jest przewidywana na bazie cen z przeszłości więc może nie być dokładna", false]
+export const ComparisonType = {
+    none: null,
+    moreIsBetter: "moreIsBetter",
+    lessIsBetter: "lessIsBetter",
 }
 
-export function getTranslationDescriptionAndComparable(name) {
+const LAPTOP_PROPERTIES = {
+    model: ["Model", ""],
+    producentCode: ["Kod producenta", ""],
+    batterySizeWH: ["Rozmiar baterii w WH", "Rozmiar baterii w wato godzinach", ComparisonType.moreIsBetter],
+    batterySizeMAH: ["Rozmiar baterii w MAH", "Rozmiar baterii w mega ampero godzinach", ComparisonType.moreIsBetter],
+    color: ["Kolor", ""],
+    weight: ["Waga", "", ComparisonType.lessIsBetter],
+    width: ["Szerokość", ""],
+    length: ["Długość", ""],
+    depth: ["Głębokość", ""],
+    ramAmount: ["Pamięć RAM", `W pamięci RAM są przetrzymywane uruchomione gry i programy.
+Gdy pamięć RAM ulega zapełnieniu zaczyna być używana wolnejsza pamięć komputera.`, ComparisonType.moreIsBetter],
+    ramFrequency: ["Taktowanie RAM", "", ComparisonType.moreIsBetter],
+    ramNumberOfSlots: ["Liczba slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", ComparisonType.moreIsBetter],
+    ramNumberOfFreeSlots: ["Liczba wolnych slotów RAM", "Niektóre laptopy pozwalają na dokładanie pamięci RAM w postaci slotów.", ComparisonType.moreIsBetter],
+    ramType: ["Typ pamięci RAM", "Technologia w której wykonano, pamięci, im nowsza typ szybciej będzie działać."],
+    ramMaxAmount: ["Maksymalna ilość RAM", "", ComparisonType.moreIsBetter],
+    driveStorage: ["Wielkość dysku twardego", "Im większy dysk tym więcej plików i programów zmieści się na komputerze", ComparisonType.moreIsBetter],
+    driveType: ["Typ dysku twardego", "Dyski w technologii SSD są szybsze i przyspeszają start komputera"],
+    processor: ["Procesor", "Procesor CPU wpływa na ogólną prędkość komputera.", ComparisonType.moreIsBetter],
+    screen: ["Ekran", ""],
+    graphics: ["GPU", "Procesor GPU jest używany do wyświetlania obiektów na ekranie.", ComparisonType.moreIsBetter],
+    communications: ["Komunikacja", ""],
+    drives: ["Napędy", ""],
+    connections: ["Gniazda", ""],
+    controls: ["Sterowanie", `Komponenty służące do komunikacji z komputerem, 
+  np.: klawiatura, touchpad, ekran.`],
+    price : ["Przybliżona cena", "", ComparisonType.lessIsBetter],
+}
+
+export function getTranslationDescriptionAndComparisonType(name) {
     if (name in LAPTOP_PROPERTIES) {
-        return LAPTOP_PROPERTIES[name];
+        if (LAPTOP_PROPERTIES[name].length === 2) {
+            return [...LAPTOP_PROPERTIES[name], ComparisonType.none]
+        } else {
+            return LAPTOP_PROPERTIES[name];
+        }
     } else {
-        return [name, "", false]
+        return [name, "", ComparisonType.none]
     }
 }
 

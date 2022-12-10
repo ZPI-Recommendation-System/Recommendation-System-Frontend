@@ -1,0 +1,111 @@
+.search {
+    width: 95%; 
+    height: 2rem;
+    font-size: 1.2rem;
+    padding: 0.3em 0.7em;
+    border-radius: 0.5em;
+}
+
+.selection-prompt {
+    height: 2em;
+    display: block;
+}
+
+.selection-container {
+    max-height: 20rem;
+    overflow-y: scroll;
+}
+
+.selection-section {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start; 
+    list-style: none;
+    padding-left:0px;
+    flex-wrap: wrap;   
+}
+
+.selection-laptop {
+    text-align: center;
+    font-weight: 500;
+    width:18%;
+    opacity: 0.7;
+    padding: 1.2rem;
+    padding-top: 2rem;
+    padding-bottom: 0.2rem;
+    box-sizing: border-box;
+    margin: 5px;
+    position: relative;
+
+    /* this prevents text from sticking out */
+    overflow: hidden;
+    
+    transition: all 0.05s;
+
+    cursor: pointer;
+    
+    border: 4px solid #ffffff00;
+}
+
+.selection-laptop p {
+    margin: 0px;
+}
+
+.selection-laptop.checked {
+    border: 4px solid #57EB54;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    transform: scale(1.03);
+    opacity: 0.85;
+}
+
+.selection-laptop-image {
+    width: 100%;
+    cursor: pointer;
+}
+
+.selection-laptop>p {
+    margin: 0px;
+    cursor: pointer;
+}
+
+.extras-divider {
+    border-bottom: 2px solid #00000055;
+    margin: 1rem 0.8rem;
+}
+
+.extras-text {
+    opacity: 0.8;
+    margin: 1rem 1rem;
+}
+
+#sorting {
+    float: right;
+    margin: 10px;
+    display: block;
+    padding: 4px;
+    background-color: #eeeeee;
+}
+
+.Dropdown-root {
+    float: right;
+    margin: 8px;
+    padding: 1px;
+}
+
+.Dropdown-control, .XDropdown-menu {
+    border : 2px solid #ddd;
+    border-radius: 5%;
+}
+
+.Dropdown-option.is-selected {
+    background-color:#57EB5444;
+}
+
+.Dropdown-placeholder {
+    margin-right: 1em;
+}
+
+.Dropdown-option:hover {
+    background-color:#57EB5411;
+}

@@ -3,7 +3,7 @@ import Slider from './Slider';
 function Ram() {
   return <Slider
     id="ram"
-    prompt = {"Wybierz wielkość pamięci RAM"}
+    prompt = {"Wybierz minimalną wielkość pamięci RAM"}
     points = {[
     ["?", 0],
     ["2 GB", 2],

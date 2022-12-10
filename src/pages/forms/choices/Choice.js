@@ -16,7 +16,9 @@ function ChoiceBox({ title, text, image, checked, onClick }) {
   const className = "choice-button " + (checked ? 'checked' : '');
   return <div className={className} 
     onClick={onClick}>
-    <img className="choice-image" alt={title} src={image}></img>
+    <div className='choice-image-container'>
+      <img className="choice-image" alt={title} src={image} />
+    </div> 
     <p className="choice-text">
       {title}<br />{text}
     </p>

@@ -1,9 +1,18 @@
+.choice-image-container {
+  width: 4rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
 .choice-image {
-  flex-basis: 20%;
-  width: 30%;
+  width: 100%;
+  margin: 2px;
 }
 
 .choice-text {
+  display: flex;
   padding-left: 1rem;
   font-weight: 600;
 }
@@ -15,7 +24,6 @@
   padding: 0.05rem 0.8rem;
   margin: 0.5rem;
   cursor: pointer;
-  border: 4px solid #ffffff00;
   
   transition: all 0.05s;
 }

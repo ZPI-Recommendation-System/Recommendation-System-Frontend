@@ -45,4 +45,7 @@ export const store = configureStore({
     }),
 })
 
+// this is left for puppetteer and debugging 
+window.store = store;
+
 export const persistor = persistStore(store)

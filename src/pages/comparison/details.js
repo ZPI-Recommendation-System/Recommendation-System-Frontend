@@ -41,6 +41,19 @@ export function processDetails(details) {
 
     const withIds = ["screen", "graphics", "processor"]
     const singleFieldObjectsArrays = ["controls", "communications", "connections", "drives"]
+    
+    const withUnits = [
+        ["batterySizeWH", "WH"],
+        ["batterySizeMAH", "MAH"],
+        ["weight", "kg"],
+        ["width", "cm"],
+        ["length", "cm"],
+        ["depth", "cm"],
+        ["ramFrequency", "MHz"],
+        ["ramAmount", "GB"],
+        ["ramMaxAmount", "GB"],
+        ["driveStorage", "GB"],
+    ]
 
     details.graphics = [`${details.graphics.graphicsCardModel}
     VRAM: ${details.graphics.graphicsCardVRam ?? "?"}
@@ -56,10 +69,12 @@ export function processDetails(details) {
   Powierzchnia: ${details.screen.screenFinish}`
         + (details.screen.refreshRate ? ("\nSzybkość odświeżania: " + details.screen.refreshRate + "Hz") : "")
         + (details.screen.touchScreen ? "Ekran dotykowy" : "")
-
-    details.ramAmount = [details.ramAmount + " GB", details.ramAmount]
-    details.ramMaxAmount = [details.ramMaxAmount + " GB", details.ramMaxAmount]
-    details.driveStorage = [details.driveStorage + " GB", details.driveStorage]
+    
+    for (const [key, unit] of withUnits) {
+        if (details[key]) {
+            details[key] = [details[key] + " " + unit, details[key]]
+        }
+    }
 
     if (details.price===0) {
         details.price = "-"

@@ -1,5 +1,5 @@
 import 'react-dropdown/style.css';
-import './selection.css';
+import './Selection.css';
 import { Link } from "react-router-dom";
 import { Laptop } from "../../api/api";
 

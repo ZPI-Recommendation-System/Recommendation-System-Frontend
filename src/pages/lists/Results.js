@@ -1,13 +1,18 @@
 import Selection from "./Selection";
 import { Laptop, API_URL, useRequest } from "../../api/api";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import _ from "lodash";
 
 function itemToLaptop(item) {
     return new Laptop(item.id, item.name, item.images[0].url,
         item.processor?.benchmark?.benchmark, item.graphics?.benchmark?.benchmark);
 }
 
-function Results({query, method, data, itemsKey, allowSorting=true}) {
+function resultItems(result) {
+    return result.items;
+}
+
+function Results({query, method, data, mainItemsGetter=resultItems, extraItemsGetter, allowSorting=true, paging}) {
 
     const options = {   }
     if (method) 
@@ -19,16 +24,42 @@ function Results({query, method, data, itemsKey, allowSorting=true}) {
       }
     }
     
-    const [sorting, setSorting] = useState("price");
+    const [sorting, setSorting] = useState("&sortType=score&direction=DESC");
     
+    const [page, setPage] = useState(0);
+    const pageItems = useRef([]);
+    
+    const requestJSON = JSON.stringify([query, method, data]);
+    useEffect(() => {
+        console.log("Results reset")
+        setPage(0);
+        pageItems.current = [];
+    }, [requestJSON]);
+
+    function loadMore() {
+        setPage(page+1);
+    }
+
     let url = API_URL+query;
+    
+    const ITEMS_PER_PAGE = 10;
+    const MAX_LIMIT = 50;
+    const limit = paging ? ITEMS_PER_PAGE : MAX_LIMIT;
+    
+    url += "&limit="+limit;
+    if (paging && page>0) {
+        url += "&page="+page;
+    }
+    
     if (allowSorting)
         url += sorting;
 
     const [isLoaded, result, error] = useRequest(url, options)
 
-    if (!itemsKey)
-        itemsKey = result=>result.items
+    function flatPageItems() {
+        // uniqBy is needed for the React key prop correctness
+        return _.uniqBy(_.flatten(pageItems.current), "id");
+    }
 
     if (error){
         return <p className="text">Error: {error.message}</p>
@@ -37,12 +68,20 @@ function Results({query, method, data, itemsKey, allowSorting=true}) {
         return <p className="text">Loading...</p>
     } else {
         console.log(result)
+        let currentMain = mainItemsGetter(result).map(itemToLaptop);
+        pageItems.current[page] = currentMain;
+        const main = paging ? flatPageItems() : currentMain;
+        const extra = extraItemsGetter ? extraItemsGetter(result).map(itemToLaptop) : [];
+
+        const showMoreButton = paging && currentMain.length >= limit;
         return (
             <div className="content">
                 <Selection
-                main={itemsKey(result).map(itemToLaptop)}
+                main={main}
+                extra={extra}
                 setSorting={({value})=>setSorting(value)}
                 allowSorting={allowSorting}
+                loadMore={showMoreButton && loadMore}
                 />
             </div>);
     }

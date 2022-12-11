@@ -22,5 +22,5 @@ export default function Favourites() {
         lastLocation.current = location;
     }, [location, favouritedFromRedux])
 
-    return <Results query={"/laptops?limit=20&query=all,id,name,images,processor,graphics&ids="+selected} />
+    return <Results paging query={"/laptops?query=all,id,name,images,processor,graphics&ids="+selected+"&"} />
 }

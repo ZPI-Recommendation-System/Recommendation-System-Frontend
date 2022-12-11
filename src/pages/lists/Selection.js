@@ -48,7 +48,7 @@ function LaptopIcon({ id, name, fullName, image, checked, onClick, cpuBenchmark,
     </div>;
 }
 
-function Selection({ main, extra, setSorting, allowSorting }) {
+function Selection({ main, extra, setSorting, allowSorting, loadMore }) {
     const dispatch = useDispatch();
     const selected = useSelector(state => state.selection.selected)
     const selectedCount = useSelector(state => state.selection.selected.length)
@@ -81,6 +81,8 @@ function Selection({ main, extra, setSorting, allowSorting }) {
         />
     }
 
+    const hasItems = (main && main.length > 0) || (extra && extra.length > 0)
+
     return (<>
         <p className="text selection-prompt">
             {prompt}
@@ -104,14 +106,26 @@ function Selection({ main, extra, setSorting, allowSorting }) {
                         {main.map(makeIcon)}
                     </div></>
             }
-            {((!main || main.length === 0) && (!extra || extra.length === 0))
-                && <p className='text' style={{ textAlign: "center", lineHeight: "7rem", opacity: 0.5 }}>Brak wyników</p>}
-            {extra &&
+            {extra && extra.length > 0 &&
                 <><div className="extras-divider"></div>
                     <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>
                     <div className="selection-section">
                         {extra.map(makeIcon)}
                     </div></>}
+            {!hasItems
+                && <p className='text' style={{ textAlign: "center", lineHeight: "7rem", opacity: 0.5 }}>
+                        Brak wyników
+                    </p>}
+            {hasItems && loadMore && 
+                <p
+                    onClick={loadMore}
+                    className="navigation-button" 
+                    style={{ fontSize: "1.2rem", textAlign: "center", 
+                    lineHeight: "1rem",
+                    cursor: "pointer", }}>
+                    Więcej
+                </p>
+            }
         </div>
         {selectedCount === 0
             && <Link  className="navigation-button navigation-button-right" 

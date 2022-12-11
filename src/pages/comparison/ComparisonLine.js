@@ -68,10 +68,12 @@ function newLinesToParagraphs(text) {
     if (!text) {
       return text;
     }
-    return <div>{text.split("\n").map((line, index) => <p key={index}>{line}</p>)}</div>
+    return <>
+      {text.split("\n").map((line, index) => <p key={index}>{line}</p>)}
+    </>
   }
   
 
 function displayDetail(detail) {
-    return newLinesToParagraphs(detail?.toString()) ?? "-";
+    return <div>{newLinesToParagraphs(detail?.toString()) ?? "-"}</div>
 }

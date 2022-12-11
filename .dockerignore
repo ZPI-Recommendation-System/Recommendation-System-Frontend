@@ -1,0 +1,11 @@
+Dockerfile
+.dockerignore
+node_modules
+npm-debug.log
+dist
+.env
+media
+.gitignore
+TODO.txt
+*.md
+build

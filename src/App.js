@@ -7,7 +7,7 @@ import Page from './pages/Page';
 import './App.css';
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect, useRef } from 'react';
-import {Dialog} from './pages/comparison/HoverText';
+import Dialog from './components/Dialog';
 import Gallery from './components/Gallery';
 
 
@@ -41,7 +41,6 @@ function App() {
           <img className="app-title-icon" src="/logo.png" alt="laptop"></img>
         </Link>
         <StarredLink />
-
 
         <Routes>
           {pages.map((page, index) =>

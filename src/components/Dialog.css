@@ -1,0 +1,42 @@
+.dialog {
+    z-index: 1;
+    visibility: hidden;
+
+    width: 15vw;
+    background-color: white;
+    padding: 10px 10px;
+    border-radius: 10px;
+
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.4s;
+
+    box-shadow: 3px 6px 6px rgba(0, 0, 0, 0.15),
+        /* large vague shadow used to distinguish dialogue from the background */
+        0px 0px 100px rgba(0, 0, 0, 0.2);
+
+
+}
+
+.dialog.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+/* Tooltip arrow */
+.dialog::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 12%;
+    margin-left: -7px;
+    border-width: 7px;
+    border-style: solid;
+    border-color: white transparent transparent transparent;
+    filter: drop-shadow(0 2px 4px 4px rgba(0, 0, 0, 0.25));
+}

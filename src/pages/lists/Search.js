@@ -22,8 +22,9 @@ function Search() {
             onChange={e => setSearchTerm(e.target.value)}
             ></input>
            <Results 
+                paging
                 mainItemsGetter={result => result.items}
-                query={"/laptops/search?query=id,name,images,processor,graphics&limit=10&search="+sentSearchTerm} 
+                query={"/laptops/search?query=id,name,images,processor,graphics&search="+sentSearchTerm} 
             />
         </div>
     );

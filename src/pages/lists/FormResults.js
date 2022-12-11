@@ -10,7 +10,7 @@ export default function FormResults() {
         console.log("actual form data", formData)
     }, [formData])
 
-    return <Results query="/recommendations?limit=50"
+    return <Results query="/recommendations?query=all,id,name,images,processor,graphics"
         mainItemsGetter={result => result.result[0].items}
         extraItemsGetter={result => _.flatMap(result.result.slice(1), row=>row.items)}
         method="POST" data={formData}

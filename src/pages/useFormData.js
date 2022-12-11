@@ -54,12 +54,12 @@ const FORM_DEFAULTS = {
     },
     "ram": 0,
     "ramInUnits": 0.0,
-    "disk": 0,
-    "minDiscSize": 0,
+    "disk": 100,
+    "minDiscSize": 100,
     "price": Number.MAX_SAFE_INTEGER,
     "maxPricePLN": Number.MAX_SAFE_INTEGER,
-    "battery": 0,
-    "batteryRunTime": 0
+    "battery": 1,
+    "batteryRunTime": 1
   }
 
 function formDataToRequest(data) {
@@ -84,6 +84,9 @@ function formDataToRequest(data) {
     const translatedResult = translate(result)
     if ("screenPreferences" in translatedResult)
         translatedResult.screenPreferences.touchScreen = false;
+
+    // "minDiscSize must not be less than 100"
+    result["disk in units"] = Math.max(result["disk in units"], 100);
 
     // backend breaks when there are missing fields in form data
     const withDefaults = { ...FORM_DEFAULTS, ...translatedResult }

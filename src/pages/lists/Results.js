@@ -7,7 +7,11 @@ function itemToLaptop(item) {
         item.processor?.benchmark?.benchmark, item.graphics?.benchmark?.benchmark);
 }
 
-function Results({query, method, data, itemsKey, allowSorting=true}) {
+function resultItems(result) {
+    return result.items;
+}
+
+function Results({query, method, data, mainItemsGetter=resultItems, extraItemsGetter, allowSorting=true}) {
 
     const options = {   }
     if (method) 
@@ -27,9 +31,6 @@ function Results({query, method, data, itemsKey, allowSorting=true}) {
 
     const [isLoaded, result, error] = useRequest(url, options)
 
-    if (!itemsKey)
-        itemsKey = result=>result.items
-
     if (error){
         return <p className="text">Error: {error.message}</p>
     }
@@ -37,10 +38,13 @@ function Results({query, method, data, itemsKey, allowSorting=true}) {
         return <p className="text">Loading...</p>
     } else {
         console.log(result)
+        const main = mainItemsGetter(result).map(itemToLaptop);
+        const extra = extraItemsGetter ? extraItemsGetter(result).map(itemToLaptop) : [];
         return (
             <div className="content">
                 <Selection
-                main={itemsKey(result).map(itemToLaptop)}
+                main={main}
+                extra={extra}
                 setSorting={({value})=>setSorting(value)}
                 allowSorting={allowSorting}
                 />

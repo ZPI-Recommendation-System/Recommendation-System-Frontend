@@ -22,7 +22,7 @@ function Search() {
             onChange={e => setSearchTerm(e.target.value)}
             ></input>
            <Results 
-                itemsKey={result => result.items}
+                mainItemsGetter={result => result.items}
                 query={"/laptops/search?query=id,name,images,processor,graphics&limit=10&search="+sentSearchTerm} 
             />
         </div>

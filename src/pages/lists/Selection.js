@@ -106,7 +106,7 @@ function Selection({ main, extra, setSorting, allowSorting }) {
             }
             {((!main || main.length === 0) && (!extra || extra.length === 0))
                 && <p className='text' style={{ textAlign: "center", lineHeight: "7rem", opacity: 0.5 }}>Brak wyników</p>}
-            {extra &&
+            {extra && extra.length > 0 &&
                 <><div className="extras-divider"></div>
                     <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>
                     <div className="selection-section">

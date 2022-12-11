@@ -22,15 +22,17 @@ const rootReducer = combineReducers({
   forms: formsReducer,
   selection: selectionReducer,
   favourites: favouritesReducer,
+  
   history: historyReducer,
   dialog: dialogReducer,
   gallery: galleryReducer,
 })
 
 const persistConfig = {
-  key: 'favourites',
+  key: 'store',
   version: 1,
   storage,
+  blacklist: ['history', 'dialog', 'gallery']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
@@ -48,4 +50,4 @@ export const store = configureStore({
 // this is left for puppetteer and debugging 
 window.store = store;
 
-export const persistor = persistStore(store)
+export const persistor = persistStore(store, )

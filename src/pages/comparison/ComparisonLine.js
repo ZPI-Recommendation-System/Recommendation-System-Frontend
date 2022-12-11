@@ -26,11 +26,6 @@ export default function ComparisonLine(key, details1, details2, hidden = false, 
       secondText = secondValue = details2 && details2[key];
     }
   
-    if (key === "price") {
-      // log everything you can
-      console.log("secondText", secondText, "secondValue", secondValue);
-    }
-  
     const firstAsNumber = Number.parseFloat(firstValue);
     const secondAsNumber = details2 && Number.parseFloat(secondValue);
     const bothAreNumbers = !Number.isNaN(firstAsNumber) && !Number.isNaN(secondAsNumber);
@@ -53,21 +48,17 @@ export default function ComparisonLine(key, details1, details2, hidden = false, 
     if (hidden) classNames+= " comparison-row-hidden";
   
     return <tr className={classNames} key={key}>
-      <td className={firstIsBetter && "comparison-better-cell"}>
+      <td className={firstIsBetter ? "comparison-better-cell" : ""}>
         <HoverText text={tooltip}>
           <b>{translation}</b>
-          <p>
             {displayDetail(firstText)}
-          </p>
         </HoverText>
       </td>
       {details2 &&
-        <td className={secondIsBetter && "comparison-better-cell"}>
+        <td className={secondIsBetter ? "comparison-better-cell" : ""}>
           <br />
           <HoverText text={tooltip}>
-          <p>
             {displayDetail(secondText)}
-          </p>
           </HoverText>
         </td>}
     </tr>
@@ -77,7 +68,7 @@ function newLinesToParagraphs(text) {
     if (!text) {
       return text;
     }
-    return <>{text.split("\n").map((line, index) => <p key={index}>{line}</p>)}</>
+    return <div>{text.split("\n").map((line, index) => <p key={index}>{line}</p>)}</div>
   }
   
 

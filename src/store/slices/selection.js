@@ -9,6 +9,9 @@ export const selectionSlice = createSlice({
     reset: (state) => {
         state.selected = []
     },
+    setSelected: (state, {payload: selected}) => {
+        state.selected = [...selected]
+    },
     select: (state, {payload: laptop}) => {
         const index=state.selected.indexOf(laptop);
         if (index !== -1) {
@@ -28,6 +31,6 @@ export const selectionSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { reset, select } = selectionSlice.actions
+export const { reset, select, setSelected } = selectionSlice.actions
 
 export default selectionSlice.reducer

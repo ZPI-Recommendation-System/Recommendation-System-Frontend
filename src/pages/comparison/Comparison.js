@@ -137,7 +137,7 @@ function ExpandableSection({ name, keys, details1, details2 }) {
   const [open, setOpen] = useState(false);
 
   // .expandable-section is used by the puppeteer 
-  return <><tr class="expandable-section" style={{ cursor: "pointer" }}
+  return <><tr className="expandable-section" style={{ cursor: "pointer" }}
     onClick={() => setOpen(open => !open)}>
     <td colSpan={details2 ? "2" : "1"}>
     <HoverText text={`Kliknij aby rozwinąć sekcję "${name}"`}><b>

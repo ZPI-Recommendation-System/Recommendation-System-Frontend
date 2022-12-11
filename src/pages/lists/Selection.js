@@ -4,11 +4,12 @@ import { Link } from "react-router-dom";
 import { Laptop } from "../../api/api";
 
 import { useSelector, useDispatch } from 'react-redux';
-import { select } from '../../store/slices/selection';
+import { select, setSelected } from '../../store/slices/selection';
 import { show, hide } from '../../store/slices/dialog';
 import LaptopStar from '../../components/LaptopStar';
 import Dropdown from 'react-dropdown';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 
 function HoverDialog({ content, children }) {
     const dispatch = useDispatch();
@@ -50,7 +51,21 @@ function LaptopIcon({ id, name, fullName, image, checked, onClick, cpuBenchmark,
 function Selection({ main, extra, setSorting, allowSorting }) {
     const dispatch = useDispatch();
     const selected = useSelector(state => state.selection.selected)
-    const selectedCount = selected.length;
+    const selectedCount = useSelector(state => state.selection.selected.length)
+
+    let location = useLocation();
+    const lastLocation = useRef(null);
+
+    useEffect(() => {
+        if (location !== lastLocation.current) {
+            const selectedAndVisible = selected.filter(id => main.find(laptop => laptop.id === id) || 
+            (extra && extra.find(laptop => laptop.id === id)) )
+            if (selectedAndVisible.length !== selected.length) {
+                dispatch(setSelected(selectedAndVisible))
+            }
+        }
+    }, [location, main, extra, selected, dispatch, lastLocation])
+    
     let prompt = {
         0: "Wybierz dwa laptopy aby zobaczyć ich detale i porównanie lub naciśnij gwiazdkę aby zapisać laptop.",
         1: "Naciśnij przycisk szczegóły lub dobierz jeszcze jeden laptop dla porównania.",
@@ -59,6 +74,7 @@ function Selection({ main, extra, setSorting, allowSorting }) {
 
     function makeIcon(laptop) {
         return <LaptopIcon
+            key={laptop.id}
             {...laptop}
             checked={selected.includes(laptop.id)}
             onClick={() => dispatch(select(laptop.id))}
@@ -97,6 +113,10 @@ function Selection({ main, extra, setSorting, allowSorting }) {
                         {extra.map(makeIcon)}
                     </div></>}
         </div>
+        {selectedCount === 0
+            && <Link  className="navigation-button navigation-button-right" 
+            style={{opacity: 0, cursor:"default"}}>_</Link>
+        }
         {selectedCount === 1
             && <Link to={"/details/" + selected[0]} className="navigation-button navigation-button-right">
                 Szczegóły

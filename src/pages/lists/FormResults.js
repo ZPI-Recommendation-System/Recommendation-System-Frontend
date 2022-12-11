@@ -9,7 +9,8 @@ export default function FormResults() {
         console.log("actual form data", formData)
     }, [formData])
 
-    return <Results query="/recommendations?limit=5"
+    return <Results query="/recommendations?limit=50"
         itemsKey={result => result.result[0].items}
-        method="POST" data={formData} />
+        method="POST" data={formData}
+        allowSorting={false} />
 }

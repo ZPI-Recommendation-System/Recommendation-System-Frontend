@@ -1,12 +1,13 @@
 import Selection from "./Selection";
 import { Laptop, API_URL, useRequest } from "../../api/api";
+import { useState } from "react";
 
 function itemToLaptop(item) {
     return new Laptop(item.id, item.name, item.images[0].url,
         item.processor?.benchmark?.benchmark, item.graphics?.benchmark?.benchmark);
 }
 
-function Results({query, method, data, itemsKey}) {
+function Results({query, method, data, itemsKey, allowSorting=true}) {
 
     const options = {   }
     if (method) 
@@ -18,7 +19,13 @@ function Results({query, method, data, itemsKey}) {
       }
     }
     
-    const [isLoaded, result, error] = useRequest(API_URL+query, options)
+    const [sorting, setSorting] = useState("price");
+    
+    let url = API_URL+query;
+    if (allowSorting)
+        url += sorting;
+
+    const [isLoaded, result, error] = useRequest(url, options)
 
     if (!itemsKey)
         itemsKey = result=>result.items
@@ -34,6 +41,8 @@ function Results({query, method, data, itemsKey}) {
             <div className="content">
                 <Selection
                 main={itemsKey(result).map(itemToLaptop)}
+                setSorting={({value})=>setSorting(value)}
+                allowSorting={allowSorting}
                 />
             </div>);
     }

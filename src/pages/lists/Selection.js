@@ -22,7 +22,7 @@ function HoverDialog({ content, children }) {
     }
 
     return <div
-        style={{padding: 0, margin: 0, border: 0}}
+        style={{ padding: 0, margin: 0, border: 0 }}
         ref={container}
         onMouseEnter={showDialog}
         onMouseLeave={() => dispatch(hide())}
@@ -34,9 +34,9 @@ function LaptopIcon({ id, name, fullName, image, checked, onClick, cpuBenchmark,
     if (cpuBenchmark && gpuBenchmark) {
         dialogContent += `<hr/>CPU: <b>${cpuBenchmark} pkt</b><br/>GPU: <b>${gpuBenchmark} pkt</b>`;
     }
-    
+
     const className = "selection-laptop " + (checked ? 'checked' : '');
-    
+
     return <div className={className} onClick={onClick}><HoverDialog
         content={dialogContent}
     >
@@ -47,7 +47,7 @@ function LaptopIcon({ id, name, fullName, image, checked, onClick, cpuBenchmark,
     </div>;
 }
 
-function Selection({ main, extra }) {
+function Selection({ main, extra, setSorting, allowSorting }) {
     const dispatch = useDispatch();
     const selected = useSelector(state => state.selection.selected)
     const selectedCount = selected.length;
@@ -73,19 +73,23 @@ function Selection({ main, extra }) {
             <div></div>
             {main.length > 0 &&
                 <>
-                <Dropdown options={[
-                { value: "fitness", label: 'Dopasowanie' },
-                { value: "popularity", label: 'Popularność' },
-                { value: "price", label: 'Cena' },
-                { value: "name", label: 'Nazwa' }
-            ]}
-                value={"fitness"} placeholder="Sortowanie" />
+                    {allowSorting && <Dropdown options={[
+                        { value: "&sortType=score&direction=DESC", label: 'Dopasowanie' },
+                        { value: "&sortType=popularity&direction=DESC", label: 'Popularność' },
+                        { value: "&sortType=price&direction=ASC", label: 'Cena' },
+                        { value: "&sortType=alphabetic&direction=ASC", label: 'Nazwa ABC' },
+                        { value: "&sortType=alphabetic&direction=DESC", label: 'Nazwa ZYX' },
+                    ]}
+                        onChange={setSorting}
+                        value={"&sortType=score&direction=DESC"} placeholder="Sortowanie" />}
+
+
                     <div className="selection-section">
                         {main.map(makeIcon)}
                     </div></>
-             } 
-            {((!main || main.length===0) && (!extra || extra.length===0))
-            && <p className='text' style={{textAlign:"center", lineHeight:"7rem", opacity:0.5}}>Brak wyników</p>}
+            }
+            {((!main || main.length === 0) && (!extra || extra.length === 0))
+                && <p className='text' style={{ textAlign: "center", lineHeight: "7rem", opacity: 0.5 }}>Brak wyników</p>}
             {extra &&
                 <><div className="extras-divider"></div>
                     <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>

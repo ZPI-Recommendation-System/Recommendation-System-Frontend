@@ -96,7 +96,7 @@ function Comparison() {
             <th>
               <LaptopImage laptop={details1} />
               {details1?.name}<LaptopStar id={id1} /></th>
-            {id2 &&
+            {details2 &&
               <th>
                 <LaptopImage laptop={details2} />
                 {details2?.name}<LaptopStar id={id2} />
@@ -137,7 +137,8 @@ function Comparison() {
 function ExpandableSection({ name, keys, details1, details2 }) {
   const [open, setOpen] = useState(false);
 
-  return <><tr style={{ cursor: "pointer" }}
+  // .expandable-section is used by the puppeteer 
+  return <><tr class="expandable-section" style={{ cursor: "pointer" }}
     onClick={() => setOpen(open => !open)}>
     <td colSpan={details2 ? "2" : "1"}>
     <HoverText text={`Kliknij aby rozwinąć sekcję "${name}"`}><b>

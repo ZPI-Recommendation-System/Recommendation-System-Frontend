@@ -5,8 +5,6 @@ import seedrandom from "seedrandom";
 
 jest.setTimeout(60000)
 
-seedrandom('test', {global:true})
-
 const BASE_URL = "http://localhost:3000";
 
 describe("App.js", () => {
@@ -37,6 +35,10 @@ describe("App.js", () => {
     }
   });
 
+  beforeEach(() => {
+    seedrandom('test', {global:true})
+  });
+
   async function screenshot(path) {
     await page.waitForSelector(".app-title");
 
@@ -57,7 +59,7 @@ describe("App.js", () => {
     await page.evaluate(async () => {
       const selectors = Array.from(document.querySelectorAll(".comparison-image"));
       await Promise.all(selectors.map(img => {
-        if (img.complete) return;
+        if (img.complete) return new Promise(resolve => resolve());
         return new Promise((resolve, reject) => {
           img.addEventListener('load', resolve);
           img.addEventListener('error', reject);
@@ -71,6 +73,8 @@ describe("App.js", () => {
       for (let element of elements)
         element.click();
 
+      // wait for one second for the page to render correctly
+      return new Promise(resolve => setTimeout(resolve, 1000));
     });
     await screenshot(`screenshots/${directoryBase}-expanded/${fileName}.png`);
   }

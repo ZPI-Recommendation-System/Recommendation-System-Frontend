@@ -7,7 +7,7 @@ import { API_URL, useRequest } from "../../api/api";
 import { useState } from 'react';
 import { useParams } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import {HoverText, Dialog} from './HoverText';
+import {HoverText} from './HoverText';
 import ViewingTracker from './ViewingTracker';
 import LaptopImage from './LaptopImage';
 import ComparisonLine from './ComparisonLine';
@@ -88,7 +88,6 @@ function Comparison() {
 
   return (
     <div className="content">
-      <Dialog text="test dialog" x={100} y={100} />
       <ViewingTracker id={id1}/>
       <table className="comparison-table">
         <tbody>

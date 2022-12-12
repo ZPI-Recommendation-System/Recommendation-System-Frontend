@@ -1,6 +1,8 @@
 # stage1 - build react app first
 FROM node:18 as build
 WORKDIR /app
+ARG REACT_APP_API_URL
+ENV REACT_APP_API_URL $REACT_APP_API_URL
 ENV PATH /app/node_modules/.bin:$PATH
 COPY ./package.json /app/
 COPY ./package-lock.json /app/

@@ -35,6 +35,24 @@
     text-overflow: ellipsis;
 }
 
+/* Screen below 700px width */
+@media screen and (max-width: 700px) {
+    .progress-bar {
+        height: 2.2rem;
+    }
+    .progress-bar-text {
+        font-size: 1rem;
+        line-height: 1.7rem;
+    }    
+    .progress-bar-divider-space {
+        width: 2.5rem;
+    }
+    .progress-bar-divider {
+        width: 0.4rem;
+        transform: rotate(25deg) translate(0.6rem, -29px);
+    }
+}
+
 .progress-bar-link {
     text-decoration: none;
     color: white;

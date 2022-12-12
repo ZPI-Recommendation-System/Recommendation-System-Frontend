@@ -19,7 +19,7 @@
 .selection-section {
     display: flex;
     width: 100%;
-    justify-content: flex-start; 
+    justify-content: space-evenly; 
     list-style: none;
     padding-left:0px;
     flex-wrap: wrap;   
@@ -34,7 +34,6 @@
     padding-top: 2rem;
     padding-bottom: 0.2rem;
     box-sizing: border-box;
-    margin: 5px;
     position: relative;
 
     /* this prevents text from sticking out */
@@ -49,6 +48,17 @@
 
 .selection-laptop p {
     margin: 0px;
+}
+
+/* Screen below 700px width */
+@media screen and (max-width: 700px) {
+    .selection-laptop p {
+        font-size: 0.7rem;
+    }
+    .selection-laptop {
+        padding: 2px;
+        padding-top: 5px;
+    }
 }
 
 .selection-laptop.checked {

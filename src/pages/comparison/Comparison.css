@@ -75,3 +75,9 @@ td, th {
 .comparison-better-cell {
   background-color: #57EB5420;
 }
+
+.share-link {
+  width: 1.6rem;
+  padding-left: 0.5rem;
+  cursor: pointer;
+}

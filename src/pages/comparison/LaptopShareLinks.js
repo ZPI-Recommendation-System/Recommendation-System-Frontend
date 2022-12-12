@@ -1,5 +1,6 @@
 import useFormData from '../useFormData';
 import { open, mail, copyToClipboard, beacon } from './utility';
+import {HoverText} from './HoverText';
 
 function detailsPage(id) {
     const url = window.location;
@@ -17,13 +18,13 @@ export default function LaptopShareLinks({ id, name }) {
     ]
     return <>{links.map(
         ([icon, eventName, name, onClick]) =>
-            <img
-                key={name}
-                onClick={()=>{
-                    beacon(eventName, id, formData)
-                    onClick()
-                }}
-                src={icon} alt={name}
-                style={{ width: "1.6rem", paddingLeft: "0.5rem", cursor: "pointer" }}
-            />)}</>
+            <HoverText text={name}>
+                <img key={name}
+                    onClick={()=>{
+                        beacon(eventName, id, formData)
+                        onClick()
+                    }}
+                    className="share-link"
+                    src={icon} alt={name}/>
+            </HoverText>)}</>
 }

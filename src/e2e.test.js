@@ -88,6 +88,14 @@ describe("App.js", () => {
     }
   });
 
+  it("results", async () => {
+    for (let i=0; i<5; i++) {
+      await page.goto(BASE_URL + "/results");
+      await page.waitForSelector(".selection-container")
+      await screenshot(`screenshots/results/${i}.png`);
+    }
+  });
+
 
   it("comparison", async () => {
     const sample1 = Array.from(_.sampleSize(laptopIds, 10));

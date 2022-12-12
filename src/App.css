@@ -12,8 +12,8 @@ body {
 .background {
   top:-20px;
   left:-20px;
-  filter: blur(6px) saturate(60%) contrast(110%) hue-rotate(12deg);
-  -webkit-filter: blur(6px) saturate(60%) contrast(110%) hue-rotate(12deg);
+  filter: blur(6px) saturate(60%) contrast(110%) hue-rotate(6deg);
+  -webkit-filter: blur(6px) saturate(60%) contrast(110%) hue-rotate(6deg);
   opacity: 0.8;
   
   position: fixed;
@@ -73,7 +73,7 @@ body {
 
 @media (min-aspect-ratio: 1.5/1) {
   .app {
-    width: 45%;
+    width: 62%;
     margin-top: 2.2rem;
   }
 }
@@ -81,7 +81,7 @@ body {
 
 @media (min-aspect-ratio: 2/1) {
   .app {
-    width: 40%;
+    width: 45%;
     margin-top: 2.2rem;
   }
 }

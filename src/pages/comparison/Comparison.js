@@ -140,7 +140,7 @@ function ExpandableSection({ name, keys, details1, details2 }) {
   return <><tr className="expandable-section" style={{ cursor: "pointer" }}
     onClick={() => setOpen(open => !open)}>
     <td colSpan={details2 ? "2" : "1"}>
-    <HoverText text={`Kliknij aby rozwinąć sekcję "${name}"`}><b>
+    <HoverText text={`Kliknij, aby rozwinąć sekcję "${name}"`}><b>
       <span className={open ? "arrow-rotated" : "arrow"}>&gt;</span> {name}</b>
       </HoverText>
       </td>

@@ -45,5 +45,5 @@
       "last 1 safari version"
     ]
   },  
-  "//proxy": "http://zpi.zgrate.ovh:5036"
+  "proxy": "http://zpi.zgrate.ovh:5036"
 }

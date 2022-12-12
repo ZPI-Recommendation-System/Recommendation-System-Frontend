@@ -21,7 +21,7 @@ export const formSlice = createSlice({
       state[form][choice] = !state[form][choice]
     },
     mock(state, {payload: [values]}) {
-      state["mockData"] = {...values}
+      state["mockData"] = values
     }
   }
 })

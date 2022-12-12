@@ -130,11 +130,16 @@ describe("App.js", () => {
     for (let i=0; i<5; i++) {
       await page.goto(BASE_URL + "/results");
       const formData = randomFormData();
-      await page.evaluate(async formData => {
+      await page.evaluate(formData => {
         window.mockFormData(formData);
       }, formData);
       await page.waitForSelector(".selection-container")
       await screenshot(`screenshots/results/${i}.png`);
+      
+      // cleanup
+      await page.evaluate(() => {
+        window.mockFormData(null);
+      });
     }
   });
 

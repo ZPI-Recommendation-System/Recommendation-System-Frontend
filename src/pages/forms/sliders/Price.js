@@ -1,9 +1,9 @@
 import Slider from './Slider';
-import { API_URL } from "../../../api/api"
+import {API_URL} from "../../../api/api"
 import useFormData from '../../useFormData';
 
 async function count(usageType, maxPrice) {
-    const result = await fetch(API_URL+"recommendations/usagecount?usageType="+usageType+"&maxPrice="+maxPrice)
+    const result = await fetch(API_URL+"/recommendations/usagecount?usageType="+usageType+"&maxPrice="+maxPrice)
     const asJson = await result.json();
     return asJson;
 }
@@ -18,7 +18,7 @@ function Price() {
     ["2000 zł", 2000],
     ["8000 zł", 8000],
     ["16 000 zł", 16000],
-    ["Bez limitu", Number.MAX_SAFE_INTEGER] 
+    ["Bez limitu", Number.MAX_SAFE_INTEGER]
     ]}
     prompt = {"Wybierz maksymalną cenę:"}
     summary = {async value =>{

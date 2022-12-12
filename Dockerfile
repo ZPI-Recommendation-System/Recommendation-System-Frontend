@@ -1,18 +1,16 @@
-# Base image
-FROM node:18
+# stage1 - build react app first
+FROM node:18 as build
+WORKDIR /app
+ENV PATH /app/node_modules/.bin:$PATH
+COPY ./package.json /app/
+COPY ./package-lock.json /app/
+RUN npm install --force
+COPY . /app
+RUN npm run build
 
-# Create app directory
-WORKDIR /frontend
-
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY package*.json ./
-
-# Install app dependencies
-RUN npm install
-RUN npm install react-scripts@3.4.1 -g
-
-# Bundle app source
-COPY . .
-
-# Start the server using the production build
-CMD [ "npm", "start" ]
+# stage 2 - build the final image and copy the react build files
+FROM nginx:1.17.8-alpine
+COPY --from=build /app/build /usr/share/nginx/html
+RUN rm /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d
+CMD ["nginx", "-g", "daemon off;"]

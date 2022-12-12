@@ -1,5 +1,5 @@
 import mockData from './mockData';
-import { useEffect, useState, useRef } from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 export class Laptop {
     constructor(id, name, image, cpuBenchmark=null, gpuBenchmark=null) {
@@ -11,8 +11,8 @@ export class Laptop {
       this.gpuBenchmark = gpuBenchmark;
     }
   }
-  
-// returns ids of laptops that follow the filters 
+
+// returns ids of laptops that follow the filters
 export function getLaptopIds(filters) {
   return mockData.map(l=>l.ID);
 }
@@ -21,7 +21,7 @@ export function reduceName(name){
   return name.split(" ").slice(1, 5).join(" ");
 }
 
-// get laptop class of laptop with given id 
+// get laptop class of laptop with given id
 export function getLaptop(laptopId) {
   const data = mockData.find(l=>l.ID===laptopId);
   if (data===undefined) {
@@ -39,7 +39,7 @@ export function getLaptopDetails(laptopId) {
   if (data===undefined) {
     return result;
   }
-  
+
   const removedKeys = [
       "ID",
       "Name",
@@ -106,4 +106,4 @@ export function useRequest(url, options) {
   return [isLoaded, data, error]
 }
 
-export const API_URL = ""
+export const API_URL = process.env.REACT_APP_API_URL

@@ -33,7 +33,6 @@
       "react-app/jest"
     ]
   },
-  "proxy": "http://zpi.zgrate.ovh:5036",
   "browserslist": {
     "production": [
       ">0.2%",

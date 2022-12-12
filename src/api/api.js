@@ -106,4 +106,4 @@ export function useRequest(url, options) {
   return [isLoaded, data, error]
 }
 
-export const API_URL = process.env.REACT_APP_API_URL
+export const API_URL = process.env.REACT_APP_API_URL ?? ""

@@ -24,7 +24,12 @@ describe("App.js", () => {
     page = await browser.newPage();
     await fetchLaptopIds();
 
-    const dirs = ["screenshots/details", "screenshots/details-expanded", "screenshots/comparison", "screenshots/comparison-expanded"]
+    const dirs = [
+      "screenshots/details", 
+      "screenshots/details-expanded", 
+      "screenshots/comparison", 
+      "screenshots/comparison-expanded", 
+      "screenshots/results"]
     for (let dir of dirs) {
       if (fs.existsSync(dir)) {
         fs.rmSync(dir, { recursive: true });
@@ -88,9 +93,46 @@ describe("App.js", () => {
     }
   });
 
+  function randomFormData() {
+    function randomBool() {
+      // small chance to make most of the choices false
+      return Math.random() < 0.1;
+    }
+    return {
+    "usageType": _.sample([
+      'Aplikacje biurowe i internet',
+      'Gry indie i retro',
+      'Modelowanie 3D i digital art',
+      'Najnowsze gry wysokobudżetowe',
+    ]),
+    "dataPreferences": {
+      "diskDrive": randomBool(),
+      "sdCardReader": randomBool()
+    },
+    "preferredScreenSizes": [],
+    "screenPreferences": {
+      "touchScreen": randomBool(),
+      "HDMI": randomBool(),
+      "otherVideoConnectors": randomBool()
+    },
+    "internetPreferences": {
+      "simCard": randomBool(),
+      "lanPort": randomBool()
+    },
+    "ramInUnits": _.random(0, 16),
+    "minDiscSize": _.random(100, 2000),
+    "maxPricePLN": _.random(1000, 16000),
+    "batteryRunTime": _.random(1, 6),
+  }
+}
+
   it("results", async () => {
     for (let i=0; i<5; i++) {
       await page.goto(BASE_URL + "/results");
+      const formData = randomFormData();
+      await page.evaluate(async formData => {
+        window.mockFormData(formData);
+      }, formData);
       await page.waitForSelector(".selection-container")
       await screenshot(`screenshots/results/${i}.png`);
     }

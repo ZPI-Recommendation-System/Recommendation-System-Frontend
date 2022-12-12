@@ -95,8 +95,14 @@ function formDataToRequest(data) {
 
 function useFormData() {
     const forms = useSelector(state => state.forms);
-    const formData = formDataToRequest(forms);
-    return formData;
+    
+    if (forms.mockData) {
+        console.log("Using mocked form data", forms.mockData);
+        return forms.mockData;
+    } else {
+        const formData = formDataToRequest(forms);
+        return formData;
+    }
 }
 
 export default useFormData;

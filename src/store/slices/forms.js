@@ -19,9 +19,16 @@ export const formSlice = createSlice({
     },
     toggleChoice: (state, {payload: [form, choice]}) => {
       state[form][choice] = !state[form][choice]
+    },
+    mock(state, {payload: [values]}) {
+      state["mockData"] = {...values}
     }
   }
 })
+
+window.mockFormData = (data) => {
+  window.store.dispatch(formSlice.actions.mock([data]))
+}
 
 // Action creators are generated for each case reducer function
 export const { setSliderValue, toggleChoice, untoggleChoices, createToggles } = formSlice.actions

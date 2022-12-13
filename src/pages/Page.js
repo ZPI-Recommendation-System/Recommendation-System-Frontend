@@ -1,10 +1,11 @@
-import { previousPage } from "../pages/pages";   
+import { previousPage, nextPageLink } from "../pages/pages";   
 import { useSelector, useDispatch } from 'react-redux';
 import { setPage, lastPage, lastFormPage } from '../store/slices/history'; 
 import React, { useEffect, useState, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import Bar from '../components/Bar';
+
 
 function Page({index, number, description, isForm, children}) {
     const dispatch = useDispatch();
@@ -15,11 +16,24 @@ function Page({index, number, description, isForm, children}) {
     const previousPageBound = useCallback(
       ()=> previousPage(index, lastPage_, lastFormPage_),
       [index, lastPage_, lastFormPage_]);
+      
+    let location = useLocation();
+
+      const navigate = useNavigate();
+
+
+    useEffect(() => {
+      function onKeyPress(event) {
+        if (event.key==="ArrowLeft") navigate(previousPageBound().link)
+        if (event.key==="ArrowRight") navigate(nextPageLink(location.pathname))
+      }
+      document.body.addEventListener("keydown", onKeyPress)
+      // Remove the observer as soon as the component is unmounted
+      return () => { document.body.removeEventListener("keydown", onKeyPress) }
+    }, [location, navigate, previousPageBound])
 
     // start value is used when there's no page transition
     const [currentPreviousPage, setPreviousPage] = useState(previousPageBound())
-
-    let location = useLocation();
 
     useEffect(() => {
       if (lastPage_!==index) {

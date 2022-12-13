@@ -29,7 +29,7 @@
 }
 
 .choice-button.checked {
-  border: 4px solid #57EB54;
+  border: 4px solid #6FD760;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
   transform: scale(1.03);

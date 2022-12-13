@@ -104,7 +104,7 @@ function cleanupLink(link) {
 
 export function nextPageLink(currentFormLink) {
   currentFormLink = cleanupLink(currentFormLink)
-  const currentPage = pages.find(page=>page.link===currentFormLink);
+  const currentPage = currentFormLink ? pages.find(page=>page.link===currentFormLink) : pages[0];
   const currentNumber = currentPage.number;
   const nextNumber = currentNumber + 1;
   const nextPage = pages.find(form=>form.number===nextNumber);

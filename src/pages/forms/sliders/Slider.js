@@ -56,7 +56,7 @@ function Slider({ id, prompt, points, summary, startWithMax }) {
 
     const min = 0
     const max = 100
-    const green = "#57EB54AA";
+    const green = "#6FD760AA";
     const gray = "#DEE2E6";
     const leftColor = startWithMax ? green : gray;
     const rightColor = startWithMax ? gray : green;

@@ -1,30 +1,33 @@
-.map-line {
-    height: 35rem;
-    width: 6px;
-    background-color: #57EB54;
-    display: inline-block;
-    transform:translate(16px, 0);
-    margin-left: 1.4rem;
-}
-
 .map-links-container {
     display: inline-block;
     padding-bottom: 1em;
 }
 
 .map-circle {
+    margin-left: 1rem;
     transform:translate(0, 4px);
     width: 28px;
     height: 28px;
     margin-right: 20px;
     border-radius: 100%;
-    border: 5px solid #57EB54;
+    border: 5px solid #6FD760;
     background-color: white;
     box-sizing: border-box;
     display: inline-block;
     position: relative;
 }
 
+.map-links-container .map-link:not(:last-child) .map-circle::after {
+    content: "";
+    position: absolute;
+    top: 200%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 200%;
+    background-color: #6FD760;
+}
+
 .map-circle-filled {
-    background-color: #57EB54;
+    background-color: #6FD760;
 }

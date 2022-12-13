@@ -19,7 +19,7 @@ function Search() {
     return (
         <div className="content">
             <input className="search" placeholder="Wyszukaj laptop po nazwie..."
-            onChange={e => setSearchTerm(e.target.value)}
+            onChange={e => {setSearchTerm(e.target.value); e.stopPropagation()}}
             ></input>
            <Results 
                 paging

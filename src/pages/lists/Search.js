@@ -19,12 +19,14 @@ function Search() {
     return (
         <div className="content">
             <input className="search" placeholder="Wyszukaj laptop po nazwie..."
-            onChange={e => {setSearchTerm(e.target.value); e.stopPropagation()}}
+            onKeyDown={e=> e.stopPropagation()}
+            onChange={e => {setSearchTerm(e.target.value)}}
             ></input>
            <Results 
                 paging
                 mainItemsGetter={result => result.items}
-                query={"/laptops/search?query=id,name,images,processor,graphics&search="+sentSearchTerm} 
+                query={"/laptops/search?query=id,name,images,processor,graphics&search="
+                       + encodeURIComponent(sentSearchTerm)} 
             />
         </div>
     );

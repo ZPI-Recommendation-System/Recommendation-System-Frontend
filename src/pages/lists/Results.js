@@ -63,17 +63,25 @@ function Results({query, method, data, mainItemsGetter=resultItems, extraItemsGe
 
     if (error){
         return <p className="text">Error: {error.message}</p>
-    }
-    else if (!isLoaded) {
-        return <p className="text">Loading...</p>
     } else {
-        console.log(result)
-        let currentMain = mainItemsGetter(result).map(itemToLaptop);
-        pageItems.current[page] = currentMain;
-        const main = paging ? flatPageItems() : currentMain;
-        const extra = extraItemsGetter ? extraItemsGetter(result).map(itemToLaptop) : [];
+        let main = []
+        let extra = []
+        let showMoreButton = false;
+        let noItemsText = "Brak wyników";
+        
+        if (error) {
+            noItemsText = `Error: ${error.message}`
+        } else if (!isLoaded) {
+            noItemsText = "Loading..."
+        } else {
+            console.log(result)
+            let currentMain = mainItemsGetter(result).map(itemToLaptop);
+            pageItems.current[page] = currentMain;
+            main = paging ? flatPageItems() : currentMain;
+            extra = extraItemsGetter ? extraItemsGetter(result).map(itemToLaptop) : [];
+            showMoreButton = paging && currentMain.length >= limit;
+        }
 
-        const showMoreButton = paging && currentMain.length >= limit;
         return (
             <div className="content">
                 <Selection
@@ -82,6 +90,7 @@ function Results({query, method, data, mainItemsGetter=resultItems, extraItemsGe
                 setSorting={({value})=>setSorting(value)}
                 allowSorting={allowSorting}
                 loadMore={showMoreButton && loadMore}
+                noItemsText={noItemsText}
                 />
             </div>);
     }

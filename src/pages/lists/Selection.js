@@ -48,7 +48,7 @@ function LaptopIcon({ id, name, fullName, image, checked, onClick, cpuBenchmark,
     </div>;
 }
 
-function Selection({ main, extra, setSorting, allowSorting, loadMore }) {
+function Selection({ main, extra, setSorting, allowSorting, loadMore, noItemsText }) {
     const dispatch = useDispatch();
     const selected = useSelector(state => state.selection.selected)
     const selectedCount = useSelector(state => state.selection.selected.length)
@@ -92,7 +92,7 @@ function Selection({ main, extra, setSorting, allowSorting, loadMore }) {
             {main.length > 0 &&
                 <>
                     {allowSorting && <Dropdown options={[
-                        { value: "&sortType=score&direction=DESC", label: 'Dopasowanie' },
+                        { value: "&sortType=score&direction=DESC", label: 'Ocena' },
                         { value: "&sortType=popularity&direction=DESC", label: 'Popularność' },
                         { value: "&sortType=price&direction=ASC", label: 'Cena' },
                         { value: "&sortType=alphabetic&direction=ASC", label: 'Nazwa ABC' },
@@ -114,7 +114,7 @@ function Selection({ main, extra, setSorting, allowSorting, loadMore }) {
                     </div></>}
             {!hasItems
                 && <p className='text' style={{ textAlign: "center", lineHeight: "7rem", opacity: 0.5 }}>
-                        Brak wyników
+                        {noItemsText ?? "Brak wyników" }
                     </p>}
             {hasItems && loadMore && 
                 <p

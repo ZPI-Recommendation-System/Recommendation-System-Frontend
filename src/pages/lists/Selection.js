@@ -113,7 +113,7 @@ function Selection({ main, extra, setSorting, allowSorting, loadMore, noItemsTex
                         {extra.map(makeIcon)}
                     </div></>}
             {!hasItems
-                && <p className='text' style={{ textAlign: "center", lineHeight: "7rem", opacity: 0.5 }}>
+                && <p className='text' style={{ textAlign: "center", padding: "4rem", opacity: 0.5 }}>
                         {noItemsText ?? "Brak wyników" }
                     </p>}
             {hasItems && loadMore && 

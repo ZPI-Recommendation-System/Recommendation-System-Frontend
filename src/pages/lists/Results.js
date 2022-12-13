@@ -12,23 +12,23 @@ function resultItems(result) {
     return result.items;
 }
 
-function Results({query, method, data, mainItemsGetter=resultItems, extraItemsGetter, allowSorting=true, paging}) {
+function Results({ query, method, data, mainItemsGetter = resultItems, extraItemsGetter, allowSorting = true, paging }) {
 
-    const options = {   }
-    if (method) 
+    const options = {}
+    if (method)
         options.method = method;
     if (data) {
-      options.body=JSON.stringify(data)
-      options.headers={
-        'Content-Type': 'application/json'
-      }
+        options.body = JSON.stringify(data)
+        options.headers = {
+            'Content-Type': 'application/json'
+        }
     }
-    
+
     const [sorting, setSorting] = useState("&sortType=score&direction=DESC");
-    
+
     const [page, setPage] = useState(0);
     const pageItems = useRef([]);
-    
+
     const requestJSON = JSON.stringify([query, method, data]);
     useEffect(() => {
         console.log("Results reset")
@@ -37,20 +37,20 @@ function Results({query, method, data, mainItemsGetter=resultItems, extraItemsGe
     }, [requestJSON]);
 
     function loadMore() {
-        setPage(page+1);
+        setPage(page + 1);
     }
 
-    let url = API_URL+query;
-    
+    let url = API_URL + query;
+
     const ITEMS_PER_PAGE = 10;
     const MAX_LIMIT = 50;
     const limit = paging ? ITEMS_PER_PAGE : MAX_LIMIT;
-    
-    url += "&limit="+limit;
-    if (paging && page>0) {
-        url += "&page="+page;
+
+    url += "&limit=" + limit;
+    if (paging && page > 0) {
+        url += "&page=" + page;
     }
-    
+
     if (allowSorting)
         url += sorting;
 
@@ -61,39 +61,35 @@ function Results({query, method, data, mainItemsGetter=resultItems, extraItemsGe
         return _.uniqBy(_.flatten(pageItems.current), "id");
     }
 
-    if (error){
-        return <p className="text">Error: {error.message}</p>
-    } else {
-        let main = []
-        let extra = []
-        let showMoreButton = false;
-        let noItemsText = "Brak wyników";
-        
-        if (error) {
-            noItemsText = `Error: ${error.message}`
-        } else if (!isLoaded) {
-            noItemsText = "Loading..."
-        } else {
-            console.log(result)
-            let currentMain = mainItemsGetter(result).map(itemToLaptop);
-            pageItems.current[page] = currentMain;
-            main = paging ? flatPageItems() : currentMain;
-            extra = extraItemsGetter ? extraItemsGetter(result).map(itemToLaptop) : [];
-            showMoreButton = paging && currentMain.length >= limit;
-        }
+    let main = []
+    let extra = []
+    let showMoreButton = false;
+    let noItemsText = "Brak wyników";
 
-        return (
-            <div className="content">
-                <Selection
+    if (error) {
+        noItemsText = `Error: ${error.message}`
+    } else if (!isLoaded) {
+        noItemsText = "Loading..."
+    } else {
+        console.log(result)
+        let currentMain = mainItemsGetter(result).map(itemToLaptop);
+        pageItems.current[page] = currentMain;
+        main = paging ? flatPageItems() : currentMain;
+        extra = extraItemsGetter ? extraItemsGetter(result).map(itemToLaptop) : [];
+        showMoreButton = paging && currentMain.length >= limit;
+    }
+
+    return (
+        <div className="content">
+            <Selection
                 main={main}
                 extra={extra}
-                setSorting={({value})=>setSorting(value)}
+                setSorting={({ value }) => setSorting(value)}
                 allowSorting={allowSorting}
                 loadMore={showMoreButton && loadMore}
                 noItemsText={noItemsText}
-                />
-            </div>);
-    }
+            />
+        </div>);
 }
 
 export default Results;

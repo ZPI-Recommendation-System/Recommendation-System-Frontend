@@ -19,7 +19,8 @@
 .selection-section {
     display: flex;
     width: 100%;
-    justify-content: space-evenly; 
+    justify-content: flex-start; 
+    gap: 1.25%;
     list-style: none;
     padding-left:0px;
     flex-wrap: wrap;   
@@ -51,7 +52,7 @@
 }
 
 /* Screen below 700px width */
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
     .selection-laptop p {
         font-size: 0.7rem;
     }

@@ -8,7 +8,7 @@ import { select, setSelected } from '../../store/slices/selection';
 import { show, hide } from '../../store/slices/dialog';
 import LaptopStar from '../../components/LaptopStar';
 import Dropdown from 'react-dropdown';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 function HoverDialog({ content, children }) {
@@ -16,17 +16,24 @@ function HoverDialog({ content, children }) {
 
     const container = useRef(null);
 
-    function showDialog() {
-        const containerCurrent = container.current;
-        const rect = containerCurrent.getBoundingClientRect()
-        dispatch(show({ text: content, x: rect.x, y: rect.y }))
-    }
+    const [hover, setHover] = useState(false);
+
+    useEffect(() => {
+        if (hover) {
+            const delayDebounceFn = setTimeout(() => {
+                const containerCurrent = container.current;
+                const rect = containerCurrent.getBoundingClientRect()
+                dispatch(show({ text: content, x: rect.x, y: rect.y }))
+            }, 600)
+            return () => clearTimeout(delayDebounceFn)
+        }
+    }, [hover, content, dispatch])
 
     return <div
         style={{ padding: 0, margin: 0, border: 0 }}
         ref={container}
-        onMouseEnter={showDialog}
-        onMouseLeave={() => dispatch(hide())}
+        onMouseEnter={()=>setHover(true)}
+        onMouseLeave={() => {setHover(false); dispatch(hide())}}
     >{children}</div>;
 }
 
@@ -108,7 +115,7 @@ function Selection({ main, extra, setSorting, allowSorting, loadMore, noItemsTex
             }
             {extra && extra.length > 0 &&
                 <><div className="extras-divider"></div>
-                    <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań: </p>
+                    <p className="extras-text">Te laptopy nie spełniają wszystkich twoich wymagań, ale są warte zobaczenia: </p>
                     <div className="selection-section">
                         {extra.map(makeIcon)}
                     </div></>}

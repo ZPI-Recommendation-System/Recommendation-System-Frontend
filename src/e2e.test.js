@@ -55,14 +55,9 @@ describe("App.js", () => {
     await page.screenshot({ path: path, fullPage: true });
   }
 
-  async function comparisonCommon(fileName, directoryBase) {
-    await page.waitForSelector(".comparison-table")
-    await page.waitForSelector(".expandable-section")
-
-    await screenshot(`screenshots/${directoryBase}/${fileName}.png`);
-
-    await page.evaluate(async () => {
-      const selectors = Array.from(document.querySelectorAll(".comparison-image"));
+  async function waitForImages(selector) {
+    return await page.evaluate(async selector => {
+      const selectors = Array.from(document.querySelectorAll(selector));
       await Promise.all(selectors.map(img => {
         if (img.complete) return new Promise(resolve => resolve());
         return new Promise((resolve, reject) => {
@@ -70,7 +65,16 @@ describe("App.js", () => {
           img.addEventListener('error', reject);
         });
       }));
-    });
+    }, selector);
+  }
+
+  async function comparisonCommon(fileName, directoryBase) {
+    await page.waitForSelector(".comparison-table")
+    await page.waitForSelector(".expandable-section")
+
+    await screenshot(`screenshots/${directoryBase}/${fileName}.png`);
+
+    await waitForImages(".comparison-image");
 
     await page.evaluate(() => {
       let elements = document.querySelectorAll('.expandable-section');
@@ -127,13 +131,15 @@ describe("App.js", () => {
 }
 
   it("results", async () => {
-    for (let i=0; i<5; i++) {
+    for (let i=0; i<10; i++) {
       await page.goto(BASE_URL + "/results");
       const formData = randomFormData();
       await page.evaluate(formData => {
         window.mockFormData(formData);
       }, formData);
-      await page.waitForSelector(".selection-container")
+      await page.waitForSelector(".selection-section");
+      await waitForImages(".selection-laptop-image");
+
       await screenshot(`screenshots/results/${i}.png`);
       
       // cleanup

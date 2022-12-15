@@ -11,8 +11,8 @@ function detailsPage(id) {
 export default function LaptopShareLinks({ id, name }) {
     const formData = useFormData()
     const links = [
-        ["/icons/comparison/youtube.png", "youtube-search", "Wyszukaj na Youtube", () => open("https://www.youtube.com/results?search_query=" + name)],
-        ["/icons/comparison/allegro.jpg", "allegro-search", "Wyszukaj na Allegro", () => open("https://allegro.pl/listing?string=" + name)],
+        ["/icons/comparison/youtube.png", "youtube-search", "Wyszukaj na Youtube", () => open("https://www.youtube.com/results?search_query=" + encodeURIComponent(name))],
+        ["/icons/comparison/allegro.jpg", "allegro-search", "Wyszukaj na Allegro", () => open(`https://allegro.pl/listing?string=${encodeURIComponent(name)}&description=1`)],
         ["/icons/comparison/icons8-delivered-mail-96.png", "mail", "Wyślij mailem", () => mail("Laptop", "Sprawdź ten laptop.", detailsPage(id))],
         ["/icons/comparison/copy.png", "copy-to-clipboard", "Skopiuj link do schowka", () => copyToClipboard(detailsPage(id))],
     ]

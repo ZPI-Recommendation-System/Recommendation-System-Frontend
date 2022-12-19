@@ -69,8 +69,6 @@ function formDataToRequest(data) {
         if (checked) {
             result["usage"] = checked[0];
         }
-        // TOREMOVE:
-        result["usage"] = "Aplikacje biurowe i internet";
     }
     if ("size" in result) {
         function onlyUnique(value, index, self) {
@@ -82,8 +80,6 @@ function formDataToRequest(data) {
             .map(([key, value]) => key);
     }
     const translatedResult = translate(result)
-    if ("screenPreferences" in translatedResult)
-        translatedResult.screenPreferences.touchScreen = false;
 
     // "minDiscSize must not be less than 100"
     result["disk in units"] = Math.max(result["disk in units"], 100);

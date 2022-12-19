@@ -69,8 +69,6 @@ function formDataToRequest(data) {
         if (checked) {
             result["usage"] = checked[0];
         }
-        // TOREMOVE:
-        result["usage"] = "Aplikacje biurowe i internet";
     }
     if ("size" in result) {
         function onlyUnique(value, index, self) {
